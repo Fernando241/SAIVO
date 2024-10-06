@@ -12,10 +12,14 @@ export default {
     ],
 
     theme: {
+
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+        },
+        container: {    /* De esta forma defino parametros por defecto en las clases de tailwind, recordar activar la compilación automatica: npm run dev  */
+            center: true,
         },
     },
 

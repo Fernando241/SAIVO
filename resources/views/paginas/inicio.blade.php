@@ -1,47 +1,46 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inicio</title>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-</head>
-<body>
-    <br>
-    <div class="container mx-auto">
-        <header>
-            @if (Route::has('login'))
-                <nav>
-                    @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" style="padding: 10px">Iniciar Sesión</a>
+@extends('template.template')
+
+@section('title', 'inicio')
     
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" style="padding: 10px">Registrarse</a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
-    </div>
-    
+@section('content')
+    <h1>Descubra la Sabiduria Ancestral en cada uno de Nuestros Productos</h1>
     <br>
-    <hr>
-    <br>
-    <div class="container mx-auto">
-        <h1><b>Bienvenido a la Aplicación SAIVO</b></h1><br>
-        <p>Esta es la página de inicio de la aplicación diseñada para la empresa <b>Naturaleza Sagrada</b></p>
-        <div class="grid grid-cols-4 gap-2">
-            <div class="bg-blue-100">a</div>
-            <div class="bg-blue-300">b</div>
-            <div class="bg-green-400 col-span-2 row-span-3">c</div>
-            <div class="bg-blue-500">d</div>
-            <div class="bg-green-600 row-span-2">e</div>
-            <div class="bg-green-700 col-start-1">f</div>
+    <div class="container flex flex-wrap md:flex-nowrap justify-center items-center">
+        <img src="{{ asset('img/indigena4.jpeg') }}" class="w-[70%] md:w-[40%]" alt="indigena">
+        <div class="w-[90%] md:w-[40%]">
+            <br>
+            <h2 class="font-bold text-center">La Sabiduria Ancestral de los Indigenas</h2>
+            <br>
+            <p class="text-justify ml-10">En <b>Naturaleza Sagrada</b>, nos enorgullece ofrecerte tratamientos elaborados con fórmulas indígenas ancestrales, fórmulas transmitidas de generación en generación. Donde con orgullo podemos decir que cada una de nuestras recetas es un homenaje a la naturaleza y la sabiduría de nuestros antepasados, ya que sus ingredientes son cuidadosamente seleccionados y preparados para brindarte bienestar y conexión con nuestras raíces.<br> Te invitamos a unirte a nosotros en este viaje hacia una vida más saludable y equilibrada, respetando y honrando las tradiciones que nos han sido legadas.</p>
         </div>
     </div>
-</body>
-</html>
+    <br>
+    <br><hr><br>
+
+    <h2 class="text-green-900 text-center font-bold">Estos son algunos de nuestros productos con mayores testimonios</h2><br>
+        
+    <div class="container">
+        <div class="flex flex-wrap justify-center items-center gap-5">
+            <div class="w-[25%] md:w-[20%]">
+                <img src="{{ asset('img/extracto.jpg') }}" alt="product1" class="w-full h-auto object-cover">
+                <h3 class="text-center mt-3 text-green-900 font-bold">Extracto Sagrado</h3>
+            </div>
+            <div class="w-[25%] md:w-[20%]">
+                <img src="{{ asset('img/limpieza.jpg') }}" alt="product2" class="w-full h-auto object-cover">
+                <h3 class="text-center mt-3 text-green-900 font-bold">Limpieza Amazónica</h3>
+            </div>
+            <div class="w-[25%] md:w-[20%]">
+                <img src="{{ asset('img/milagroso.jpg') }}" alt="product3" class="w-full h-auto object-cover">
+                <h3 class="text-center mt-3 text-green-900 font-bold">El Milagroso</h3>
+            </div>
+            <div class="w-[25%] md:w-[20%]">
+                <img src="{{ asset('img/potencia.jpg') }}" alt="product3" class="w-full h-auto object-cover">
+                <h3 class="text-center mt-3 text-green-900 font-bold">Potencia Cacique</h3>
+            </div>
+            <div class="w-[25%] md:w-[20%]">
+                <img src="{{ asset('img/infusion.jpg') }}" alt="product3" class="w-full h-auto object-cover">
+                <h3 class="text-center mt-3 text-green-900 font-bold">Infusión Ancestral</h3>
+            </div>
+    </div><br>
+    <h2 class="text-green-900 text-center">Los medicamentos homeopáticos magistrales y oficiales no requieren para su comercialización de registro sanitario. Decreto 1737 de 2005, Cap. IV Art. 11</h2>
+@endsection

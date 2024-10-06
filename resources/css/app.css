@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+
 [x-cloak] {
     display: none;
+}
+
+#btn-ws {
+    @apply fixed w-[55px] h-[55px] leading-[55px] bottom-[40px] right-[30px] bg-green-600 text-white rounded-full text-center text-[35px] shadow-[0_1px_10px_rgba(0,0,0,0.3)] z-[100] hover:no-underline hover:bg-yellow-100 hover:text-green-700;
+}
+
+#redes {
+    @apply absolute top-[50px] sm:top-[80px] left-4 p-1;
+}
+
+#icono {
+    @apply bg-green-500 rounded-md p-2.5 text-center text-[35px] shadow-[0_1px_10px_rgba(0,0,0,0.3)] hover:bg-green-600 hover:text-yellow-100 hover:p-[9px];
+}
+
+#menu {
+    @apply flex flex-wrap md:flex-nowrap justify-center items-center;
+}
+
+.nav_menu {
+    @apply w-full md:w-auto mx-4 p-2 text-center text-green-900 hover:font-bold;
+}
+
+.nav_menu.active {
+    @apply font-bold bg-green-400;
+}
+
+h1 {
+    @apply text-green-800 font-bold text-center text-lg; /* esta es una manera excelente de no enredarme la vida con las clases de tailwind en html */
+}
+
+hr {
+    @apply border-green-800 mx-5;
+}
+
+table {
+    @apply w-full border-separate lg:border-collapse;
 }

@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\inicioController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\RecetaController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('paginas.inicio');
-});
+Route::get('/', [inicioController::class, 'inicio'])->name('inicio');
 
 // Ruta para mostrar la notificación de verificación de correo
 Route::get('/email/verify', function () {
@@ -34,3 +35,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+/* Rutas para páginas auxiliares */
+
+Route::get('/nosotros', [inicioController::class, 'nosotros']);
+
+Route::get('/productos', [ProductoController::class, 'productos']);
+
+Route::get('/recetas', [RecetaController::class, 'recetas']);
