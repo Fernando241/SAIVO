@@ -50,7 +50,7 @@
 
     
     <div class="bg-green-300">
-        <div class="grid place-items-center">
+        <div class="grid place-items-center bg-green-100">
             <div class="w-72 h-72">
                 <img src="{{ asset('img/Logo.svg') }}" class="w-full h-full" alt="logo">
             </div>
@@ -89,7 +89,7 @@
         <div class="container pt-5 mx-auto">
             <div class="flex flex-wrap md:flex-nowrap justify-center w-full">
                 <div class="">
-                    <div class=" bg-yellow-100 p-5 rounded-full p-2 m-2">
+                    <div class=" bg-white p-5 rounded-full p-2 m-2">
                         <div class="w-32 h-32">
                             <img src="{{ asset('img/Logo.svg') }}" class="w-full h-full" alt="logo">
                         </div>

@@ -40,6 +40,9 @@ Route::middleware([
 
 Route::get('/nosotros', [inicioController::class, 'nosotros']);
 
-Route::get('/productos', [ProductoController::class, 'productos']);
+/* Route::get('/productos', [ProductoController::class, 'productos']); */
 
 Route::get('/recetas', [RecetaController::class, 'recetas']);
+
+/* Productos */
+Route::resource('/productos', ProductoController::class)->names('productos');
