@@ -1,0 +1,1 @@
+<h1>Esto esta a definir -> posibilidad de que esta página sea de livewire, revisar esta parte -> respuesta en COPILOT windows</h1>

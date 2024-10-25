@@ -6,11 +6,11 @@
 
         <div x-data="{ recovery: false }">
             <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
-                {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
+                {{ __('Confirme el acceso a su cuenta introduciendo el código de autenticación proporcionado por su aplicación de autenticación.') }}
             </div>
 
             <div class="mb-4 text-sm text-gray-600" x-cloak x-show="recovery">
-                {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+                {{ __('Confirme el acceso a su cuenta introduciendo uno de sus códigos de recuperación de emergencia.') }}
             </div>
 
             <x-validation-errors class="mb-4" />
@@ -19,12 +19,12 @@
                 @csrf
 
                 <div class="mt-4" x-show="! recovery">
-                    <x-label for="code" value="{{ __('Code') }}" />
+                    <x-label for="code" value="{{ __('Código') }}" />
                     <x-input id="code" class="block mt-1 w-full" type="text" inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
                 </div>
 
                 <div class="mt-4" x-cloak x-show="recovery">
-                    <x-label for="recovery_code" value="{{ __('Recovery Code') }}" />
+                    <x-label for="recovery_code" value="{{ __('Código de recuperación ') }}" />
                     <x-input id="recovery_code" class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
                 </div>
 

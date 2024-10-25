@@ -21,35 +21,35 @@
         
     <div class="container">
         <div class="flex flex-wrap justify-center items-center gap-5">
-            <a href="#" class="w-[25%] md:w-[20%] relative group md: w-[40%]">
+            <a href="#" class="w-[40%] md:w-[25%] relative group">
                 <img src="{{ asset('img/extracto.jpg') }}" alt="Descripción" class="w-full h-auto object-cover rounded-xl transition duration-300 group-hover:opacity-70">
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition duration-300 group-hover:opacity-100">
                     <span class="text-white text-lg">Ver más</span>
                 </div>
                 <h3 class="text-center mt-3 text-green-900 font-bold">Extracto Sagrado</h3>
             </a>
-            <a href="#" class="w-[25%] md:w-[20%] relative group md: w-[40%]">
+            <a href="#" class="w-[40%] md:w-[25%] relative group">
                 <img src="{{ asset('img/limpieza.jpg') }}" alt="product2" class="w-full h-auto object-cover rounded-xl transition duration-300 group-hover:opacity-70">
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition duration-300 group-hover:opacity-100">
                     <span class="text-white text-lg">Ver más</span>
                 </div>
                 <h3 class="text-center mt-3 text-green-900 font-bold">Limpieza Amazónica</h3>
             </a>
-            <a href="#" class="w-[25%] md:w-[20%] relative group md: w-[40%]">
+            <a href="#" class="w-[40%] md:w-[25%] relative group">
                 <img src="{{ asset('img/milagroso.jpg') }}" alt="product3" class="w-full h-auto object-cover rounded-xl transition duration-300 group-hover:opacity-70">
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition duration-300 group-hover:opacity-100">
                     <span class="text-white text-lg">Ver más</span>
                 </div>
                 <h3 class="text-center mt-3 text-green-900 font-bold">El Milagroso</h3>
             </a>
-            <a href="#" class="w-[25%] md:w-[20%] relative group md: w-[40%]">
+            <a href="#" class="w-[40%] md:w-[25%] relative group">
                 <img src="{{ asset('img/potencia.jpg') }}" alt="product3" class="w-full h-auto object-cover rounded-xl transition duration-300 group-hover:opacity-70">
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition duration-300 group-hover:opacity-100">
                     <span class="text-white text-lg">Ver más</span>
                 </div>
                 <h3 class="text-center mt-3 text-green-900 font-bold">Potencia Cacique</h3>
             </a>
-            <a href="#" class="w-[25%] md:w-[20%] relative group md: w-[40%]">
+            <a href="#" class="w-[40%] md:w-[25%] relative group">
                 <img src="{{ asset('img/infusion.jpg') }}" alt="product3" class="w-full h-auto object-cover rounded-xl transition duration-300 group-hover:opacity-70">
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition duration-300 group-hover:opacity-100">
                     <span class="text-white text-lg">Ver más</span>

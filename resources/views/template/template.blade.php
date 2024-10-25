@@ -20,7 +20,7 @@
                 @if (Route::has('login'))
                     <nav>
                         @auth
-                            <a href="{{ url('/dashboard') }}">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="text-white font-bold hover:text-yellow-200">Panel Administrativo</a>
                         @else
                             <a href="{{ route('login') }}" class="text-white hover:text-yellow-200 hover:font-bold mr-2">Iniciar Sesión</a>
         
@@ -89,7 +89,7 @@
         <div class="container pt-5 mx-auto">
             <div class="flex flex-wrap md:flex-nowrap justify-center w-full">
                 <div class="">
-                    <div class=" bg-white p-5 rounded-full p-2 m-2">
+                    <div class=" bg-white p-5 rounded-full m-2">
                         <div class="w-32 h-32">
                             <img src="{{ asset('img/Logo.svg') }}" class="w-full h-full" alt="logo">
                         </div>
@@ -120,6 +120,6 @@
             </div><br>
             </div>
             
-        <p class="text-base text-white pb-5 text-xs md:text-base">&copy; 2024 Naturaleza Sagrada.SAS. Todos los derechos reservados.</p>
+        <p class=" text-white pb-5 text-xs md:text-base">&copy; 2024 Naturaleza Sagrada.SAS. Todos los derechos reservados.</p>
     </footer>
 </body>
