@@ -20,7 +20,7 @@
                 @if (Route::has('login'))
                     <nav>
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="text-white font-bold hover:text-yellow-200">Panel Administrativo</a>
+                            <a href="{{ url('/dashboard') }}" class="text-white font-bold hover:text-yellow-200">Bienvenido, {{ auth()->user()->name }}</a>
                         @else
                             <a href="{{ route('login') }}" class="text-white hover:text-yellow-200 hover:font-bold mr-2">Iniciar Sesión</a>
         
@@ -39,7 +39,7 @@
     </header>
 
     {{-- Redes sociales flotantes --}}
-    <a href="https://api.whatsapp.com/send?phone=573204195115" id="btn-ws" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+    <a href="https://api.whatsapp.com/send?phone=573209909879" id="btn-ws" target="_blank"><i class='bx bxl-whatsapp'></i></a>
     <nav id="redes"> <!--iconos de redes sociales-->
         <a href="https://es-la.facebook.com/" id="icono" target="_black"><i class='bx bxl-facebook-circle'></i></a>
         <a href="https://www.youtube.com/" id="icono" target="_black"><i class='bx bxl-youtube'></i></a>
