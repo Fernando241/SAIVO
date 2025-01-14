@@ -1,1 +1,10 @@
-<h1>Esto esta a definir -> posibilidad de que esta página sea de livewire, revisar esta parte -> respuesta en COPILOT windows</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-green-800 leading-tight">
+            {{ __('Naturaleza Sagrada') }}
+        </h2>
+    </x-slot>
+
+    @livewire('products-create')
+    
+</x-app-layout>

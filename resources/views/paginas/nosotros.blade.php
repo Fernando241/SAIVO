@@ -4,8 +4,10 @@
     
 @section('content')
     <div class="container">
-        <h1>¿Quienes somos?</h1>
-        <h3 class="text-green-700 font-bold">Empresa:</h3><p><strong>Naturaleza Sagrada.SAS</strong></p><br>
+        <h1>¿Quienes somos?</h1><br>
+        <div class="text-center text-lg">
+            <h3 class="text-green-700 font-bold">Empresa:</h3><p><strong>Naturaleza Sagrada.SAS</strong></p><br>
+        </div>
         <p class="text-justify w-[90%] m-auto">Somos una empresa que reconoce la importancia de la sabiduria ancestral legada de generación en generación por nuestros indigenas, que reconocen que las plantas son seres vivos con bondades que provee nuestra madre naturaleza y que conectan con nuestros metabolismos para activar el <b>VIX-MEDICATRIX</b> que es la capacidad de nuestro cuerpo de autosanarse, autoregenerarse y autolimpiarse. Siendo esta la base fundamental de la filosofía ancestral. <br><br>Lo que pretendemos como empresa es destacar estos sabios conocimientos olvidados por la mayoria pero que siguen y seguiran siendo vigentes por generaciones ya que buscan promover el equilibro natural del metabolismo, siendo este un estado físico, mental y espiritual que nos permite no solo vernos sino especialmente sentirnos saludables.</p><br>
 
         <img src="{{ asset('img/indigena3.jpeg') }}" class="w-[60%] md:w-[40%] m-auto" alt="indigena"><br>

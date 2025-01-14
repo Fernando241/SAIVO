@@ -22,6 +22,5 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'productos.create'])->assignRole($role1);
         Permission::create(['name' => 'productos.destroy'])->assignRole($role1);
 
-        
     }
 }

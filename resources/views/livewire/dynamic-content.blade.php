@@ -13,8 +13,7 @@
         <h1>Inventario</h1>
         <p>Contenido de la pestaña inventario</p>
     @elseif ($currentTab === 'productos')
-        <h1>Productos</h1>
-        <p>Contenido de la pestaña productos</p>
+        <h1>Administración de Productos</h1>
     @elseif ($currentTab === 'contabilidad')
         <h1>Contabilidad</h1>
         <p>Contenido de la pestaña contabilidad</p>

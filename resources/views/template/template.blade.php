@@ -8,6 +8,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+
+    {{-- livewire Style --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -70,10 +73,22 @@
 
         @yield('content')
 
+        <br>
+        <div>
+            {{-- Menú de páginas --}}
+                <hr>
+                    <nav id="menu">
+                        <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                        <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
+                        <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Productos</a>
+                        <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
+                    </nav>
+            </div>
+
         {{-- iconos de seguridad --}}
 
 
-        <br><hr><br>
+        <hr><br>
 
         <div class="flex flex-wrap md:flex-nowrap justify-center items-center">
             <img src="{{ asset('img/securePayment.png') }}" class="text-center w-[15%] md:w-[10%] m-5">
@@ -122,4 +137,7 @@
             
         <p class=" text-white pb-5 text-xs md:text-base">&copy; 2024 Naturaleza Sagrada.SAS. Todos los derechos reservados.</p>
     </footer>
+
+    {{-- livewire Script --}}
+    @livewireScripts
 </body>

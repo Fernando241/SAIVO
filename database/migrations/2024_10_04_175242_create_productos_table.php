@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('presentacion');
             $table->string('componentes');
             $table->text('descripcion');
-            $table->string('indicaciones');
+            $table->text('indicaciones');
             $table->string('contraindicaciones');
+            $table->integer('stock');
+            $table->float('precio_compra');
+            $table->float('precio_venta');
             $table->string('imagen');
             $table->timestamps();
         });
