@@ -14,11 +14,11 @@
 </head>
 
 <body>
-    <header class="grid grid-cols-6">
+    <header class="grid grid-cols-8">
         <div class="bg-green-700 col-span-3 p-5">
             <h3>Barra de busqueda aquí</h3>
         </div>
-        <div class="bg-green-700 col-span-2 p-5">
+        <div class="bg-green-700 col-span-4 p-5">
             <div>  
                 @if (Route::has('login'))
                     <nav>
@@ -36,8 +36,8 @@
             </div>
         </div>
     </div>
-    <div class="bg-green-800 col-start-6 p-5">
-        <h3>Carrito</h3>
+    <div class="col-span-1 col-start-8">
+        <a href="{{ url('/cart') }}" class="text-white bg-green-700 p-4 w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-400 hover:text-green-800 text-center"><i class='bx bxs-cart-alt'></i>@if(session('cart')) <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center"> {{ count(session('cart')) }} @else 0</span> @endif</a>
     </div>
     </header>
 

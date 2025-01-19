@@ -30,7 +30,10 @@
                 <p class="text-center text-gray-600">{{ $product->presentacion }}</p>
                 <h3 class="text-center font-bold">Precio: $ {{ number_format($product->precio_venta, 0, ',', '.') }}</h3>
                 <div class="text-center">
-                    <button class="m-2 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Agregar al carrito</button>
+                    <form action="{{ route('cart.add', $product->id) }}" method="post">
+                        @csrf
+                        <button type="submit" class="m-2 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Agregar al carrito</button>
+                    </form>
                 </div>
             </div>
             @endforeach

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\inicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RecetaController;
@@ -49,3 +50,10 @@ Route::resource('/productos', ProductoController::class)->names('productos');
 
 /* Administración de productos */
 Route::get('/AdminProducts', [inicioController::class, 'AdminProducts'])->name('adminProducts');
+
+/* Carrito de compras */
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
+Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update/{productId}', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove/{productId}', [CartController::class, 'removeProduct'])->name('cart.remove');
+
