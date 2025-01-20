@@ -24,7 +24,10 @@
                 <h3 class="font-bold">Unidades disponibles: {{ $product->stock }}</h3><br>
                 <h3 class="font-bold text-lg">Precio: $ {{ number_format($product->precio_venta, 0, ',', '.') }}</h3>
                 <div class="text-center">
-                    <button class="m-2 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Agregar al carrito</button>
+                    <form action="{{ route('cart.add', $product->id) }}" method="post">
+                        @csrf
+                        <button type="submit" class="m-2 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Agregar al carrito</button>
+                    </form>
                 </div>
             </div>
         </div>

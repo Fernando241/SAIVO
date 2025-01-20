@@ -35,10 +35,15 @@
                 @endif
             </div>
         </div>
+    <div class="col-span-1 col-start-8 relative">
+        <a href="{{ url('/cart') }}" class="text-white bg-green-700 p-4 w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-300 hover:text-green-800 text-center">
+            <i class='bx bxs-cart-alt'></i>
+            <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center">
+                {{ session('cart') ? app('App\Http\Controllers\CartController')->getTotalItemsInCart() : 0 }}
+            </span>
+        </a>
     </div>
-    <div class="col-span-1 col-start-8">
-        <a href="{{ url('/cart') }}" class="text-white bg-green-700 p-4 w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-400 hover:text-green-800 text-center"><i class='bx bxs-cart-alt'></i>@if(session('cart')) <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center"> {{ count(session('cart')) }} @else 0</span> @endif</a>
-    </div>
+    
     </header>
 
     {{-- Redes sociales flotantes --}}
@@ -51,6 +56,13 @@
     </nav>
     {{-- --- fin redes flotantes --- --}}
 
+    {{-- alertas en páginas que heredan de esta plantilla --}}
+    @if(session('success')) 
+        <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-right" role="alert"> 
+            <strong class="font-bold">¡Éxito!</strong> <span class="block sm:inline"> {{ session('success') }}</span>
+        </div>
+        <script> setTimeout(function() { document.getElementById('success-alert').style.display = 'none'; }, 2000); </script>
+    @endif
     
     <div class="bg-green-300">
         <div class="grid place-items-center bg-green-100">

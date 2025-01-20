@@ -12,7 +12,7 @@ class CartController extends Controller
     {
         $product = Producto::find($productId);
         $cart = session()->get('cart', []);
-
+        
         if (!$product) {
             return redirect()->back()->with('error', 'Producto no encontrado');
         }
@@ -67,5 +67,33 @@ class CartController extends Controller
         return redirect()->back()->with('error', 'Producto no encontrado en el carrito');
     }
 
+    // Obtener el total del carrito
+    public function getTotalItemsInCart()
+    {
+        $cart = session()->get('cart', []);
+        $totalItems = 0;
 
+        foreach ($cart as $item) {
+            $totalItems += $item['quantity'];
+        }
+
+        return $totalItems;
+    }
+
+    //Limpiar carrito
+    public function clearCart()
+    {
+        session()->forget('cart');
+        return redirect()->back()->with('success', 'Carrito vaciado');
+    }
+
+    // Finalizar compra
+    public function checkout()
+    {
+        // Lógica para finalizar la compra
+
+        // Vaciar el carrito después de la compra
+        session()->forget('cart');
+        return redirect()->route('productos.index')->with('success', 'Compra finalizada con éxito');
+    }
 }
