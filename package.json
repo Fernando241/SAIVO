@@ -16,6 +16,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "boxicons": "^2.1.4"
+        "boxicons": "^2.1.4",
+        "sweetalert2": "^11.15.10"
     }
 }

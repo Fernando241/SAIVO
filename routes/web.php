@@ -59,4 +59,5 @@ Route::post('/cart/remove/{productId}', [CartController::class, 'removeProduct']
 Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
-
+/* recetas */
+Route::resource('/recetas', RecetaController::class)->names('recetas');

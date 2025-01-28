@@ -3,6 +3,9 @@
 @section('title', 'producto')
 
 @section('content')
+    <div class="text-center">
+        <a href="{{ route('productos.index') }}" class="p-4 bg-green-600 rounded-lg hover:bg-green-500">volver</a>
+    </div><br>
     <h1>Detalles de producto</h1>
     <div class="container p-4">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
