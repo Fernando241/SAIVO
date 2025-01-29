@@ -61,3 +61,4 @@ Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.c
 
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');
+

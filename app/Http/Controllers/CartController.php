@@ -84,7 +84,7 @@ class CartController extends Controller
     public function clearCart()
     {
         session()->forget('cart');
-        return redirect()->back()->with('success', 'Carrito vaciado');
+        return redirect()->route('productos.index')->with('success', 'Carrito vaciado');
     }
 
     // Finalizar compra

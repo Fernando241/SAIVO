@@ -1,64 +1,79 @@
 @extends('template.template')
 
-@section('title', 'editar receta')
+@section('title', 'Editar Receta')
 
 @section('content')
+
     <div class="container w-[80%]">
-        <h1>Editar Receta</h1>
-        <a href="{{ route('recetas.index') }}" class="p-2 bg-green-700 rounded-lg hover:bg-green-600 text-white">Volver</a><br><br>
-        <!-- formulario para editar receta -->
-        <form action="{{ route('recetas.update', $receta->id) }}" method="POST" enctype="multipart/form-data" id="solicitudForm">
+        <h1 class="text-2xl font-bold text-green-900">Editar Receta</h1>
+        <a href="{{ route('recetas.index') }}" class="p-2 bg-green-700 rounded-lg hover:bg-green-600 text-white">Volver</a>
+        <br><br>
+
+        <!-- Formulario para editar receta -->
+        <form id="editRecetaForm" action="{{ route('recetas.update', $receta->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <!-- input para el título de la receta -->
+
+            <!-- Título -->
             <div>
-                <label for="titulo" class="text-green-900">Título</label>
-                <input type="text" id="titulo" name="titulo" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" value="{{ $receta->titulo }}" required />
+                <label for="titulo" class="text-green-900 font-semibold">Título</label>
+                <input type="text" id="titulo" name="titulo" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" value="{{ $receta->titulo }}" required />
             </div>
-            <!-- input para los ingredientes de la receta -->
+
+            <!-- Ingredientes -->
             <div>
-                <label for="ingredientes" class="text-green-900">Ingredientes</label>
-                <input type="text" id="ingredientes" name="ingredientes" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" value="{{ $receta->ingredientes }}" required>
+                <label for="ingredientes" class="text-green-900 font-semibold">Ingredientes</label>
+                <input type="text" id="ingredientes" name="ingredientes" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" value="{{ $receta->ingredientes }}" required>
             </div>
+
+            <!-- Preparación -->
             <div>
-            <!-- input para la preparación de la receta -->
-            <div>
-                <label for="preparacion" class="text-green-900">Preparación</label>
-                <textarea id="preparacion" name="preparacion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>{{ $receta->preparacion }}</textarea>
+                <label for="preparacion" class="text-green-900 font-semibold">Preparación</label>
+                <textarea id="preparacion" name="preparacion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required>{{ $receta->preparacion }}</textarea>
             </div>
-            {{-- input para el uso de la receta --}}
+
+            <!-- Uso -->
             <div>
-                <label for="uso" class="text-green-900">Uso</label>
-                <input type="text" id="uso" name="uso" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" value="{{ $receta->uso }}" required>
+                <label for="uso" class="text-green-900 font-semibold">Uso</label>
+                <input type="text" id="uso" name="uso" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" value="{{ $receta->uso }}" required>
             </div>
-            <!-- input para la imagen de la receta -->
+
+            <!-- Imagen -->
             <div>
-                <label for="imagen" class="text-green-900">Imagen</label>
-                <input type="file" id="imagen" name="imagen" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
-            </div><br>
-            <button type="submit" class="bg-green-700 p-2 rounded-md hover:bg-green-500 text-white">Editar Receta</button>
+                <label for="imagen" class="text-green-900 font-semibold">Imagen</label>
+                <input type="file" id="imagen" name="imagen" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"/>
+            </div>
+            <br>
+
+            <!-- Botón que activa el modal en lugar de enviar directamente -->
+            <button type="button" onclick="openEditModal()" class="bg-green-700 p-2 rounded-md hover:bg-green-500 text-white">Editar Receta</button>
         </form>
     </div>
-@endsection
 
-@section('js')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Modal de Confirmación -->
+    <div id="editConfirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
+            <h2 class="text-xl font-bold text-green-900 mb-4">¿Seguro que quieres actualizar esta receta?</h2>
+            <p class="text-gray-700 mb-4">Revisa bien los cambios antes de continuar.</p>
+            <div class="flex justify-center gap-4">
+                <button id="cancelEditBtn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancelar</button>
+                <button id="confirmEditBtn" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Actualizar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        document.getElementById('solicitudForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevenir el envío del formulario
+        function openEditModal() {
+            document.getElementById('editConfirmModal').classList.remove('hidden');
+        }
 
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Publicación actualizada con exito!',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then((result) => {
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        // Enviar el formulario después de mostrar la alerta
-                        event.target.submit();
-                    }
-                });
-            });
+        document.getElementById('cancelEditBtn').addEventListener('click', function() {
+            document.getElementById('editConfirmModal').classList.add('hidden');
+        });
+
+        document.getElementById('confirmEditBtn').addEventListener('click', function() {
+            document.getElementById('editRecetaForm').submit(); // Enviar el formulario al confirmar
+        });
     </script>
-@stop
+
+@endsection

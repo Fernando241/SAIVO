@@ -36,7 +36,7 @@
             </div>
         </div>
     <div class="col-span-1 col-start-8 relative">
-        <a href="{{ url('/cart') }}" class="text-white bg-green-700 p-4 w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-300 hover:text-green-800 text-center">
+        <a href="{{ url('/cart') }}" class="text-white bg-green-800 p-4 w-20 md:w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-500 hover:text-green-800 text-center z-50">
             <i class='bx bxs-cart-alt'></i>
             <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center">
                 {{ session('cart') ? app('App\Http\Controllers\CartController')->getTotalItemsInCart() : 0 }}
@@ -58,11 +58,15 @@
 
     {{-- alertas en páginas que heredan de esta plantilla --}}
     @if(session('success')) 
-        <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-right" role="alert"> 
-            <strong class="font-bold">¡Éxito!</strong> <span class="block sm:inline"> {{ session('success') }}</span>
+        <div x-data="{ show: true }" 
+            x-show="show" 
+            x-init="setTimeout(() => show = false, 2000)" 
+            class="fixed top-32 md:top-20 right-5 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg">
+            <strong class="font-bold">¡Éxito!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
         </div>
-        <script> setTimeout(function() { document.getElementById('success-alert').style.display = 'none'; }, 2000); </script>
     @endif
+
     
     <div class="bg-green-300">
         <div class="grid place-items-center bg-green-100">
@@ -103,10 +107,10 @@
         <hr><br>
 
         <div class="flex flex-wrap md:flex-nowrap justify-center items-center">
-            <img src="{{ asset('img/securePayment.png') }}" class="text-center w-[15%] md:w-[10%] m-5">
-            <img src="{{ asset('img/payment.png') }}" class="text-center w-[15%] md:w-[10%] m-5">
-            <img src="{{ asset('img/send.png') }}" class="text-center w-[15%] md:w-[10%] m-5">
-            <img src="{{ asset('img/segureProduct.png') }}" class="text-center w-[15%] md:w-[10%] m-5">
+            <img src="{{ asset('img/securePayment.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Pago seguro">
+            <img src="{{ asset('img/payment.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Modo de pago que elijas">
+            <img src="{{ asset('img/send.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Envios confiables">
+            <img src="{{ asset('img/segureProduct.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Productos seguros">
         </div>
         <p class="text-center text-xs sm:text-sm md:text-base">Pagos Seguros | Modo de pago que elijas | Envios a todo el país | Productos Seguros</p><br>
         {{-- fin iconos de seguridad --}}

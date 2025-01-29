@@ -15,7 +15,7 @@
                 </div>
                 <div>{{-- ingredientes --}}
                     <label for="ingredientes" class="text-green-900">Ingredientes</label>
-                    <input type="text" id="ingredientes" name="ingredientes" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>
+                    <textarea id="ingredientes" name="ingredientes" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required></textarea>
                 </div>
                 <div> {{-- preparacion --}}
                     <label for="preparacion" class="text-green-900">Preparación</label>
@@ -23,11 +23,11 @@
                 </div>
                 <div> {{-- uso --}}
                     <label for="uso" class="text-green-900">Uso</label>
-                    <input type="text" id="uso" name="uso" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>
+                    <textarea id="uso" name="uso" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required></textarea>
                 </div>
                 <div> {{-- imagen --}}
                     <label for="imagen" class="text-green-900">Imagen</label>
-                    <input type="file" id="imagen" name="imagen" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required />
+                    <input type="file" id="imagen" name="imagen" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"/>
                 </div><br>
                 <button type="submit" class="p-2 bg-green-700 text-white rounded-md hover:bg-green-600 text-center">Agregar Receta</button>
             </div>

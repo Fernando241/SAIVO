@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Receta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RecetaController extends Controller
 {
@@ -23,27 +24,28 @@ class RecetaController extends Controller
         // Validación de los datos
         $request->validate([
             'titulo' => 'required|string|max:255',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'ingredientes' => 'required|string',
+            'ingredientes' => 'required|string|max:255',
             'preparacion' => 'required|string',
-            'uso' => 'required|string',
+            'uso' => 'required|string|max:255',
+            'imagen' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
         // Crear la receta
         $receta = new Receta();
-        $receta->titulo = $request->input('titulo');
-        $receta->ingredientes = $request->input('ingredientes');
-        $receta->preparacion = $request->input('preparacion');
-        $receta->uso = $request->input('uso');
+        $receta->titulo = $request->titulo;
+        $receta->ingredientes = $request->ingredientes;
+        $receta->preparacion = $request->preparacion;
+        $receta->uso = $request->uso;
 
         if ($request->hasFile('imagen')) {
-            $imageName = time(). '.'. $request->imagen->extension();
-            $request->imagen->move(public_path('images'), $imageName);
-            $receta->imagen = $imageName;
+            $fileName = time(). '.'. $request->imagen->extension();
+            $request->imagen->move(public_path('images'), $fileName);
+            $receta->imagen = $fileName;
         }
 
         $receta->save();
 
+        \Log::info('Receta creada correctamente'); // Mensaje de depuración
         // Redireccionar a la lista de recetas
         return redirect()->route('recetas.index')->with('success', 'Receta creada correctamente');
     }
@@ -59,10 +61,10 @@ class RecetaController extends Controller
         // Validación de los datos
         $request->validate([
             'titulo' => 'required|string|max:255',
-            'ingredientes' => 'required|string',
+            'ingredientes' => 'required|string|max:255',
             'preparacion' => 'required|string',
-            'uso' => 'required|string',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',	
+            'uso' => 'required|string|max:255',
+            'imagen' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',	
         ]);
 
         // Buscar la receta y actualizar los datos
@@ -84,7 +86,20 @@ class RecetaController extends Controller
 
         $receta->save();
 
+        \Log::info('Receta actualizada correctamente'); // Mensaje de depuración
         // Redireccionar a la lista de recetas
         return redirect()->route('recetas.index')->with('success', 'Receta actualizada correctamente');
+    }
+
+    public function destroy($id)
+    {
+        $receta = Receta::find($id);
+        if ($receta) {
+            Storage::delete('images/'.$receta->imagen);
+            $receta->delete();
+        }
+        \Log::info('Receta eliminada correctamente'); // Mensaje de depuración
+        // Redireccionar a la lista de recetas
+        return redirect()->route('recetas.index')->with('success', 'Receta eliminada correctamente.');
     }
 }
