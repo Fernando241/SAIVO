@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container py-12 w-[80%]">
             {{-- icono de flecha atras para volver a la dashboard --}}
     <div class="flex justify-end">
         <a href="{{ route('adminProducts') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
@@ -52,31 +52,33 @@
             <input type="file" id="imagen" name="imagen" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" value="{{ $product->imagen }}" />
         </div><br>
         <div>
-            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-md">Editar</button>
+            <button type="button" onclick="openEditModal()" class="bg-green-700 p-2 rounded-md hover:bg-green-500 text-white">Editar Producto</button>
         </div>
     </form>
+
+
+{{-- Modal de confirmación --}}
+<div id="editConfirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
+        <h2 class="text-xl font-bold text-green-900 mb-4">¿Seguro que quieres actualizar este producto?</h2>
+        <p class="text-gray-700 mb-4">Revisa bien los cambios antes de continuar.</p>
+        <div class="flex justify-center gap-4">
+            <button id="cancelEditBtn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancelar</button>
+            <button id="confirmEditBtn" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Actualizar</button>
+        </div>
+    </div>
 </div>
 
+<script>
+    function openEditModal() {
+        document.getElementById('editConfirmModal').classList.remove('hidden');
+    }
+    document.getElementById('cancelEditBtn').addEventListener('click', function() {
+        document.getElementById('editConfirmModal').classList.add('hidden');
+    });
+    document.getElementById('confirmEditBtn').addEventListener('click', function() {
+        document.getElementById('solicitudForm').submit();
+    });
+</script>
 
-    @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.getElementById('solicitudForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevenir el envío del formulario
-
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Publicación actualizada con exito!',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then((result) => {
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        // Enviar el formulario después de mostrar la alerta
-                        event.target.submit();
-                    }
-                });
-            });
-    </script>
-@stop
 </div>

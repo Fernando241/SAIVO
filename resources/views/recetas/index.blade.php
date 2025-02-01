@@ -3,7 +3,7 @@
 @section('title', 'Recetas')
 
 @section('content')
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto p-4 w-[80%]">
         <h1>Bienvenidos a Nuestra Colección de Recetas y Recomendaciones para Mejorar la Salud</h1><br>
         <p class="w-[90%] m-auto">En nuestra tienda, creemos en el poder de la naturaleza para mejorar nuestra salud y bienestar. <br> En esta sección especial, encontrarás una selección de recetas caseras que te ayudarán a tratar de forma natural diversas dolencias y problemas de salud. Desde infusiones relajantes hasta remedios caseros para aliviar el dolor, cada receta está diseñada para aprovechar los beneficios de los ingredientes naturales. <br>Descubre cómo la sabiduría ancestral y los ingredientes que tienes en casa pueden convertirse en tus mejores aliados para cuidar de tu salud y la de tu familia. Explora, experimenta y disfruta de una vida más sana y equilibrada con nuestras recetas.</p><br>
         
@@ -17,9 +17,9 @@
                 <div class="flex justify-between mt-4">
                     <button @click="show = false" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700 transition">Cancelar</button>
                     <button @click="document.getElementById(formId).submit();" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-800 transition">Eliminar</button>
+                </div>
             </div>
         </div>
-    </div>
         <!-- Lista de recetas con botón eliminar -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach ($recetas as $receta)

@@ -14,11 +14,8 @@
 </head>
 
 <body>
-    <header class="grid grid-cols-8">
-        <div class="bg-green-700 col-span-3 p-5">
-            <h3>Barra de busqueda aquí</h3>
-        </div>
-        <div class="bg-green-700 col-span-4 p-5">
+    <header>
+        <div class="bg-green-700 p-1 text-center">
             <div>  
                 @if (Route::has('login'))
                     <nav>
@@ -35,15 +32,22 @@
                 @endif
             </div>
         </div>
-    <div class="col-span-1 col-start-8 relative">
-        <a href="{{ url('/cart') }}" class="text-white bg-green-800 p-4 w-20 md:w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-500 hover:text-green-800 text-center z-50">
-            <i class='bx bxs-cart-alt'></i>
-            <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center">
-                {{ session('cart') ? app('App\Http\Controllers\CartController')->getTotalItemsInCart() : 0 }}
-            </span>
-        </a>
-    </div>
-    
+        {{-- Barra de busqueda --}}
+        <div class="bg-green-700 p-1 text-center">
+            {{-- @livewire('search-productos') --}}
+            {{-- @livewire('busqueda-productos') --}}
+            <livewire:busqueda-productos />
+
+        </div>
+
+        <div class="col-span-1 relative">
+            <a href="{{ url('/cart') }}" class="text-white bg-green-800 p-4 w-20 md:w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-500 hover:text-green-800 text-center z-50">
+                <i class='bx bxs-cart-alt'></i>
+                <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center">
+                    {{ session('cart') ? app('App\Http\Controllers\CartController')->getTotalItemsInCart() : 0 }}
+                </span>
+            </a>
+        </div>
     </header>
 
     {{-- Redes sociales flotantes --}}
@@ -67,14 +71,15 @@
         </div>
     @endif
 
-    
+    {{-- logo de la empresa --}}
     <div class="bg-green-300">
         <div class="grid place-items-center bg-green-100">
-            <div class="w-72 h-72">
+            <div class="w-60 h-60">
                 <img src="{{ asset('img/Logo.svg') }}" class="w-full h-full" alt="logo">
             </div>
         </div>
-        <div>
+    <div>
+
         {{-- Menú de páginas --}}
             <hr>
                 <nav id="menu">

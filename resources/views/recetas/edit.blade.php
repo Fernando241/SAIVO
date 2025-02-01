@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container w-[80%]">
+    <div class="container">
         <h1 class="text-2xl font-bold text-green-900">Editar Receta</h1>
         <a href="{{ route('recetas.index') }}" class="p-2 bg-green-700 rounded-lg hover:bg-green-600 text-white">Volver</a>
         <br><br>

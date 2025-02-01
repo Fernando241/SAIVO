@@ -14,7 +14,7 @@ class DynamicContent extends Component
         if ($tab === 'productos') {
             return redirect()->route('adminProducts');
         }
-        $this->currentTab = $tab; /* este metodo cambia el contenido mostrado segun la pestaña clickeada */
+        $this->currentTab = $tab; 
     }
     public function render()
     {

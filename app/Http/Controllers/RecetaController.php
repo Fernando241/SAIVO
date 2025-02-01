@@ -45,7 +45,6 @@ class RecetaController extends Controller
 
         $receta->save();
 
-        \Log::info('Receta creada correctamente'); // Mensaje de depuración
         // Redireccionar a la lista de recetas
         return redirect()->route('recetas.index')->with('success', 'Receta creada correctamente');
     }
@@ -86,7 +85,6 @@ class RecetaController extends Controller
 
         $receta->save();
 
-        \Log::info('Receta actualizada correctamente'); // Mensaje de depuración
         // Redireccionar a la lista de recetas
         return redirect()->route('recetas.index')->with('success', 'Receta actualizada correctamente');
     }
@@ -98,7 +96,6 @@ class RecetaController extends Controller
             Storage::delete('images/'.$receta->imagen);
             $receta->delete();
         }
-        \Log::info('Receta eliminada correctamente'); // Mensaje de depuración
         // Redireccionar a la lista de recetas
         return redirect()->route('recetas.index')->with('success', 'Receta eliminada correctamente.');
     }

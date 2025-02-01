@@ -87,7 +87,7 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $product = Producto::find($id);
-        return view('livewire.products-edit', compact('product'));
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -146,4 +146,5 @@ class ProductoController extends Controller
         }
         return redirect()->route('adminProducts')->with('success', 'Producto eliminado exitosamente.');
     }
+
 }
