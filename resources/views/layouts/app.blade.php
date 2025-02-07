@@ -44,5 +44,8 @@
         @stack('modals')
 
         @livewireScripts
+        {{-- Libreria de Chart.js para implementación de gráficos a mi proyecto --}}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </body>
 </html>

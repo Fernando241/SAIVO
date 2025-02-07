@@ -19,6 +19,7 @@
         @endif
         
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h1>Administración de Productos e Inventario</h1>
             {{-- icono de flecha atras para volver a la dashboard --}}
             <div class="flex justify-end">
                 <a href="{{ route('dashboard') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
