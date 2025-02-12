@@ -21,4 +21,5 @@ class Producto extends Model
         'precio_venta',
         'imagen',
     ];
+
 }

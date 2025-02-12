@@ -1,5 +1,5 @@
 <div>
-    <input type="text" wire:model="query" placeholder="Buscar productos..." class="form-control">
+    <input type="text" wire:model="query" placeholder="Buscar productos..." class="form-control rounded-xl w-[60%]">
 
     @if (!empty($productos))
         <ul class="list-group mt-2">

@@ -3,13 +3,13 @@
 @section('title', 'inicio')
     
 @section('content')
-    <h1>Descubra la Sabiduria Ancestral en cada uno de Nuestros Productos</h1>
+    <h1>Revitaliza tu Vida con la Magia de la Medicina Indígena</h1>
     <br>
     <div class="container flex flex-wrap md:flex-nowrap justify-center items-center">
-        <img src="{{ asset('img/indigena4.jpeg') }}" class="w-[70%] md:w-[40%]" alt="indigena">
+        <img src="{{ asset('img/indigena4.jpeg') }}" class="w-[60%] md:w-[35%]" alt="indigena">
         <div class="w-[90%] md:w-[40%]">
             <br>
-            <h2 class="font-bold text-center">La Sabiduria Ancestral de los Indigenas</h2>
+            <h2 class="font-bold text-center">Tradición ancestral, bienestar natural</h2>
             <br>
             <p class="text-justify ml-10">En <b>Naturaleza Sagrada</b>, nos enorgullece ofrecerte tratamientos elaborados con fórmulas indígenas ancestrales, fórmulas transmitidas de generación en generación. Donde con orgullo podemos decir que cada una de nuestras recetas es un homenaje a la naturaleza y la sabiduría de nuestros antepasados, ya que sus ingredientes son cuidadosamente seleccionados y preparados para brindarte bienestar y conexión con nuestras raíces.<br> Te invitamos a unirte a nosotros en este viaje hacia una vida más saludable y equilibrada, respetando y honrando las tradiciones que nos han sido legadas.</p>
         </div>

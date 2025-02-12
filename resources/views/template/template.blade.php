@@ -8,7 +8,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-
+    
     {{-- livewire Style --}}
     @livewireStyles
 </head>
@@ -34,8 +34,6 @@
         </div>
         {{-- Barra de busqueda --}}
         <div class="bg-green-700 p-1 text-center">
-            {{-- @livewire('search-productos') --}}
-            {{-- @livewire('busqueda-productos') --}}
             <livewire:busqueda-productos />
 
         </div>
@@ -73,19 +71,19 @@
 
     {{-- logo de la empresa --}}
     <div class="bg-green-300">
-        <div class="grid place-items-center bg-green-100">
-            <div class="w-60 h-60">
-                <img src="{{ asset('img/Logo.svg') }}" class="w-full h-full" alt="logo">
+        <div class="grid place-items-center bg-white pt-16">
+            <div class="p-2">
+                <img src="{{ asset('img/logo1.svg') }}" alt="logo">
             </div>
         </div>
-    <div>
-
+        
+        <div class="bg-green-500">
         {{-- Menú de páginas --}}
             <hr>
                 <nav id="menu">
                     <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                    <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Nuestros Productos</a>
                     <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
-                    <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Productos</a>
                     <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
                 </nav>
             <hr>
@@ -95,13 +93,13 @@
         @yield('content')
 
         <br>
-        <div>
+        <div class="bg-green-500">
             {{-- Menú de páginas --}}
                 <hr>
                     <nav id="menu">
                         <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                        <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Nuestros Productos</a>
                         <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
-                        <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Productos</a>
                         <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
                     </nav>
             </div>
@@ -112,10 +110,10 @@
         <hr><br>
 
         <div class="flex flex-wrap md:flex-nowrap justify-center items-center">
-            <img src="{{ asset('img/securePayment.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Pago seguro">
-            <img src="{{ asset('img/payment.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Modo de pago que elijas">
-            <img src="{{ asset('img/send.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Envios confiables">
-            <img src="{{ asset('img/segureProduct.png') }}" class="text-center w-[15%] md:w-[10%] m-5" alt="Productos seguros">
+            <img src="{{ asset('img/securePayment.png') }}" class="text-center w-[10%] m-5" alt="Pago seguro">
+            <img src="{{ asset('img/payment.png') }}" class="text-center w-[10%] m-5" alt="Modo de pago que elijas">
+            <img src="{{ asset('img/send.png') }}" class="text-center w-[10%] m-5" alt="Envios confiables">
+            <img src="{{ asset('img/segureProduct.png') }}" class="text-center w-[10%] m-5" alt="Productos seguros">
         </div>
         <p class="text-center text-xs sm:text-sm md:text-base">Pagos Seguros | Modo de pago que elijas | Envios a todo el país | Productos Seguros</p><br>
         {{-- fin iconos de seguridad --}}
@@ -125,17 +123,17 @@
         <div class="container pt-5 mx-auto">
             <div class="flex flex-wrap md:flex-nowrap justify-center w-full">
                 <div class="">
-                    <div class=" bg-white p-5 rounded-full m-2">
+                    <div class="p-1 rounded-full m-2">
                         <div class="w-32 h-32">
-                            <img src="{{ asset('img/Logo.svg') }}" class="w-full h-full" alt="logo">
+                            <img src="{{ asset('img/logoClaro.svg') }}" class="w-full h-full" alt="logo">
                         </div>
                     </div>
                 </div>
-                <div class="w-full text-white text-center p-2 m-2">
+                <div class="w-full text-white text-center p-1">
                     <h3 class="text-base font-bold">Información</h3><br>
                     <a href="{{ url('/') }}" class="text-xs hover:text-yellow-300">Inicio</a><br>
+                    <a href="{{ url('/productos') }}" class="text-xs hover:text-yellow-300">Nuestros Productos</a><br>
                     <a href="{{ url('/nosotros') }}" class="text-xs hover:text-yellow-300">¿Quienes somos?</a><br>
-                    <a href="{{ url('/productos') }}" class="text-xs hover:text-yellow-300">Productos</a><br>
                     <a href="{{ url('/recetas') }}" class="text-xs hover:text-yellow-300">Recetas y Recomendaciones</a>
                 </div>
                 <div class="w-full text-white text-center p-2 m-2">

@@ -48,6 +48,7 @@ Route::get('/recetas', [RecetaController::class, 'recetas']);
 /* Productos */
 Route::resource('/productos', ProductoController::class)->names('productos');
 
+
 /* Administración de productos */
 Route::get('/AdminProducts', [inicioController::class, 'AdminProducts'])->name('adminProducts');
 
@@ -58,6 +59,11 @@ Route::post('/cart/update/{productId}', [CartController::class, 'updateCart'])->
 Route::post('/cart/remove/{productId}', [CartController::class, 'removeProduct'])->name('cart.remove');
 Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/revisar', [CartController::class, 'revisar'])->name('cart.revisar');
+Route::get('/checkout/summary', [CartController::class, 'checkoutSummary'])->name('checkout.summary');
+Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
+
+
 
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');

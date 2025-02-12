@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Rating;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
@@ -73,13 +76,14 @@ class ProductoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
+     * Display the specified resource.*/
     public function show($id)
     {
-        $product = Producto::find($id);
-        return view('products.show', compact('product'));
+        $product = Producto::Find($id);
+        return view('Products.show', compact('product'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -146,5 +150,4 @@ class ProductoController extends Controller
         }
         return redirect()->route('adminProducts')->with('success', 'Producto eliminado exitosamente.');
     }
-
 }
