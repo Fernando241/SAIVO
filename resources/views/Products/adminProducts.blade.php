@@ -70,7 +70,7 @@
     </div>
 
     <!-- Modal de confirmación (oculto por defecto) -->
-    <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <div id="confirmation-modal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
             <h2 class="text-xl font-bold text-red-700">¿Realmente quieres eliminar este producto?</h2>
             <p class="text-gray-700 mt-2">¡Esta acción no puede deshacerse!</p>

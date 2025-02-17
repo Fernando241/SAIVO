@@ -1,9 +1,9 @@
 <div>
     <nav id="menu">
-        <a href="#" wire:click.prevent="switchTab('inicio')" class="nav_menu {{ $currentTab === 'inicio' ? 'active' : '' }}">Resumen del Negocio</a>
-        <a href="#" wire:click.prevent="switchTab('pedidos')" class="nav_menu {{ $currentTab == 'pedidos' ? 'active' : '' }}">Pedidos</a>
-        <a href="#" wire:click.prevent="switchTab('productos')" class="nav_menu {{ $currentTab == 'productos' ? 'active' : '' }}">Productos</a>
-        <a href="#" wire:click.prevent="switchTab('clientes')" class="nav_menu {{ $currentTab == 'clientes' ? 'active' : '' }}">Clientes</a>
+        <a href="#" wire:click.prevent="switchTab('inicio')" class="bg-greenB nav_menu {{ $currentTab === 'inicio' ? 'active' : '' }}">Resumen del Negocio</a>
+        <a href="#" wire:click.prevent="switchTab('pedidos')" class="bg-greenB nav_menu {{ $currentTab == 'pedidos' ? 'active' : '' }}">Pedidos</a>
+        <a href="#" wire:click.prevent="switchTab('productos')" class="bg-greenB nav_menu {{ $currentTab == 'productos' ? 'active' : '' }}">Productos</a>
+        <a href="#" wire:click.prevent="switchTab('clientes')" class="bg-greenB nav_menu {{ $currentTab == 'clientes' ? 'active' : '' }}">Clientes</a>
     </nav><br>
 
     @if ($currentTab === 'inicio')
