@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cocur\Slugify\Slugify;
 
 class Producto extends Model
 {
@@ -21,5 +22,25 @@ class Producto extends Model
         'precio_venta',
         'imagen',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($producto) {
+            $slugify = new Slugify();
+            $producto->slug = $slugify->slugify($producto->nombre);
+        });
+
+        static::updating(function ($producto) {
+            $slugify = new Slugify();
+            $producto->slug = $slugify->slugify($producto->nombre);
+        });
+    }
+
+    // Para que Laravel busque por slug en lugar de id
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 }

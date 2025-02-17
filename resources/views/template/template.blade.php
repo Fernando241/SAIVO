@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <div class="bg-green-700 p-1 text-center">
+        <div class="bg-greenG p-1 text-center">
             <div>  
                 @if (Route::has('login'))
                     <nav>
@@ -33,13 +33,13 @@
             </div>
         </div>
         {{-- Barra de busqueda --}}
-        <div class="bg-green-700 p-1 text-center">
+        <div class="bg-greenG p-1 text-center">
             <livewire:busqueda-productos />
 
         </div>
 
         <div class="col-span-1 relative">
-            <a href="{{ url('/cart') }}" class="text-white bg-green-800 p-4 w-20 md:w-40 fixed right-1 top-1 rounded-2xl hover:bg-green-500 hover:text-green-800 text-center z-50">
+            <a href="{{ url('/cart') }}" class="text-white bg-greenB p-4 w-20 md:w-40 fixed right-1 top-1 rounded-2xl hover:bg-greenY hover:text-greenG text-center z-50">
                 <i class='bx bxs-cart-alt'></i>
                 <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center">
                     {{ session('cart') ? app('App\Http\Controllers\CartController')->getTotalItemsInCart() : 0 }}
@@ -63,51 +63,48 @@
         <div x-data="{ show: true }" 
             x-show="show" 
             x-init="setTimeout(() => show = false, 2000)" 
-            class="fixed top-32 md:top-20 right-5 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg">
+            class="fixed top-32 md:top-20 right-5 bg-greenB text-white px-4 py-3 rounded-lg shadow-lg">
             <strong class="font-bold">¡Éxito!</strong>
             <span class="block sm:inline">{{ session('success') }}</span>
         </div>
     @endif
 
     {{-- logo de la empresa --}}
-    <div class="bg-green-300">
+    <div class="bg-green-200">
         <div class="grid place-items-center bg-white pt-16">
             <div class="p-2">
-                <img src="{{ asset('img/logo1.svg') }}" alt="logo">
+                <img src="{{ asset('img/logonatsag.svg') }}" alt="logo">
             </div>
         </div>
         
-        <div class="bg-green-500">
+        <div class="bg-greenB">
         {{-- Menú de páginas --}}
-            <hr>
+            
                 <nav id="menu">
                     <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
                     <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Nuestros Productos</a>
                     <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
                     <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
                 </nav>
-            <hr>
+            
         </div><br>
         {{-- fin Menú de páginas --}}
 
         @yield('content')
 
         <br>
-        <div class="bg-green-500">
+        <div class="bg-greenB">
             {{-- Menú de páginas --}}
-                <hr>
-                    <nav id="menu">
-                        <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                        <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Nuestros Productos</a>
-                        <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
-                        <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
-                    </nav>
+                <nav id="menu">
+                    <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                    <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Nuestros Productos</a>
+                    <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
+                    <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
+                </nav>
             </div>
 
         {{-- iconos de seguridad --}}
-
-
-        <hr><br>
+        <br>
 
         <div class="flex flex-wrap md:flex-nowrap justify-center items-center">
             <img src="{{ asset('img/securePayment.png') }}" class="text-center w-[10%] m-5" alt="Pago seguro">
@@ -119,37 +116,37 @@
         {{-- fin iconos de seguridad --}}
 
     </div>
-    <footer class="w-full bg-green-700 text-center">
+    <footer class="w-full bg-greenG text-center">
         <div class="container pt-5 mx-auto">
             <div class="flex flex-wrap md:flex-nowrap justify-center w-full">
                 <div class="">
                     <div class="p-1 rounded-full m-2">
                         <div class="w-32 h-32">
-                            <img src="{{ asset('img/logoClaro.svg') }}" class="w-full h-full" alt="logo">
+                            <img src="{{ asset('img/logoWhite.svg') }}" class="w-full h-full" alt="logo">
                         </div>
                     </div>
                 </div>
                 <div class="w-full text-white text-center p-1">
                     <h3 class="text-base font-bold">Información</h3><br>
-                    <a href="{{ url('/') }}" class="text-xs hover:text-yellow-300">Inicio</a><br>
-                    <a href="{{ url('/productos') }}" class="text-xs hover:text-yellow-300">Nuestros Productos</a><br>
-                    <a href="{{ url('/nosotros') }}" class="text-xs hover:text-yellow-300">¿Quienes somos?</a><br>
-                    <a href="{{ url('/recetas') }}" class="text-xs hover:text-yellow-300">Recetas y Recomendaciones</a>
+                    <a href="{{ url('/') }}" class="text-xs hover:text-greenY">Inicio</a><br>
+                    <a href="{{ url('/productos') }}" class="text-xs hover:text-greenY">Nuestros Productos</a><br>
+                    <a href="{{ url('/nosotros') }}" class="text-xs hover:text-greenY">¿Quienes somos?</a><br>
+                    <a href="{{ url('/recetas') }}" class="text-xs hover:text-greenY">Recetas y Recomendaciones</a>
                 </div>
                 <div class="w-full text-white text-center p-2 m-2">
                     <h3 class="text-base font-bold">Políticas</h3>
-                    <a href="#" class="text-xs hover:text-yellow-300">Políticas de Cookies</a><br>
-                    <a href="#" class="text-xs hover:text-yellow-300">Política de Privacidad</a><br>
-                    <a href="#" class="text-xs hover:text-yellow-300">Política de Devoluciones</a><br>
-                    <a href="#" class="text-xs hover:text-yellow-300">Política de Términos y Condiciones</a><br>
-                    <a href="#" class="text-xs hover:text-yellow-300">Preguntas Frecuentes</a>
+                    <a href="#" class="text-xs hover:text-greenY">Políticas de Cookies</a><br>
+                    <a href="#" class="text-xs hover:text-greenY">Política de Privacidad</a><br>
+                    <a href="#" class="text-xs hover:text-greenY">Política de Devoluciones</a><br>
+                    <a href="#" class="text-xs hover:text-greenY">Política de Términos y Condiciones</a><br>
+                    <a href="#" class="text-xs hover:text-greenY">Preguntas Frecuentes</a>
                 </div>
                 <div class="w-full text-white text-center p-2 m-2">
                     <h3 class="text-base font-bold">Siguenos</h3><br>
-                    <a href="https://api.whatsapp.com/send?phone=573204195115" target="_blank"><i class='bx bxl-whatsapp hover:text-yellow-300 m-2 text-[30px]'></i></a>
-                    <a href="https://es-la.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle hover:text-yellow-300 m-2 text-[30px]'></i></a>
-                    <a href="https://www.youtube.com/" target="_blank"><i class='bx bxl-youtube hover:text-yellow-300 m-2 text-[30px]'></i></a>
-                    <a href="https://www.instagram.com/?hl=en" target="_blank"><i class='bx bxl-instagram hover:text-yellow-300 m-2 text-[30px]'></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=573204195115" target="_blank"><i class='bx bxl-whatsapp hover:text-greenY m-2 text-[30px]'></i></a>
+                    <a href="https://es-la.facebook.com/" target="_blank"><i class='bx bxl-facebook-circle hover:text-greenY m-2 text-[30px]'></i></a>
+                    <a href="https://www.youtube.com/" target="_blank"><i class='bx bxl-youtube hover:text-greenY m-2 text-[30px]'></i></a>
+                    <a href="https://www.instagram.com/?hl=en" target="_blank"><i class='bx bxl-instagram hover:text-greenY m-2 text-[30px]'></i></a>
                 </div>
             </div><br>
             </div>

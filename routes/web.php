@@ -46,8 +46,8 @@ Route::get('/nosotros', [inicioController::class, 'nosotros']);
 Route::get('/recetas', [RecetaController::class, 'recetas']);
 
 /* Productos */
-Route::resource('/productos', ProductoController::class)->names('productos');
-
+Route::resource('productos', ProductoController::class)->names('productos');
+/* Route::get('productos/{slug}', [ProductoController::class, 'show'])->name('productos.show'); */
 
 /* Administración de productos */
 Route::get('/AdminProducts', [inicioController::class, 'AdminProducts'])->name('adminProducts');
