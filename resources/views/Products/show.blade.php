@@ -1,10 +1,10 @@
 @extends('template.template')
 
-@section('title', $product->nombre)
+@section('title', 'producto')
     
 @section('content')
 <div class="text-center">
-    <a href="{{ route('productos.index') }}" alt="" class="bg-green-700 hover:bg-green-600 px-4 py-2 text-white rounded-lg">Volver</a>
+    <a href="{{ route('productos.index') }}" alt="" class="bg-greenB hover:bg-greenG px-4 py-2 text-white rounded-lg">Volver</a>
 </div><br>
 <div class="container bg-white w-[90%] sm:w-[70%] rounded-xl p-4">
     <h1>{{ $product->nombre }}</h1>
@@ -38,11 +38,11 @@
     <div class="text-center">
         <form action="{{ route('cart.add', $product->id) }}" method="post">
             @csrf
-            <button type="submit" class="m-2 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Agregar al carrito</button>
+            <button type="submit" class="m-2 bg-greenG text-white px-4 py-2 rounded hover:bg-greenB">Agregar al carrito</button>
         </form>
     </div>
 </div><br>
 <div class="text-center">
-    <a href="{{ route('productos.index') }}" alt="" class="bg-green-700 hover:bg-green-600 px-4 py-2 text-white rounded-lg">Volver</a>
+    <a href="{{ route('productos.index') }}" alt="" class="bg-greenB hover:bg-greenG px-4 py-2 text-white rounded-lg">Volver</a>
 </div><br>
 @endsection

@@ -77,9 +77,10 @@ class ProductoController extends Controller
 
     /**
      * Display the specified resource.*/
-    public function show($id)
+    public function show($slug)
     {
-        $product = Producto::Find($id);
+        $product = Producto::where('slug', '=', $slug)->firstOrFail();
+        
         return view('Products.show', compact('product'));
     }
 

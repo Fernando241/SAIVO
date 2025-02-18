@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\inicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,12 @@ Route::post('/cart/revisar', [CartController::class, 'revisar'])->name('cart.rev
 Route::get('/checkout/summary', [CartController::class, 'checkoutSummary'])->name('checkout.summary');
 Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
 
+/* Usuarios CRUD */
+Route::resource('users', UserController::class)->names('users'); 
+Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::patch('users/{id}/edit', [UserController::class, 'update'])->name('users.update');
+Route::get('users/{id}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('users/{id}/show', [UserController::class, 'show'])->name('users.show');
 
 
 /* recetas */

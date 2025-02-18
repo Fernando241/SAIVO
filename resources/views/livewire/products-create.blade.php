@@ -18,10 +18,6 @@
                     <input type="text" id="nombre" name="nombre" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required />
                 </div>
                 <div>
-                    <label for="slug" class="block text-sm font-medium text-gray-700">Slug (para URLs amigables SEO) </label>
-                    <input type="text" id="slug" name="slug" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="en minuscula, sin caracteres especiales y en vez de espacios guiones" required />
-                </div>
-                <div>
                     <label for="presentacion" class="block text-sm font-medium text-gray-700">Presentación</label>
                     <input type="text" id="presentacion" name="presentacion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required />
                 </div>

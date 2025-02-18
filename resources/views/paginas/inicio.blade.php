@@ -24,7 +24,7 @@
             @foreach ($products as $product)
             <div class="bg-white rounded-xl">
                 <div class="relative group">
-                    <a href="{{ route('productos.show', $product->id) }}" class="hover:opacity-80">
+                    <a href="{{ route('productos.show', $product->slug) }}" class="hover:opacity-80">
                         <img src="{{ asset('images/' . $product->imagen) }}" alt="{{ $product->nombre }}" class="w-full h-auto object-cover rounded-xl p-2">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
                             <span class="text-white font-bold">Ver más</span>
@@ -37,7 +37,7 @@
                 <div class="text-center">
                     <form action="{{ route('cart.add', $product->id) }}" method="post">
                         @csrf
-                        <button type="submit" class="m-2 bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Agregar al carrito</button>
+                        <button type="submit" class="m-2 bg-greenG text-white px-4 py-2 rounded hover:bg-greenB">Agregar al carrito</button>
                     </form>
                 </div>
             </div>

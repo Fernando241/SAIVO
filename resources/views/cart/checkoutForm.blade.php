@@ -1,5 +1,7 @@
 @extends('template.template')
 
+@section('title', 'Datos del Cliente')
+    
 @section('content')
     <div class="container w-[60%] bg-white rounded-xl p-6">
         <h1>Finalizar Compra<br>Paso 1: Datos del Cliente</h1><br>
@@ -30,9 +32,9 @@
                 <input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" 
                     value="{{ old('email', $cliente ? $cliente->email : ($user ? $user->email : '')) }}" 
                     required>
-            </div>
+            </div><br>
 
-            <button type="submit">
+            <button type="submit" class="bg-greenG p-2 rounded-lg w-full hover:bg-greenB text-white">
                 {{ $cliente ? 'Confirmar Datos' : 'Continuar' }}
             </button>
         </form>

@@ -22,13 +22,13 @@
             <h1>Administración de Productos e Inventario</h1>
             {{-- icono de flecha atras para volver a la dashboard --}}
             <div class="flex justify-end">
-                <a href="{{ route('dashboard') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                <a href="{{ route('dashboard') }}" class="bg-greenG text-white px-4 py-2 rounded hover:bg-greenB focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                     Volver
                 </a>
             </div><br>
             <div class="container">
                 <table class="">
-                    <thead class="bg-green-400">
+                    <thead class="bg-greenB text-white">
                         <tr>
                             <th>imagen</th>
                             <th>Nombre</th>
@@ -45,14 +45,14 @@
                                 <td class="text-center">{{ $product->presentacion }}</td>
                                 <td class="text-center">{{ $product->stock }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('productos.edit', $product->id) }}" class="text-green-600 hover:text-green-800">Editar</a>
+                                    <a href="{{ route('productos.edit', $product->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md p-2">Editar</a>
                                     <form id="form-delete-{{ $product->id }}" 
                                         action="{{ route('productos.destroy', $product->id) }}" 
                                         method="POST" class="inline-block ml-2">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" onclick="confirmDelete('{{ $product->id }}')" 
-                                                class="block text-center text-red-900 hover:text-red-700 font-bold py-2 transition duration-300">
+                                                class="text-white bg-red-500 hover:bg-red-400 rounded-md p-2 ml-2 transition duration-300">
                                             Borrar
                                         </button>
                                     </form>
@@ -64,13 +64,13 @@
             </div><br>
             {{-- Agregar nuevo producto --}}
             <div class="flex justify-center">
-                <a href="{{ route('productos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-green-600 hover:bg-green-800 rounded-md">Agregar Nuevo Producto</a>
+                <a href="{{ route('productos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-greenG hover:bg-greenB rounded-md">Agregar Nuevo Producto</a>
             </div>
         </div>
     </div>
 
     <!-- Modal de confirmación (oculto por defecto) -->
-    <div id="confirmation-modal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
             <h2 class="text-xl font-bold text-red-700">¿Realmente quieres eliminar este producto?</h2>
             <p class="text-gray-700 mt-2">¡Esta acción no puede deshacerse!</p>
@@ -98,4 +98,3 @@
         document.getElementById('confirmation-modal').classList.add('hidden');
     }
 </script>
-

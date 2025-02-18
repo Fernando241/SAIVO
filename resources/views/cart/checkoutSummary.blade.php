@@ -56,7 +56,7 @@
         {{-- Botón para Confirmar Pedido --}}
         <form action="{{ route('checkout.confirm') }}" method="POST">
             @csrf
-            <button type="submit" class="bg-green-800 hover:bg-green-600 rounded-md text-white w-full mt-4 py-2">Pagar</button>
+            <button type="submit" class="bg-greenG hover:bg-greenB rounded-md text-white w-full mt-4 py-2">Pagar</button>
         </form>
     </div>
 @endsection
