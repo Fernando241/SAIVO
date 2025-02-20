@@ -4,8 +4,8 @@
             {{ __('Naturaleza Sagrada') }}
         </h2>
     </x-slot>
+    @livewire('dynamic-content')
 
-    <div class="py-12">
     <div class="container">
         {{-- alertas en páginas que heredan de esta plantilla --}}
         @if(session('success')) 
@@ -17,56 +17,45 @@
                 <span class="block sm:inline">{{ session('success') }}</span>
             </div>
         @endif
-        
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <h1>Administración de Productos e Inventario</h1>
-            {{-- icono de flecha atras para volver a la dashboard --}}
-            <div class="flex justify-end">
-                <a href="{{ route('dashboard') }}" class="bg-greenG text-white px-4 py-2 rounded hover:bg-greenB focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                    Volver
-                </a>
-            </div><br>
-            <div class="container">
-                <table class="">
-                    <thead class="bg-greenB text-white">
-                        <tr>
-                            <th>imagen</th>
-                            <th>Nombre</th>
-                            <th>Presentación</th>
-                            <th>Stock</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($products as $product)
-                            <tr class="p-4 hover:border border-slate-500">
-                                <td><img src="{{ asset('images/'. $product->imagen) }}" alt="{{ $product->nombre }}" class="h-32 object-cover rounded-lg m-auto"></td>
-                                <td>{{ $product->nombre }}</td>
-                                <td class="text-center">{{ $product->presentacion }}</td>
-                                <td class="text-center">{{ $product->stock }}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('productos.edit', $product->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md p-2">Editar</a>
-                                    <form id="form-delete-{{ $product->id }}" 
-                                        action="{{ route('productos.destroy', $product->id) }}" 
-                                        method="POST" class="inline-block ml-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" onclick="confirmDelete('{{ $product->id }}')" 
-                                                class="text-white bg-red-500 hover:bg-red-400 rounded-md p-2 ml-2 transition duration-300">
-                                            Borrar
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div><br>
-            {{-- Agregar nuevo producto --}}
-            <div class="flex justify-center">
-                <a href="{{ route('productos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-greenG hover:bg-greenB rounded-md">Agregar Nuevo Producto</a>
-            </div>
-        </div>
+
+        <table class="">
+            <thead class="bg-greenB text-white">
+                <tr>
+                    <th>imagen</th>
+                    <th>Nombre</th>
+                    <th>Presentación</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    <tr class="p-4 hover:border border-slate-500">
+                        <td><img src="{{ asset('images/'. $product->imagen) }}" alt="{{ $product->nombre }}" class="h-32 object-cover rounded-lg m-auto"></td>
+                        <td>{{ $product->nombre }}</td>
+                        <td class="text-center">{{ $product->presentacion }}</td>
+                        <td class="text-center">{{ $product->stock }}</td>
+                        <td class="text-center">
+                            <a href="{{ route('productos.edit', $product->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md p-2">Editar</a>
+                            <form id="form-delete-{{ $product->id }}" 
+                                action="{{ route('productos.destroy', $product->id) }}" 
+                                method="POST" class="inline-block ml-2">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="confirmDelete('{{ $product->id }}')" 
+                                        class="text-white bg-red-500 hover:bg-red-400 rounded-md p-2 ml-2 transition duration-300">
+                                    Borrar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div><br>
+    {{-- Agregar nuevo producto --}}
+    <div class="flex justify-center">
+        <a href="{{ route('productos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-greenG hover:bg-greenB rounded-md">Agregar Nuevo Producto</a>
     </div>
 
     <!-- Modal de confirmación (oculto por defecto) -->
@@ -84,17 +73,17 @@
 
 <!-- Importa el script para el manejo del modal -->
 <script>
-    function confirmDelete(productId) {
-        // Mostrar el modal
-        document.getElementById('confirmation-modal').classList.remove('hidden');
-        // Asignar el id del formulario al botón de confirmación
-        document.getElementById('confirm-delete').onclick = function () {
-            document.getElementById('form-delete-' + productId).submit();
-        };
-    }
+function confirmDelete(productId) {
+// Mostrar el modal
+document.getElementById('confirmation-modal').classList.remove('hidden');
+// Asignar el id del formulario al botón de confirmación
+document.getElementById('confirm-delete').onclick = function () {
+    document.getElementById('form-delete-' + productId).submit();
+};
+}
 
-    function closeModal() {
-        // Ocultar el modal
-        document.getElementById('confirmation-modal').classList.add('hidden');
-    }
+function closeModal() {
+// Ocultar el modal
+document.getElementById('confirmation-modal').classList.add('hidden');
+}
 </script>

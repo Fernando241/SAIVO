@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\inicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,10 +51,12 @@ Route::get('/recetas', [RecetaController::class, 'recetas']);
 
 /* Productos */
 Route::resource('productos', ProductoController::class)->names('productos');
-/* Route::get('productos/{slug}', [ProductoController::class, 'show'])->name('productos.show'); */
 
 /* Administración de productos */
-Route::get('/AdminProducts', [inicioController::class, 'AdminProducts'])->name('adminProducts');
+Route::get('/adminProducts', [ProductoController::class, 'adminProducts'])->name('adminProducts');
+
+/* promedios */
+Route::get('/adminDashboard', [ProductoController::class, 'adminDashboard'])->name('adminDashboard');
 
 /* Carrito de compras */
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
@@ -64,13 +69,14 @@ Route::post('/cart/revisar', [CartController::class, 'revisar'])->name('cart.rev
 Route::get('/checkout/summary', [CartController::class, 'checkoutSummary'])->name('checkout.summary');
 Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
 
-/* Usuarios CRUD */
+/* Usuarios*/
 Route::resource('users', UserController::class)->names('users'); 
-Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::patch('users/{id}/edit', [UserController::class, 'update'])->name('users.update');
-Route::get('users/{id}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
-Route::get('users/{id}/show', [UserController::class, 'show'])->name('users.show');
 
+/* Clientes */
+Route::resource('/clientes', ClienteController::class)->names('clientes');
+
+/* Pedidos */
+Route::resource('/pedidos', PedidoController::class)->names('pedidos');
 
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');

@@ -151,4 +151,15 @@ class ProductoController extends Controller
         }
         return redirect()->route('adminProducts')->with('success', 'Producto eliminado exitosamente.');
     }
+
+    public function adminProducts()
+    {
+        $products = Producto::all();
+        return view('products.adminProducts', compact('products'));
+    }
+
+    public function adminDashboard()
+    {
+        return view('admin.dashboard');
+    }
 }

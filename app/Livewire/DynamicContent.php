@@ -7,15 +7,14 @@ use Livewire\Component;
 class DynamicContent extends Component
 {
 
-    public $currentTab = 'inicio'; /* esto define el contenido inicial a mostrar */
+    public $currentRoute;
 
-    public function switchTab($tab)
+    public function mount()
     {
-        if ($tab === 'productos') {
-            return redirect()->route('adminProducts');
-        }
-        $this->currentTab = $tab; 
+        $this->currentRoute = request()->route()->getName(); // Obtiene la ruta actual
     }
+
+    
     public function render()
     {
         return view('livewire.dynamic-content');
