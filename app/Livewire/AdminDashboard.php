@@ -21,8 +21,9 @@ class AdminDashboard extends Component
         ];
 
         $this->pedidos = [
-            'completados' => rand(30, 100),
-            'cancelados' => rand(5, 20),
+            'pendientes' => rand(3, 20),
+            'enviados' => rand(10, 30),
+            'entregados' => rand(30, 100),
         ];
 
         $this->clientes = rand(10, 50);

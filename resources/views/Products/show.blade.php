@@ -3,8 +3,9 @@
 @section('title', 'producto')
     
 @section('content')
+<br>
 <div class="text-center">
-    <a href="{{ route('productos.index') }}" alt="" class="bg-greenB hover:bg-greenG px-4 py-2 text-white rounded-lg">Volver</a>
+    <a href="{{ route('productos.index') }}" alt="" class="bg-greenB hover:bg-greenG px-4 py-2 text-white rounded-lg">Volver a Productos</a>
 </div><br>
 <div class="container bg-white w-[90%] sm:w-[70%] rounded-xl p-4">
     <h1>{{ $product->nombre }}</h1>

@@ -14,9 +14,9 @@
             <table>
             <thead>
                 <tr class="bg-greenB text-white">
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Teléfono</th>
-                    <th class="hidden lg:table-cell">Dirección</th>
                     <th class="hidden md:table-cell">Correo electrónico</th>
                     <th>Acciones</th>
                 </tr>
@@ -24,9 +24,9 @@
             <tbody>
                 @foreach ($cliente as $item)
                     <tr class="p-4 hover:border border-slate-500">
-                        <td>{{ $item->nombre }}</td>
-                        <td class="text-right sm:text-center">{{ $item->telefono }}</td>
-                        <td class="text-center hidden lg:table-cell">{{ $item->direccion }}</td>
+                        <td class="text-center">{{ $item->id }}</td>
+                        <td class="text-center">{{ $item->nombre }}</td>
+                        <td class="text-center">{{ $item->telefono }}</td>
                         <td class="text-center hidden md:table-cell">{{ $item->email }}</td>
                         <td>
                             <div class="text-center m-1 flex justify-center">

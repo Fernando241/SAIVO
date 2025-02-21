@@ -43,11 +43,11 @@ Route::middleware([
 
 /* Rutas para páginas auxiliares */
 
-Route::get('/nosotros', [inicioController::class, 'nosotros']);
+Route::get('/nosotros', [inicioController::class, 'nosotros'])->name('nosotros');
 
 /* Route::get('/productos', [ProductoController::class, 'productos']); */
 
-Route::get('/recetas', [RecetaController::class, 'recetas']);
+Route::get('/recetas', [RecetaController::class, 'recetas'])->name('recetas');
 
 /* Productos */
 Route::resource('productos', ProductoController::class)->names('productos');

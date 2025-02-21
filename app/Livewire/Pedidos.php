@@ -26,16 +26,14 @@ class Pedidos extends Component
         if ($this->search == '') {
             $this->pedidos = Pedido::all();
         } else {
-            $this->pedidos = Pedido::where('created_at', 'LIKE', '%' . $this->search. '%')
-                ->orWhere('cliente_id', 'LIKE', '%' . $this->search. '%')
+            $this->pedidos = Pedido::where('cliente_id', $this->search)
                 ->get();
         }
     }
     public function render()
 {
     $pedido = Pedido::with('cliente')
-        ->where('id', 'LIKE', '%'.$this->search.'%')
-        ->orWhere('cliente_id', 'LIKE', '%'.$this->search.'%')
+        ->where('cliente_id', 'LIKE', '%'.$this->search.'%')
         ->paginate();
 
     return view('livewire.pedidos', compact('pedido'));

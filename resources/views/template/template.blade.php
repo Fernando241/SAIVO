@@ -77,31 +77,26 @@
             </div>
         </div>
         
-        <div class="bg-greenB">
         {{-- Menú de páginas --}}
+        <div class="bg-greenB w-[90%] mx-auto relative flex flex-col items-center">
+            <div class="w-full flex justify-center md:hidden">
+                <button id="menu-button" class="text-white w-full text-center py-4 hover:text-greenY hover:font-bold">Menú</button>
+            </div>
             
-                <nav id="menu">
-                    <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                    <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Nuestros Productos</a>
-                    <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
-                    <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
-                </nav>
-            
-        </div><br>
+            <nav id="menu-items" class="hidden md:flex md:flex-row justify-center md:items-center">
+                <a href="{{ url('/') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('/') ? 'bg-greenG' : '' }}">Inicio</a>
+                <a href="{{ url('/productos') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('productos') ? 'bg-greenG' : '' }}">Nuestros Productos</a>
+                <a href="{{ url('/nosotros') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('nosotros') ? 'bg-greenG' : '' }}">¿Quiénes somos?</a>
+                <a href="{{ url('/recetas') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('recetas') ? 'bg-greenG' : '' }}">Recetas y Recomendaciones</a>
+            </nav>
+        </div>
+
         {{-- fin Menú de páginas --}}
 
         @yield('content')
 
         <br>
-        <div class="bg-greenB">
-            {{-- Menú de páginas --}}
-                <nav id="menu">
-                    <a href="{{ url('/') }}" class="nav_menu {{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                    <a href="{{ url('/productos') }}" class="nav_menu {{ request()->is('productos') ? 'active' : '' }}">Nuestros Productos</a>
-                    <a href="{{ url('/nosotros') }}" class="nav_menu {{ request()->is('nosotros') ? 'active' : '' }}">¿Quienes somos?</a>
-                    <a href="{{ url('/recetas') }}" class="nav_menu {{ request()->is('recetas') ? 'active' : '' }}">Recetas y Recomendaciones</a>
-                </nav>
-            </div>
+        <hr>
 
         {{-- iconos de seguridad --}}
         <br>
@@ -156,4 +151,21 @@
 
     {{-- livewire Script --}}
     @livewireScripts
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const menuItems = document.getElementById('menu-items');
+    
+        menuButton.addEventListener('click', () => {
+            menuItems.classList.toggle('hidden');
+            menuItems.classList.toggle('flex');
+            menuItems.classList.toggle('flex-col');
+            menuItems.classList.toggle('absolute');
+            menuItems.classList.toggle('top-full');
+            menuItems.classList.toggle('left-0');
+            menuItems.classList.toggle('w-full');
+            menuItems.classList.toggle('bg-greenB')
+            menuItems.classList.toggle('items-center')
+        });
+    </script>
+    
 </body>

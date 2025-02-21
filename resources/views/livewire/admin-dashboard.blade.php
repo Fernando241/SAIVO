@@ -4,15 +4,16 @@
     <div class="grid grid-cols-3 gap-4">
         <div class="p-4 bg-white shadow-md rounded-lg">
             <h2 class="text-lg font-semibold">Ventas</h2>
-            <p>Hoy: <strong>{{ $ventas['diarias'] }}</strong></p>
-            <p>Esta Semana: <strong>{{ $ventas['semanales'] }}</strong></p>
-            <p>Este Mes: <strong>{{ $ventas['mensuales'] }}</strong></p>
+            <p>Hoy: <b>{{ $ventas['diarias'] }}</b></p>
+            <p>Esta Semana: <b>{{ $ventas['semanales'] }}</b></p>
+            <p>Este Mes: <b>{{ $ventas['mensuales'] }}</b></p>
         </div>
 
         <div class="p-4 bg-white shadow-md rounded-lg">
             <h2 class="text-lg font-semibold">Pedidos</h2>
-            <p>Completados: <strong>{{ $pedidos['completados'] }}</strong></p>
-            <p>Cancelados: <strong>{{ $pedidos['cancelados'] }}</strong></p>
+            <p>Pendientes: <b>{{ $pedidos['pendientes'] }}</b></p>
+            <p>Enviados: <b>{{ $pedidos['enviados'] }}</b></strong></p>
+            <p>Entregados: <b>{{ $pedidos['entregados'] }}</b></p>
         </div>
 
         <div class="p-4 bg-white shadow-md rounded-lg">
@@ -73,9 +74,9 @@
             new Chart(pedidosCtx, {
                 type: 'pie',
                 data: {
-                    labels: ['Completados', 'Cancelados'],
+                    labels: ['Pendientes', 'Enviados', 'Entregados'],
                     datasets: [{
-                        data: [{{ $pedidos['completados'] }}, {{ $pedidos['cancelados'] }}],
+                        data: [{{ $pedidos['entregados'] }}, {{ $pedidos['pendientes']}},{{ $pedidos['enviados'] }}],
                         backgroundColor: ['blue', 'red']
                     }]
                 }

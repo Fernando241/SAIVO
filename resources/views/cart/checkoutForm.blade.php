@@ -3,6 +3,7 @@
 @section('title', 'Datos del Cliente')
     
 @section('content')
+<br>
     <div class="container w-[60%] bg-white rounded-xl p-6">
         <h1>Finalizar Compra<br>Paso 1: Datos del Cliente</h1><br>
         <p class="text-center text-sm">Los siguientes son datos necesarios para enviar su pedido con éxito</p><br>
