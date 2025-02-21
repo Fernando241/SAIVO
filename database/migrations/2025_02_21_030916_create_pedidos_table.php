@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string('cliente');
+            $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
+            $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
             $table->decimal('total', 10, 2);
-            $table->enum('estado', ['pendiente', 'enviado', 'entregado'])->default('pendiente');
+            $table->enum('estado', ['Pendiente', 'Enviado', 'Entregado'])->default('Pendiente');
             $table->timestamps();
         });
     }

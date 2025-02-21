@@ -70,10 +70,10 @@ Route::get('/checkout/summary', [CartController::class, 'checkoutSummary'])->nam
 Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
 
 /* Usuarios*/
-Route::resource('users', UserController::class)->names('users'); 
+Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('users'); 
 
 /* Clientes */
-Route::resource('/clientes', ClienteController::class)->names('clientes');
+Route::resource('/clientes', ClienteController::class)->only(['index', 'show'])->names('clientes');
 
 /* Pedidos */
 Route::resource('/pedidos', PedidoController::class)->names('pedidos');

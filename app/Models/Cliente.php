@@ -16,4 +16,10 @@ class Cliente extends Model
         'telefono',
         'direccion',
     ];
+
+    // Relación con Pedido
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'cliente_id');
+    }
 }

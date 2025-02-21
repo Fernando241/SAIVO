@@ -1,12 +1,13 @@
-<div x-data="{ open: false }" class="bg-greenB p-2">
+<div x-data="{ open: false }" class="bg-greenB py-1">
     <!-- Menú de navegación -->
     <nav id="menu" :class="open ? 'flex' : 'hidden'" class="flex-col md:flex-row md:flex md:justify-center items-center w-full mt-2 md:mt-0">
-        <a href="{{ route('adminDashboard') }}" class="nav_menu {{ $currentRoute == 'adminDashboard' ? 'active' : '' }}">Promedios</a> 
+        <a href="{{ route('adminDashboard') }}" class="nav_menu {{ $currentRoute == 'adminDashboard' ? 'active' : '' }}">Acerca del Negocio</a> 
         <a href="{{ route('pedidos.index') }}" class="nav_menu {{ $currentRoute == 'pedidos.index' ? 'active' : '' }}">Pedidos</a>
-        <a href="{{ route('adminProducts') }}" class="nav_menu {{ $currentRoute == 'adminProducts' ? 'active' : '' }}">Productos</a>
-        <a href="{{ route('clientes.index') }}" class="nav_menu {{ $currentRoute == 'clientes.index' ? 'active' : '' }}">Clientes</a>
+        <a href="{{ route('adminProducts') }}" class="nav_menu {{ in_array($currentRoute, ['adminProducts', 'productos.edit']) ? 'active' : '' }}">Productos</a>
+        <a href="#" class="nav_menu {{ in_array($currentRoute, ['inventario']) }}">Inventario</a>
+        <a href="{{ route('clientes.index') }}" class="nav_menu {{ in_array($currentRoute, ['clientes.index', 'clientes.show']) ? 'active' : '' }}">Clientes</a>
         <a href="#" class="nav_menu {{ $currentRoute == 'contabilidad' ? 'active' : '' }}">Contabilidad</a>
-        <a href="{{ route('users.index') }}" class="nav_menu {{ $currentRoute == 'users.index' ? 'active' : '' }}">Usuarios</a>
+        <a href="{{ route('users.index') }}" class="nav_menu {{ in_array($currentRoute, ['users.index', 'users.edit']) ? 'active' : '' }}">Usuarios</a>
         <a href="#" class="nav_menu {{ $currentRoute == 'dashboardCliente' ? 'active' : '' }}">Mis Datos</a>
     </nav>
 </div>

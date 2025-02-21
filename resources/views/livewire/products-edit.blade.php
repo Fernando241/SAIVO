@@ -1,11 +1,9 @@
-<div class="container py-12 w-[80%]">
-            {{-- icono de flecha atras para volver a la dashboard --}}
-    <div class="flex justify-end">
-        <a href="{{ route('adminProducts') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Volver
-        </a>
+<div class="container w-[80%]">
+    @livewire('dynamic-content')
+    <br>
+    <div class="text-right">
+        <a href="{{ route('adminProducts') }}" class="bg-greenG py-2 px-6 hover:bg-greenB text-white rounded-md">Volver</a>
     </div>
-
     <h1>Editar Producto</h1>
             
     <form action="{{ route('productos.update', $product->id)}}" method="POST" enctype="multipart/form-data" id="solicitudForm">
@@ -51,10 +49,10 @@
             <label for="imagen" class="block text-sm font-medium text-gray-700">Imagen</label>
             <input type="file" id="imagen" name="imagen" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" value="{{ $product->imagen }}" />
         </div><br>
-        <div>
-            <button type="button" onclick="openEditModal()" class="bg-green-700 p-2 rounded-md hover:bg-green-500 text-white">Editar Producto</button>
+        <div class="text-center">
+            <button type="button" onclick="openEditModal()" class="bg-greenG py-2 px-8 rounded-md hover:bg-greenB text-white">Editar Producto</button>
         </div>
-    </form>
+    </form><br>
 
 
 {{-- Modal de confirmación --}}

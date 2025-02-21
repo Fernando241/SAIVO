@@ -54,6 +54,11 @@
         <p class="text-lg font-bold"><strong>Total del Pedido:</strong> $ {{ number_format($total) }}</p>
 
         {{-- Botón para Confirmar Pedido --}}
+        {{-- Cambiado temporalmente para uso didactico | se cambia al implementar PayPal --}}
+        {{-- <form action="{{ route('checkout.confirm') }}" method="POST"> 
+            @csrf
+            <button type="submit" class="bg-greenG hover:bg-greenB rounded-md text-white w-full mt-4 py-2">Pagar</button>
+        </form> --}}
         <form action="{{ route('checkout.confirm') }}" method="POST">
             @csrf
             <button type="submit" class="bg-greenG hover:bg-greenB rounded-md text-white w-full mt-4 py-2">Pagar</button>

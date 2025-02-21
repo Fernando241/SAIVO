@@ -6,7 +6,7 @@
     </x-slot>
     @livewire('dynamic-content')
 
-    <div class="container">
+    <div class="container w-[90%]">
         {{-- alertas en páginas que heredan de esta plantilla --}}
         @if(session('success')) 
             <div x-data="{ show: true }" 
@@ -18,12 +18,14 @@
             </div>
         @endif
 
-        <table class="">
+        <br>
+        <h1>Lista de Productos</h1><br>
+        <table>
             <thead class="bg-greenB text-white">
                 <tr>
                     <th>imagen</th>
-                    <th>Nombre</th>
-                    <th>Presentación</th>
+                    <th>Producto</th>
+                    <th class="hidden md:table-cell">Presentación</th>
                     <th>Stock</th>
                     <th>Acciones</th>
                 </tr>
@@ -33,7 +35,7 @@
                     <tr class="p-4 hover:border border-slate-500">
                         <td><img src="{{ asset('images/'. $product->imagen) }}" alt="{{ $product->nombre }}" class="h-32 object-cover rounded-lg m-auto"></td>
                         <td>{{ $product->nombre }}</td>
-                        <td class="text-center">{{ $product->presentacion }}</td>
+                        <td class="text-center hidden md:table-cell">{{ $product->presentacion }}</td>
                         <td class="text-center">{{ $product->stock }}</td>
                         <td class="text-center">
                             <a href="{{ route('productos.edit', $product->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md p-2">Editar</a>
@@ -56,7 +58,7 @@
     {{-- Agregar nuevo producto --}}
     <div class="flex justify-center">
         <a href="{{ route('productos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-greenG hover:bg-greenB rounded-md">Agregar Nuevo Producto</a>
-    </div>
+    </div><br>
 
     <!-- Modal de confirmación (oculto por defecto) -->
     <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
