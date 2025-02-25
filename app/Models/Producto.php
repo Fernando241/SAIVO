@@ -43,4 +43,8 @@ class Producto extends Model
         return 'slug';
     }
 
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'producto_id');
+    }
 }

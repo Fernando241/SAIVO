@@ -59,16 +59,24 @@
             <p class="text-lg font-bold text-right"><b>Total del Pedido:</b> $ {{ number_format($total) }}</p>
         </div>
         
+        {{-- Boton para pagos por PayPal --}}
+        <div>
+            
+        </div>
 
-        {{-- Botón para Confirmar Pedido --}}
-        {{-- Cambiado temporalmente para uso didactico | se cambia al implementar PayPal --}}
-        {{-- <form action="{{ route('checkout.confirm') }}" method="POST"> 
+        {{-- <form action="{{ route('procesar.pedido') }}" method="POST">
             @csrf
+            <input type="hidden" name="cliente_id" value="{{ $cliente->id }}">
+            <input type="hidden" name="total" value="{{ $total }}">
+        
+            @foreach ($cart as $producto)
+                <input type="hidden" name="productos[{{ $loop->index }}][id]" value="{{ $producto['id'] }}">
+                <input type="hidden" name="productos[{{ $loop->index }}][cantidad]" value="{{ $producto['quantity'] }}">
+                <input type="hidden" name="productos[{{ $loop->index }}][precio]" value="{{ $producto['price'] }}">
+            @endforeach
+        
             <button type="submit" class="bg-greenG hover:bg-greenB rounded-md text-white w-full mt-4 py-2">Pagar</button>
         </form> --}}
-        <form action="{{ route('checkout.confirm') }}" method="POST">
-            @csrf
-            <button type="submit" class="bg-greenG hover:bg-greenB rounded-md text-white w-full mt-4 py-2">Pagar</button>
-        </form>
+        
     </div>
 @endsection

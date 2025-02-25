@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\Pedido;
-use App\Models\PedidoDetalle;
+use App\Models\DetallePedido;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,7 @@ class CartController extends Controller
             $cart[$productId]['quantity']++;
         } else {
             $cart[$productId] = [
+                "id" => $product->id, //agregue esta linea para estar pendiente por si no funciona
                 "name" => $product->nombre,
                 "quantity" => 1,
                 "price" => $product->precio_venta,
@@ -191,42 +193,6 @@ class CartController extends Controller
     
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
-        public function confirmOrder(Request $request)
-    {
-        // Obtener el cliente de la sesión (ya debería haber sido validado en checkoutSummary)
-        $cliente = Cliente::where('telefono', $request->input('telefono'))->first();
 
-        if (!$cliente) {
-            return redirect()->route('checkout.summary')->with('error', 'Error al confirmar el pedido.');
-        }
-
-        // Obtener el carrito de compras
-        $pedidoResumen = session()->get('cart', []);
-
-        if (empty($pedidoResumen)) {
-            return redirect()->route('cart.index')->with('error', 'El carrito está vacío.');
-        }
-
-        // Crear el pedido en la base de datos
-        $pedido = Pedido::create([
-            'cliente_id' => $cliente->id,
-            'total' => $pedidoResumen['total'],
-            'estado' => 'pendiente',
-        ]);
-
-        // Guardar cada producto del pedido
-        foreach ($pedidoResumen['productos'] as $producto) {
-            PedidoDetalle::create([
-                'pedido_id' => $pedido->id,
-                'producto_id' => $producto['id'],
-                'cantidad' => $producto['cantidad'],
-                'precio' => $producto['precio'],
-            ]);
-        }
-
-        // Limpiar el carrito de la sesión después de confirmar el pedido
-        session()->forget('cart');
-
-        return redirect()->route('checkout.success')->with('success', 'Pedido confirmado correctamente.');
-    }
+    
 }

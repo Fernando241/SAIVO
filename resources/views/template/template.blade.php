@@ -78,7 +78,7 @@
         </div>
         
         {{-- Menú de páginas --}}
-        <div class="bg-greenB w-[90%] mx-auto relative flex flex-col items-center">
+        <div class="bg-greenB mx-auto relative flex flex-col items-center">
             <div class="w-full flex justify-center md:hidden">
                 <button id="menu-button" class="text-white w-full text-center py-4 hover:text-greenY hover:font-bold">Menú</button>
             </div>
@@ -94,10 +94,9 @@
         {{-- fin Menú de páginas --}}
 
         @yield('content')
-
         <br>
+        
         <hr>
-
         {{-- iconos de seguridad --}}
         <br>
 

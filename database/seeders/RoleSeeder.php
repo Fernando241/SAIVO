@@ -28,6 +28,5 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'clientes.index'])->assignRole($role1);
         Permission::create(['name' => 'clientes.edit'])->assignRole($role1);
         Permission::create(['name' => 'clientes.destroy'])->assignRole($role1);
-
     }
 }

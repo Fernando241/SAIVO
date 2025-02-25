@@ -68,6 +68,7 @@ Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.c
 Route::post('/cart/revisar', [CartController::class, 'revisar'])->name('cart.revisar');
 Route::get('/checkout/summary', [CartController::class, 'checkoutSummary'])->name('checkout.summary');
 Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
+Route::post('/procesar-pedido', [CartController::class, 'procesarPedido'])->name('procesar.pedido');
 
 /* Usuarios*/
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('users'); 

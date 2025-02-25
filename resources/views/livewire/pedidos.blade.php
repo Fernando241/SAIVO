@@ -33,13 +33,13 @@
             @foreach ($pedido as $item)
                 <tr class="p-4 hover:border border-slate-500">
                     <td class="text-center hidden md:table-cell">{{ $item->id }}</td>
-                    <td class="text-center">{{ $item->cliente->id }}</td>
+                    <td class="text-center p-2">{{ $item->cliente->id }}</td>
                     <td class="text-center">{{ $item->cliente->nombre }}</td>
                     <td class="text-center hidden md:table-cell">{{ $item->created_at->format('d/m/Y') }}</td>
                     <td class="text-center">${{ $item->total }}</td>
                     <td class="text-center">{{ $item->estado }}</td>
                     <td class="text-center">
-                        <a href="{{ route('pedidos.show', $item->id) }}" class="btn btn-primary">Ver</a>
+                        <a href="{{ route('pedidos.show', $item->id) }}" class="bg-greenG p-2 rounded-md text-white hover:bg-greenB">Ver</a>
                     </td>
                 </tr>
             @endforeach
