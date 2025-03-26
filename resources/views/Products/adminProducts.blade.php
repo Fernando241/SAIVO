@@ -27,7 +27,9 @@
                     <th>Producto</th>
                     <th class="hidden md:table-cell">Presentación</th>
                     <th>Stock</th>
-                    <th>Acciones</th>
+                    @can('productos.edit')
+                        <th>Acciones</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -38,17 +40,22 @@
                         <td class="text-center hidden md:table-cell">{{ $product->presentacion }}</td>
                         <td class="text-center">{{ $product->stock }}</td>
                         <td class="text-center">
-                            <a href="{{ route('productos.edit', $product->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md p-2">Editar</a>
-                            <form id="form-delete-{{ $product->id }}" 
-                                action="{{ route('productos.destroy', $product->id) }}" 
-                                method="POST" class="inline-block ml-2">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="confirmDelete('{{ $product->id }}')" 
-                                        class="text-white bg-red-500 hover:bg-red-400 rounded-md p-2 ml-2 transition duration-300">
-                                    Borrar
-                                </button>
-                            </form>
+                            @can('productos.edit')
+                                <a href="{{ route('productos.edit', $product->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md p-2">Editar</a>    
+                            @endcan
+                            @can('productos.destroy')
+                                <form id="form-delete-{{ $product->id }}" 
+                                    action="{{ route('productos.destroy', $product->id) }}" 
+                                    method="POST" class="inline-block ml-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" onclick="confirmDelete('{{ $product->id }}')" 
+                                            class="text-white bg-red-500 hover:bg-red-400 rounded-md p-2 ml-2 transition duration-300">
+                                        Borrar
+                                    </button>
+                                </form>
+                            @endcan
+                            
                         </td>
                     </tr>
                 @endforeach
@@ -56,9 +63,12 @@
         </table>
     </div><br>
     {{-- Agregar nuevo producto --}}
-    <div class="flex justify-center">
-        <a href="{{ route('productos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-greenG hover:bg-greenB rounded-md">Agregar Nuevo Producto</a>
-    </div><br>
+    @can('productos.create')
+        <div class="flex justify-center">
+            <a href="{{ route('productos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-greenG hover:bg-greenB rounded-md">Agregar Nuevo Producto</a>
+        </div><br>    
+    @endcan
+    
 
     <!-- Modal de confirmación (oculto por defecto) -->
     <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">

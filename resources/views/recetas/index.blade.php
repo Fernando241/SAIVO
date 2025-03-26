@@ -30,7 +30,7 @@
             
             <div class="flex justify-center">
                 <button onclick="toggleReceta('{{ $receta->id }}')" 
-                        class="block text-center text-green-900 hover:text-green-700 font-bold py-2 transition duration-300" 
+                        class="block text-center text-green-700 hover:text-greenB font-bold py-2 transition duration-300" 
                         id="btn-{{ $receta->id }}">Ver Receta</button>
             </div>
             <div id="receta-{{ $receta->id }}" class="hidden mt-4">
@@ -42,12 +42,15 @@
                 <p class="mb-4">{{ $receta->uso }}</p>
             </div>
             <div>
+                @can('recetas.edit')
                 <a href="{{ route('recetas.edit', $receta->id) }}" 
                 class="block text-center text-blue-900 hover:text-blue-700 font-bold py-2 transition duration-300">
                 Editar Receta
                 </a>
+                @endcan
             </div>
             <div class="flex justify-center">
+                @can('recetas.destroy')
                 <form id="form-delete-{{ $receta->id }}" 
                     action="{{ route('recetas.destroy', $receta->id) }}" 
                     method="POST">
@@ -58,13 +61,17 @@
                         Borrar Receta
                     </button>
                 </form>
+                @endcan
             </div>
         </div>
         @endforeach
     </div>
 </div><br>
 
-        <a href="{{ route('recetas.create') }}" class="bg-green-700 hover:bg-green-500 text-white hover:text-green-900 p-2 rounded-sm">Añadir nueva receta</a>
+        @can('recetas.destroy')
+            <a href="{{ route('recetas.create') }}" class="bg-green-700 hover:bg-green-500 text-white hover:text-green-900 p-2 rounded-sm">Añadir nueva receta</a>
+        @endcan
+        
     </div>
 
     <script>

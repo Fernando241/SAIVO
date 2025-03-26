@@ -42,8 +42,8 @@
                 return $detalle->cantidad;
                 });
             @endphp
-            <p>Total Productos a entregar: <b>{{ number_format($totalProductos, 0, ',', '.') }}</b> </p>
-            <p>Precio Total de la factura: <b>$ {{ number_format($pedido->total, 0, ',', '.') }}</b></p>
+            <p>Total Productos : <b>{{ number_format($totalProductos, 0, ',', '.') }}</b> </p>
+            <p>Precio Total : <b>$ {{ number_format($pedido->total, 0, ',', '.') }}</b></p>
         </div>
     </div>
 </x-app-layout>

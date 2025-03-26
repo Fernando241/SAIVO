@@ -46,6 +46,7 @@
             <br>
 
             <!-- Botón que activa el modal en lugar de enviar directamente -->
+            
             <button type="button" onclick="openEditModal()" class="bg-green-700 p-2 rounded-md hover:bg-green-500 text-white">Editar Receta</button>
         </form>
     </div>
