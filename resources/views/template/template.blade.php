@@ -8,6 +8,12 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+
+    <!-- PayPal Script -->
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=AfANYdWSKkhU-DoNtvtkpCJFwZWHmz612gzSmdcSbR2SpcxJTS9lOEJArmAz_YbsZIDG_7h-HAj4TpLZ"
+            data-sdk-integration-source="developer-studio"
+        ></script>
     
     {{-- livewire Style --}}
     @livewireStyles
@@ -70,10 +76,10 @@
     @endif
 
     {{-- logo de la empresa --}}
-    <div class="bg-green-200">
+    <div class="bg-green-200"> 
         <div class="grid place-items-center bg-white pt-16">
             <div class="p-2">
-                <img src="{{ asset('img/logonatsag.svg') }}" alt="logo">
+                <img src="{{ asset('img/LogoHorizontal.svg') }}" alt="logo">
             </div>
         </div>
         
@@ -116,16 +122,16 @@
                 <div class="">
                     <div class="p-1 rounded-full m-2">
                         <div class="w-32 h-32">
-                            <img src="{{ asset('img/logoWhite.svg') }}" class="w-full h-full" alt="logo">
+                            <img src="{{ asset('img/isotipoBlanco.svg') }}" class="w-full h-full" alt="logo">
                         </div>
                     </div>
                 </div>
                 <div class="w-full text-white text-center p-1">
                     <h3 class="text-base font-bold">Información</h3><br>
-                    <a href="{{ url('/') }}" class="text-xs hover:text-greenY">Inicio</a><br>
-                    <a href="{{ url('/productos') }}" class="text-xs hover:text-greenY">Nuestros Productos</a><br>
-                    <a href="{{ url('/nosotros') }}" class="text-xs hover:text-greenY">¿Quienes somos?</a><br>
-                    <a href="{{ url('/recetas') }}" class="text-xs hover:text-greenY">Recetas y Recomendaciones</a>
+                    <a href="{{ url('/') }}" class="text-xs hover:text-greenY {{ request()->is('/') ? 'text-greenY' : '' }}">Inicio</a><br>
+                    <a href="{{ url('/productos') }}" class="text-xs hover:text-greenY {{ request()->is('productos') ? 'text-greenY' : '' }}">Nuestros Productos</a><br>
+                    <a href="{{ url('/nosotros') }}" class="text-xs hover:text-greenY {{ request()->is('nosotros') ? 'text-greenY' : '' }}">¿Quienes somos?</a><br>
+                    <a href="{{ url('/recetas') }}" class="text-xs hover:text-greenY {{ request()->is('recetas') ? 'text-greenY' : '' }}">Recetas y Recomendaciones</a>
                 </div>
                 <div class="w-full text-white text-center p-2 m-2">
                     <h3 class="text-base font-bold">Políticas</h3>

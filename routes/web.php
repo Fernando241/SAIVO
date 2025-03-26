@@ -64,11 +64,10 @@ Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name
 Route::post('/cart/update/{productId}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove/{productId}', [CartController::class, 'removeProduct'])->name('cart.remove');
 Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
-Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-Route::post('/cart/revisar', [CartController::class, 'revisar'])->name('cart.revisar');
-Route::get('/checkout/summary', [CartController::class, 'checkoutSummary'])->name('checkout.summary');
-Route::post('/checkout/confirm', [CartController::class, 'confirmOrder'])->name('checkout.confirm');
-Route::post('/procesar-pedido', [CartController::class, 'procesarPedido'])->name('procesar.pedido');
+Route::post('/cart/AddDatasClient', [CartController::class, 'AddDatasClient'])->name('cart.AddDatasClient');
+Route::post('/cart/SaveDatasClient', [CartController::class, 'SaveDatasClient'])->name('cart.SaveDatasClient');
+Route::get('/cart/displayOrderData', [CartController::class, 'displayOrderData'])->name('cart.displayOrderData');
+Route::post('/procesar-pedido', [CartController::class, 'procesarPedido'])->name('cart.procesarPedido');
 
 /* Usuarios*/
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('users'); 
@@ -77,7 +76,7 @@ Route::resource('users', UserController::class)->only(['index', 'edit', 'update'
 Route::resource('/clientes', ClienteController::class)->only(['index', 'show'])->names('clientes');
 
 /* Pedidos */
-Route::resource('/pedidos', PedidoController::class)->names('pedidos');
+Route::resource('/pedidos', PedidoController::class)->only(['index', 'store', 'show', 'update'])->names('pedidos');
 
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');

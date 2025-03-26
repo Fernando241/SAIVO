@@ -8,7 +8,7 @@
         <h1>Finalizar Compra<br>Paso 1: Datos del Cliente</h1><br>
         <p class="text-center text-sm">Los siguientes son datos necesarios para enviar su pedido con éxito</p><br>
 
-        <form action="{{ route('cart.revisar') }}" method="post">
+        <form action="{{ route('cart.SaveDatasClient') }}" method="post">
             @csrf
             <div>
                 <label for="nombre" class="block text-sm font-medium">Nombre:</label>

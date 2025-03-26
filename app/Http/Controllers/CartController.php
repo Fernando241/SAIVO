@@ -94,8 +94,8 @@ class CartController extends Controller
         return redirect()->route('productos.index')->with('success', 'Carrito vaciado');
     }
     /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
-    // Finalizar compra
-        public function checkout()
+    // Rescatar datos del cliente si esta registrado para enviarlos a la vista SaveDatasClient
+        public function AddDatasClient()
     {
         $user = Auth::user();
         $cliente = null;
@@ -105,11 +105,11 @@ class CartController extends Controller
             $cliente = Cliente::where('user_id', $user->id)->orWhere('email', $user->email)->first();
         }
 
-        return view('cart.checkoutForm', compact('user', 'cliente'));
+        return view('cart.SaveDatasClient', compact('user', 'cliente'));
     }
     /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
-    // verificar compra
-        public function revisar(Request $request)
+    // Guardar Cliente en la base de datos si no existe
+        public function SaveDatasClient(Request $request)
     {
         // Validar los datos del formulario
         $validated = $request->validate([
@@ -139,11 +139,11 @@ class CartController extends Controller
         // Obtener el carrito desde la sesión
         $cart = session()->get('cart', []);
 
-        if (empty($cart)) {
+        if (empty($cart)) { /* esta parte la coloque por si acaso pero realmente no se necesita ya que por mi lógica no se puede llegar hasta este punto si el carrito esta vacio */
             return redirect()->route('cart.index')->with('error', 'Tu carrito está vacío.');
         }
 
-        // Preparar resumen del pedido
+        // Preparar resumen del pedido ¿necesito hacer esto?
         $pedidoResumen = [
             'productos' => $cart,
             'total' => array_reduce($cart, function ($carry, $item) {
@@ -155,11 +155,11 @@ class CartController extends Controller
         session()->put('pedidoResumen', $pedidoResumen);
 
         // Redirigir a la vista del resumen del pedido
-        return redirect()->route('checkout.summary');
+        return redirect()->route('cart.displayOrderData');
     }
 
     /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
-        public function checkoutSummary(Request $request)
+        public function displayOrderData(Request $request)
     {
         // Verificar si los datos del cliente ya están en la sesión
         if (!session()->has('cliente')) {
@@ -169,7 +169,7 @@ class CartController extends Controller
             // Verificar si el cliente ya existe en la base de datos
             $cliente = Cliente::where('telefono', $clienteData['telefono'])->first();
     
-            // Si no existe, guardarlo en la base de datos
+            // Si no existe, guardarlo en la base de datos -> aunque en el paso anterior ya se guardo, coloque esto por si acaso
             if (!$cliente) {
                 $cliente = Cliente::create($clienteData);
             }
@@ -188,11 +188,40 @@ class CartController extends Controller
             return $carry + ($item['quantity'] * $item['price']);
         }, 0);
         
-        return view('cart.checkoutSummary', compact('cliente', 'cart', 'total'));
+        return view('cart.DisplayOrderData', compact('cliente', 'cart', 'total'));
     }
     
-
     /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
+    public function procesarPedido(Request $request)
+{
+    $cliente = session()->get('cliente');
+    $cart = session()->get('cart', []);
+    $total = array_reduce($cart, function ($carry, $item) {
+        return $carry + ($item['quantity'] * $item['price']);
+    }, 0);
 
-    
+    // Crear el pedido
+    $pedido = Pedido::create([
+        'cliente_id' => $cliente->id,
+        'total' => $total,
+        'estado' => 'Pendiente', 
+    ]);
+
+    // Crear los detalles del pedido
+    foreach ($cart as $item) {
+        DetallePedido::create([
+            'pedido_id' => $pedido->id,
+            'producto_id' => $item['id'],
+            'cantidad' => $item['quantity'],
+            'precio' => $item['price'],
+        ]);
+    }
+
+    // Limpiar el carrito
+    session()->forget('cart');
+    session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
+
+    return response()->json(['success' => true]);
+}
+
 }

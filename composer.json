@@ -12,6 +12,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
+        "paypal/paypal-server-sdk": "^0.6.1",
+        "paypal/rest-api-sdk-php": "*",
         "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {

@@ -57,9 +57,9 @@
                             <h3>Total: $ {{ number_format($total, 0, ',', '.') }}</h3>
                         </td>
                         <td>
-                            <form action="{{ route('cart.checkout') }}" method="post">
+                            <form action="{{ route('cart.AddDatasClient') }}" method="post">
                                 @csrf
-                                <button type="submit" class="inline-block p-2 text-sm font-medium text-white bg-green-600 hover:bg-green-800 rounded-md">Finalizar Compra</button>
+                                <button type="submit" class="inline-block p-2 text-sm font-medium text-white bg-green-600 hover:bg-green-800 rounded-md">Comprar</button>
                             </form>
                         </td>
                     </tr>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Cliente;
 use App\Models\DetallePedido;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Models\Producto;
+use App\Models\Producto; // ya se revisa si sobra
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -30,47 +32,50 @@ class PedidoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    // Validar los datos del pedido
-    $request->validate([
-        'cliente_id' => 'required|exists:clientes,id',
-        'total' => 'required|numeric',
-        'productos' => 'required|array', // Validar que los productos se envían como un array
-        'productos.*.id' => 'required|exists:productos,id', // Validar que cada producto tenga un ID válido
-        'productos.*.cantidad' => 'required|integer|min:1', // Validar la cantidad de cada producto
-        'productos.*.precio' => 'required|numeric', // Validar el precio de cada producto
-    ]);
+    {
+    // Obtengo los datos desde la sesión
+        $cliente = Session::get('cliente');
+        $cart = Session::get('cart', []);
+        $total = array_reduce($cart, function ($carry, $item) {
+        return $carry + ($item['quantity'] * $item['price']);
+        }, 0);
 
-    DB::beginTransaction();
-    try {
+    // Iniciar transacción de base de datos para asegurar la integridad
+        DB::beginTransaction();
+
+        try {
         // Crear el pedido
-        $pedido = Pedido::create([
-            'cliente_id' => $request->cliente_id,
-            'total' => $request->total,
-            'estado' => 'Pendiente',
-        ]);
-
-        // Guardar los productos en DetallePedido
-        foreach ($request->productos as $producto) {
-            DetallePedido::create([
-                'pedido_id' => $pedido->id,
-                'producto_id' => $producto['id'],
-                'cantidad' => $producto['cantidad'],
-                'precio' => $producto['precio'],
+            $pedido = Pedido::create([
+                'cliente_id' => $cliente->id,
+                'total' => $total,
+                'estado' => 'Pendiente',
             ]);
+        
+
+        // Crear detalles del pedido
+            foreach ($cart as $item) {
+                DetallePedido::create([
+                    'pedido_id' => $pedido->id,
+                    'producto_id' => $item['id'],
+                    'cantidad' => $item['quantity'],
+                    'precio' => $item['price'],
+                    'created_at' => now(),
+                ]);
+            }
+        // Eliminar los productos del carrito
+            Session::forget('cart');
+
+        // Confirmar la transacción
+            DB::commit();
+
+        // Redirigir al listado de pedidos
+            return redirect()->route('inicio')->with('success', 'Su pago y pedido han sido exitosos');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return redirect()->back()->with('error', 'Hubo un error al procesar su pago y pedido. Inténtalo de nuevo.');
         }
-
-        // Vaciar el carrito después de finalizar la compra
-        session()->forget('cart');
-
-        DB::commit();
-        return redirect()->route('inicio')->with('success', 'Pedido registrado con éxito.');
-
-    } catch (\Exception $e) {
-        DB::rollback();
-        return redirect()->back()->with('error', 'Error al procesar el pedido. Inténtalo de nuevo.');
     }
-}
 
 
 

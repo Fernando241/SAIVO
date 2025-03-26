@@ -24,7 +24,7 @@
                         <td class="text-center">{{ $item->name }}</td>
                         <td class="text-center hidden sm:table-cell">{{ $item->email }}</td>
                         <td class="text-center flex justify-center">
-                            <a href="{{ route('users.edit', $item->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md py-1 px-2">Editar</a>
+                            <a href="{{ route('users.edit', $item->id) }}" class="text-white bg-greenG hover:bg-greenB rounded-md py-1 px-2">Editar Rol</a>
                         </td>
                     </tr>
                 @endforeach
