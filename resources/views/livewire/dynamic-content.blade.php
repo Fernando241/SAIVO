@@ -4,7 +4,7 @@
         @can('adminDashboard')
         <a href="{{ route('adminDashboard') }}" class="nav_menu {{ $currentRoute == 'adminDashboard' ? 'active' : '' }}">Acerca del Negocio</a>
         @endcan
-        @can('users')
+        @can('users.index')
             <a href="{{ route('users.index') }}" class="nav_menu {{ in_array($currentRoute, ['users.index', 'users.edit']) ? 'active' : '' }}">Usuarios</a>
         @endcan
         @can('pedidos.index')

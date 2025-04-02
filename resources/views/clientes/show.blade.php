@@ -27,23 +27,30 @@
                         <th>Fecha</th>
                         <th>Productos</th>
                         <th>Valor</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($cliente->pedidos as $pedido)
-                        <tr>
-                            <td>{{ $pedido->created_at->format('d/m/Y') }}</td>
-                            <td>
-                                @foreach ($pedido->items as $item)
-                                    {{ $item->product->nombre }} - Cantidad: {{ $item->cantidad }}<br>
-                                @endforeach
+                    @foreach ($pedidos as $pedido)
+                        <tr class="p-4 hover:border border-slate-500">
+                            <td class="text-center pt-6">{{ $pedido->created_at->format('d/m/Y') }}</td>
+                            <td class="text-center">
+                                @php
+                                    $totalProductos = $pedido->detalles->sum(function ($detalle) {
+                                        return $detalle->cantidad;
+                                    });
+                                    echo number_format($totalProductos, 0, ',', '.');
+                                @endphp
+                            </td class="text-center">
+                            <td class="text-center">$ {{ number_format($pedido->total, 0, ',', '.') }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('pedidos.show', $pedido->id) }}" class="bg-greenG p-2 rounded-md text-white hover:bg-greenY hover:text-greenG">Ver</a>
                             </td>
-                            <td>{{ $pedido->total }}</td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
-            </table>
-            <p>Aquí se muestran todos los pedidos realizado, fecha, productos, valor</p>
+            </table><br>
+            <p class="text-gray-500 text-center">Aquí se muestran todos los pedidos realizado, fecha, productos, valor</p>
         </div>
         
     </div>

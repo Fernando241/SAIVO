@@ -37,7 +37,15 @@
                     <td class="text-center">{{ $item->cliente->nombre }}</td>
                     <td class="text-center hidden md:table-cell">{{ $item->created_at->format('d/m/Y') }}</td>
                     <td class="text-center">$ {{ number_format($item->total, 0, ',', '.') }}</td>
-                    <td class="text-center">{{ $item->estado }}</td>
+                    <td class="text-center">
+                        @if ($item->estado == 'Pendiente')
+                            <span class="text-red-500">Pendiente</span>
+                        @elseif ($item->estado == 'Enviado')
+                            <span class="text-blue-500">Enviado</span>
+                        @elseif ($item->estado == 'Entregado')
+                            <span class="text-green-500">Entregado</span>
+                        @endif
+                    </td>
                     <td class="text-center">
                         <a href="{{ route('pedidos.show', $item->id) }}" class="bg-greenG p-2 rounded-md text-white hover:bg-greenB">Ver</a>
                     </td>

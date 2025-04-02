@@ -8,6 +8,8 @@ use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +58,7 @@ Route::resource('productos', ProductoController::class)->names('productos');
 Route::get('/adminProducts', [ProductoController::class, 'adminProducts'])->name('adminProducts');
 
 /* promedios */
-Route::get('/adminDashboard', [ProductoController::class, 'adminDashboard'])->name('adminDashboard');
+Route::get('/adminDashboard', [ProductoController::class, 'adminDashboard'])->Middleware('can:adminDashboard')->name('adminDashboard');
 
 /* Carrito de compras */
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
@@ -70,7 +72,9 @@ Route::get('/cart/displayOrderData', [CartController::class, 'displayOrderData']
 Route::post('/procesar-pedido', [CartController::class, 'procesarPedido'])->name('cart.procesarPedido');
 
 /* Usuarios*/
-Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('users'); 
+Route::get('users', [UserController::class, 'index'])->middleware('can:users.index')->name('users.index');
+Route::get('users/{user}/edit', [UserController::class, 'edit'])->middleware('can:users.edit')->name('users.edit');
+Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
 
 /* Clientes */
 Route::resource('/clientes', ClienteController::class)->only(['index', 'show'])->names('clientes');
@@ -80,4 +84,5 @@ Route::resource('/pedidos', PedidoController::class)->only(['index', 'store', 's
 
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');
+
 

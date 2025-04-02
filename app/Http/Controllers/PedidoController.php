@@ -103,7 +103,16 @@ class PedidoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pedido = Pedido::find($id);
+
+        if (!$pedido) {
+            return redirect()->back()->with('error', 'Pedido no encontrado.');
+        }
+
+        $pedido->estado = $request->estado;
+        $pedido->save();
+
+        return redirect()->route('pedidos.index')->with('success', 'El estado del pedido ha sido actualizado.');
     }
 
     /**
