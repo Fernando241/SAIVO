@@ -60,6 +60,9 @@ Route::get('/adminProducts', [ProductoController::class, 'adminProducts'])->name
 /* promedios */
 Route::get('/adminDashboard', [ProductoController::class, 'adminDashboard'])->Middleware('can:adminDashboard')->name('adminDashboard');
 
+/* Inventario de productos */
+Route::get('/inventario', [ProductoController::class, 'inventario'])->name('inventario');
+
 /* Carrito de compras */
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
 Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');

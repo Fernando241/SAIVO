@@ -14,7 +14,7 @@
         <a href="{{ route('adminProducts') }}" class="nav_menu {{ in_array($currentRoute, ['adminProducts', 'productos.edit']) ? 'active' : '' }}">Productos</a>
         @endcan
         @can('inventario')
-            <a href="#" class="nav_menu {{ in_array($currentRoute, ['inventario']) }}">Inventario</a>
+            <a href="{{ route('inventario') }}" class="nav_menu {{ $currentRoute == 'inventario' ? 'active' : '' }}">Inventario</a>
         @endcan
         @can('clientes.index')
             <a href="{{ route('clientes.index') }}" class="nav_menu {{ in_array($currentRoute, ['clientes.index', 'clientes.show']) ? 'active' : '' }}">Clientes</a>
