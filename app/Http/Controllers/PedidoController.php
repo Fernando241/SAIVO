@@ -109,10 +109,35 @@ class PedidoController extends Controller
             return redirect()->back()->with('error', 'Pedido no encontrado.');
         }
 
-        $pedido->estado = $request->estado;
-        $pedido->save();
+        DB::beginTransaction();
 
-        return redirect()->route('pedidos.index')->with('success', 'El estado del pedido ha sido actualizado.');
+        try{
+            $pedido->estado = $request->estado;
+            $pedido->save();
+
+            // Descuento del stock solo si el estado se cambia a "Enviado"
+            if($request->estado === 'Enviado') {
+                foreach($pedido->detalles as $detalle) {
+                    $producto = $detalle->producto;
+                    $producto->stock -= $detalle->cantidad;
+
+                    if($producto->stock < 0) {
+                        throw new \Exception('No hay stock suficiente para enviar el pedido.');
+                    }
+
+                    $producto->save();
+                }
+            }
+            // confirmo la transacción
+            DB::commit();
+            return redirect()->route('pedidos.index')->with('success', 'El estado del pedido ha sido actualizado.');
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error', 'Hubo un error al actualizar el estado del pedido.');
+        }
+
+        
     }
 
     /**

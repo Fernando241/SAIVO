@@ -34,6 +34,7 @@ class Pedidos extends Component
 {
     $pedido = Pedido::with('cliente')
         ->where('cliente_id', 'LIKE', '%'.$this->search.'%')
+        ->orderBy('created_at', 'desc')
         ->paginate();
 
     return view('livewire.pedidos', compact('pedido'));

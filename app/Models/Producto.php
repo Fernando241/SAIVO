@@ -43,8 +43,12 @@ class Producto extends Model
         return 'slug';
     }
 
-    public function pedidos()
+    /* public function pedidos()
     {
         return $this->hasMany(Pedido::class, 'producto_id');
+    } */
+    public function detalles() // Cambiado de pedidos() a detalles()
+    {
+        return $this->hasMany(DetallePedido::class, 'producto_id');
     }
 }

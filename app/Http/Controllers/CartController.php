@@ -9,6 +9,7 @@ use App\Models\DetallePedido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\PedidoPagado;
 
 
 class CartController extends Controller
@@ -220,6 +221,9 @@ class CartController extends Controller
     // Limpiar el carrito
     session()->forget('cart');
     session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
+
+    // Disparar el evento
+    event(new PedidoPagado($pedido, $cliente));
 
     return response()->json(['success' => true]);
 }
