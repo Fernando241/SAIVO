@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     @livewire('dynamic-content')
-    <div class="content">
+    <div>
         @livewire('admin-dashboard')
     </div>
 </x-app-layout>

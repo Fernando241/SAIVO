@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\inicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProveedorController;
+use App\Models\Proveedor;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -62,6 +65,13 @@ Route::get('/adminDashboard', [ProductoController::class, 'adminDashboard'])->Mi
 
 /* Inventario de productos */
 Route::get('/inventario', [ProductoController::class, 'inventario'])->name('inventario');
+
+/* proveedores */
+Route::resource('proveedores', ProveedorController::class)->names('proveedores');
+
+/* compras */
+Route::resource('/compras', CompraController::class)->names('compras');
+
 
 /* Carrito de compras */
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
