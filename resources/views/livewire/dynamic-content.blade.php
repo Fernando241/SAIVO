@@ -30,7 +30,7 @@
         {{-- compras --}}
         <a href="#" class="nav_menu {{ in_array($currentRoute, ['compras.index', 'compras.show', 'compras.edit']) ? 'active' : '' }}">Compras</a>
         {{-- proveedores --}}
-        <a href="#" class="nav_menu {{ in_array($currentRoute, ['proveedores.index', 'proveedores.show', 'proveedores.edit']) ? 'active' : '' }}">Proveedores</a>
+        <a href="{{ route('proveedores.index') }}" class="nav_menu {{ in_array($currentRoute, ['proveedores.index', 'proveedores.show', 'proveedores.edit']) ? 'active' : '' }}">Proveedores</a>
         <a href="#" class="nav_menu {{ $currentRoute == 'dashboardCliente' ? 'active' : '' }}">Mis datos</a>
     </nav>
 </div>
