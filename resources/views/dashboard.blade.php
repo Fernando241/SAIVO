@@ -11,7 +11,6 @@
             <div class="container">
                 @livewire('dynamic-content')
             </div>
-            
         </div>
     </div>
 </x-app-layout>

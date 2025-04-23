@@ -57,7 +57,7 @@
     {{-- Redes sociales flotantes --}}
     <a href="https://api.whatsapp.com/send?phone=573209909879" id="btn-ws" target="_blank"><i class='bx bxl-whatsapp'></i></a>
     <nav id="redes"> <!--iconos de redes sociales-->
-        <a href="https://es-la.facebook.com/" id="icono" target="_black"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61574984795833" id="icono" target="_black"><i class='bx bxl-facebook-circle'></i></a>
         <a href="https://www.youtube.com/" id="icono" target="_black"><i class='bx bxl-youtube'></i></a>
         <a href="https://www.instagram.com/?hl=en" id="icono" target="_black"><i class='bx bxl-instagram'></i></a>
         <a href="https://twitter.com/" id="icono" target="_black"><i class='bx bxl-twitter'></i></a>
@@ -76,10 +76,10 @@
     @endif
 
     {{-- logo de la empresa --}}
-    <div class="bg-green-200"> 
-        <div class="grid place-items-center bg-white pt-16">
+    <div class="bg-green-300 bg-repeat bg-[url('img/patronW.svg')]"> 
+        <div class="grid place-items-center bg-white bg-repeat bg-[url('img/PatronGF.svg')] pt-16">
             <div class="p-2">
-                <img src="{{ asset('img/LogoHorizontal.svg') }}" alt="logo">
+                <img src="{{ asset('img/logoFullH.svg') }}" alt="logo">
             </div>
         </div>
         
@@ -122,7 +122,7 @@
                 <div class="">
                     <div class="p-1 rounded-full m-2">
                         <div class="w-32 h-32">
-                            <img src="{{ asset('img/isotipoBlanco.svg') }}" class="w-full h-full" alt="logo">
+                            <img src="{{ asset('img/isotipoWhite.svg') }}" class="w-full h-full" alt="logo">
                         </div>
                     </div>
                 </div>

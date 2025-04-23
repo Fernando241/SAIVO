@@ -18,9 +18,9 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                greenG: '#00A859',
-                greenB: '#1BB18E',
-                greenY: '#B0D831',
+                greenG: '#007744',
+                greenB: '#149A7B',
+                greenY: '#D5E162',
             },  
         },
         container: {    /* De esta forma defino parametros por defecto en las clases de tailwind, recordar activar la compilación automatica: npm run dev  */
