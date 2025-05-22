@@ -28,7 +28,7 @@
                 <input type="email" id="email" name="email" class="mt-1 w-full rounded-md border-gray-300" value="{{ $proveedor->email }}">
             </div><br>
             <div class="text-center">
-                <button type="button" onclick="openEditModal()" class="bg-greenG py-2 px-8 rounded-md hover:bg-greenB text-white">Editar Producto</button>
+                <button type="button" onclick="openEditModal()" class="bg-greenG py-2 px-8 rounded-md hover:bg-greenB text-white">Editar Datos del Proveedor</button>
             </div>
         </form>
 

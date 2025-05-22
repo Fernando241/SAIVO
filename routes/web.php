@@ -9,6 +9,7 @@ use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GastoController;
 use App\Http\Controllers\ProveedorController;
 use App\Models\Proveedor;
 use GuzzleHttp\Middleware;
@@ -71,6 +72,9 @@ Route::resource('proveedores', ProveedorController::class)->names('proveedores')
 
 /* compras */
 Route::resource('/compras', CompraController::class)->names('compras');
+
+/* gastos */
+Route::resource('gastos', GastoController::class)->names('gastos');
 
 
 /* Carrito de compras */

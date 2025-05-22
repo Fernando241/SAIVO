@@ -21,7 +21,8 @@ class Clientes extends Component
 
     public function buscarClientes()
     {
-        if ($this->search == '') {
+        if ($this->search == '') 
+        {
             $this->clientes = Cliente::all();
         } else {
             $this->clientes = Cliente::where('nombre', 'LIKE', '%' . $this->search . '%')
@@ -30,11 +31,7 @@ class Clientes extends Component
         }
     }
 
-    /* public function updatingSearch()
-    {
-        $this->resetPage();
-    }
- */    public function render()
+    public function render()
     {
         $cliente = Cliente::where('nombre', 'LIKE', '%' . $this->search . '%')
                             ->orWhere('email', 'LIKE', '%' . $this->search . '%')->paginate();
