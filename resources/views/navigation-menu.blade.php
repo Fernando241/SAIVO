@@ -9,7 +9,7 @@
                         {{-- <x-application-mark class="block h-9 w-auto" /> --}}
                         <div class=" bg-white rounded-full p-2">
                             <div class="w-16 h-16">
-                                <img src="{{ asset('img/isotipoFull.svg') }}" class="w-full h-full" alt="logo">
+                                <img src="{{ asset('img/isotipo.svg') }}" class="w-full h-full" alt="logo">
                             </div>
                         </div>
                     </a>

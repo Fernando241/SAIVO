@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Livewire\Proveedors;
 use App\Models\Gasto;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
 class GastoController extends Controller
@@ -21,7 +23,8 @@ class GastoController extends Controller
      */
     public function create()
     {
-        //
+        $proveedores = Proveedor::all();
+        return view('gastos.create', compact('proveedores'));
     }
 
     /**
@@ -29,7 +32,15 @@ class GastoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validación de datos
+        $request->validate([
+            'valor' => 'required|numeric',
+            'descripcion' => 'required|string|max:255',
+            'proveedor_id' => 'required|exists:proveedors,id',
+        ]);
+        //crear un nuevo gasto
+        Gasto::create($request->all());
+        return redirect()->route('gastos.index')->with('success', 'Nuevo gasto agregado con éxito');
     }
 
     /**
@@ -43,9 +54,11 @@ class GastoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Gasto $gasto)
+    public function edit($id)
     {
-        //
+        $gastos = Gasto::find($id);
+        $proveedores = Proveedor::all();
+        return view('gastos.edit', compact('gastos', 'proveedores'));
     }
 
     /**

@@ -4,7 +4,7 @@
             {{-- <x-authentication-card-logo /> --}}
             <div class=" bg-white p-5 rounded-full m-2">
                 <div class="w-32 h-32">
-                    <img src="{{ asset('img/isotipoFull.svg') }}" class="w-full h-full" alt="logo">
+                    <img src="{{ asset('img/isotipo.svg') }}" class="w-full h-full" alt="logo">
                 </div>
             </div>
         </x-slot>
@@ -12,7 +12,7 @@
         <x-validation-errors class="mb-4" />
 
         @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600">
+            <div class="mb-4 font-medium text-sm">
                 {{ $value }}
             </div>
         @endsession
@@ -44,7 +44,7 @@
                     </a>
                 @endif
 
-                <x-button class="ms-4">
+                <x-button class="ms-4 bg-greenG hover:bg-greenB">
                     {{ __('Iniciar Sesión') }}
                 </x-button>
             </div>

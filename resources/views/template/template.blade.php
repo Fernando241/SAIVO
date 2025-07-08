@@ -79,7 +79,7 @@
     <div class="bg-green-300 bg-repeat bg-[url('img/patronW.svg')]"> 
         <div class="grid place-items-center bg-white bg-repeat bg-[url('img/PatronGF.svg')] pt-16">
             <div class="p-2">
-                <img src="{{ asset('img/logoFullH.svg') }}" alt="logo">
+                <img src="{{ asset('img/logoHorizontal.svg') }}" alt="logo">
             </div>
         </div>
         
@@ -122,7 +122,7 @@
                 <div class="">
                     <div class="p-1 rounded-full m-2">
                         <div class="w-32 h-32">
-                            <img src="{{ asset('img/isotipoWhite.svg') }}" class="w-full h-full" alt="logo">
+                            <img src="{{ asset('img/isotipoY.svg') }}" class="w-full h-full" alt="logo">
                         </div>
                     </div>
                 </div>

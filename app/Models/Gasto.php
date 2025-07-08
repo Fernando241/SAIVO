@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gasto extends Model
 {
     protected $fillable = [
-        'id',
         'valor',
         'descripcion',
+        'proveedor_id'
     ];
 
     public function proveedor()

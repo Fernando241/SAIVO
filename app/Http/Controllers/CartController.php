@@ -132,6 +132,13 @@ class CartController extends Controller
                 'direccion' => $validated['direccion'],
                 'email' => $validated['email']
             ]);
+        } else {
+            $cliente->update([
+                'nombre' => $validated['nombre'],
+                'telefono' => $validated['telefono'],
+                'direccion' => $validated['direccion'],
+                'user_id' => Auth::id()
+            ]);
         }
 
         // Guardar el cliente en la sesión
@@ -144,7 +151,7 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('error', 'Tu carrito está vacío.');
         }
 
-        // Preparar resumen del pedido ¿necesito hacer esto?
+        // Preparar resumen del pedido 
         $pedidoResumen = [
             'productos' => $cart,
             'total' => array_reduce($cart, function ($carry, $item) {
@@ -163,24 +170,8 @@ class CartController extends Controller
         public function displayOrderData(Request $request)
     {
         // Verificar si los datos del cliente ya están en la sesión
-        if (!session()->has('cliente')) {
-            // Obtener datos del formulario o sesión (según cómo estés manejando los datos)
-            $clienteData = $request->only(['nombre', 'telefono', 'direccion']);
-    
-            // Verificar si el cliente ya existe en la base de datos
-            $cliente = Cliente::where('telefono', $clienteData['telefono'])->first();
-    
-            // Si no existe, guardarlo en la base de datos -> aunque en el paso anterior ya se guardo, coloque esto por si acaso
-            if (!$cliente) {
-                $cliente = Cliente::create($clienteData);
-            }
-    
-            // Guardar cliente en la sesión
-            session()->put('cliente', $cliente);
-        } else {
-            // Si el cliente ya está en sesión, lo recuperamos
-            $cliente = session()->get('cliente');
-        }
+        $cliente = session()->get('cliente');
+        
     
         // Obtener el carrito de compras desde la sesión
         $cart = session()->get('cart', []);
