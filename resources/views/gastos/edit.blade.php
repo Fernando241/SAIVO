@@ -11,9 +11,9 @@
             <button onclick="goBack()" class="bg-greenG p-2 rounded-xl hover:bg-greenB text-white">Volver</button>
             <h1>Editar datos del gasto</h1>
 
-            <form action="{{ route('gastos.update', $gastos->id) }}" method="POST">
+            <form action="{{ route('gastos.update', $gastos->id) }}" method="POST" enctype="multipart/form-data" id="solicitudForm">
                 @csrf
-                @method('PUT') {{-- Laravel necesita esto para aceptar PUT en formularios --}}
+                @method('PUT') 
                 
                 {{-- Campo: Valor --}}
                 <div class="mb-4">
@@ -42,12 +42,38 @@
 
                 {{-- Botones --}}
                 <div class="flex justify-between">
-                    <a href="{{ route('gastos.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancelar</a>
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Actualizar</button>
+                    {{-- <a href="{{ route('gastos.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancelar</a> --}}
+                    {{-- <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Actualizar</button> --}}
+                    <button type="button" onclick="openEditModal()" class="bg-greenG py-2 px-8 rounded-md hover:bg-greenB text-white">Editar Gasto</button>
                 </div>
             </form>
         </div>
     </div>
+
+    {{-- Modal de confirmación --}}
+    <div id="editConfirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm text-center">
+            <h2 class="text-xl font-bold text-green-900 mb-4">¿Seguro que quieres actualizar este gasto?</h2>
+            <p class="text-gray-700 mb-4">Revisa bien los cambios antes de continuar.</p>
+            <div class="flex justify-center gap-4">
+                <button id="cancelEditBtn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancelar</button>
+                <button id="confirmEditBtn" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Actualizar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function openEditModal() {
+        document.getElementById('editConfirmModal').classList.remove('hidden');
+        }
+        document.getElementById('cancelEditBtn').addEventListener('click', function() {
+            document.getElementById('editConfirmModal').classList.add('hidden');
+        });
+        document.getElementById('confirmEditBtn').addEventListener('click', function() {
+            document.getElementById('solicitudForm').submit();
+        });
+    </script>
+
     <script>
         function goBack(){
             window.history.back();

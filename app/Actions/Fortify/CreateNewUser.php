@@ -29,14 +29,20 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return DB::transaction(function () use ($input) {
-            return tap(User::create([
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'password' => Hash::make($input['password']),
-            ]), function (User $user) {
-                $this->createTeam($user);
-            });
-        });
+        $user = User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+        ]);
+
+        // ✅ Crear equipo personal
+        $this->createTeam($user);
+
+        // ✅ Asignar rol por defecto
+        $user->assignRole('Cliente');
+
+        return $user;
+});
     }
 
     /**

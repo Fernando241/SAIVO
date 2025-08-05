@@ -85,17 +85,17 @@
 
 <!-- Importa el script para el manejo del modal -->
 <script>
-function confirmDelete(productId) {
-// Mostrar el modal
-document.getElementById('confirmation-modal').classList.remove('hidden');
-// Asignar el id del formulario al botón de confirmación
-document.getElementById('confirm-delete').onclick = function () {
-    document.getElementById('form-delete-' + productId).submit();
-};
-}
+    function confirmDelete(productId) {
+    // Mostrar el modal
+    document.getElementById('confirmation-modal').classList.remove('hidden');
+    // Asignar el id del formulario al botón de confirmación
+    document.getElementById('confirm-delete').onclick = function () {
+        document.getElementById('form-delete-' + productId).submit();
+    };
+    }
 
-function closeModal() {
-// Ocultar el modal
-document.getElementById('confirmation-modal').classList.add('hidden');
-}
+    function closeModal() {
+    // Ocultar el modal
+    document.getElementById('confirmation-modal').classList.add('hidden');
+    }
 </script>

@@ -14,6 +14,8 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Notifications\VerificacionEmailPersonalizada;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -67,5 +69,11 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //enviar notificacion de verificacion de email personalizada
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerificacionEmailPersonalizada);
     }
 }

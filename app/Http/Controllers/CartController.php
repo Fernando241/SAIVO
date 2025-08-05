@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\PedidoPagado;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+use App\Mail\BienvenidaCliente;
+use App\Mail\ConfirmacionPago;
+use Illuminate\Support\Facades\Mail;
+
 
 class CartController extends Controller
 {
@@ -120,6 +128,26 @@ class CartController extends Controller
             'email' => 'required|email|max:255'
         ]);
 
+        //-----------------------------------------------------
+        // Buscar usuario por email
+        $user = User::where('email', $validated['email'])->first();
+
+        if (!$user) {
+            // Crear el usuario sin requerir verificación
+            $user = User::create([
+                'name' => $validated['nombre'],
+                'email' => $validated['email'],
+                'password' => Hash::make('SaludNatural'), // password temporal o aleatorio
+                'email_verified_at' => now(), // Marcar como verificado directamente
+            ]);
+
+            // Asignar el rol Cliente
+            $user->assignRole('Cliente');
+
+            Mail::to($user->email)->send(new BienvenidaCliente($user->name, $user->email));
+        }
+
+        //-------------------------------------------------------
         // Verificar si el cliente ya existe por email
         $cliente = Cliente::where('email', $validated['email'])->first();
 
@@ -213,8 +241,9 @@ class CartController extends Controller
     session()->forget('cart');
     session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
 
-    // Disparar el evento
-    event(new PedidoPagado($pedido, $cliente));
+    // Disparar el evento ¿se puede remplazar por un envio de correo?
+    /* event(new PedidoPagado($pedido, $cliente)); */
+    Mail::to($cliente->email)->send(new ConfirmacionPago($cliente, $pedido));
 
     return response()->json(['success' => true]);
 }

@@ -66,7 +66,22 @@ class GastoController extends Controller
      */
     public function update(Request $request, Gasto $gasto)
     {
-        //
+        //validacion de datos
+        $validatedData = $request->validate([
+            'valor' => 'required|numeric',
+            'descripcion' => 'required|string|max:255',
+            'proveedor_id' => 'required|exists:proveedors,id',
+        ]);
+
+        //actualizar el gasto
+        $gasto = Gasto::find($gasto->id);
+        $gasto->valor = $request->input('valor');
+        $gasto->descripcion = $request->input('descripcion');
+        $gasto->proveedor_id = $request->input('proveedor_id');
+        $gasto->save();
+
+        //redireccionar después de actualizar el gasto
+        return redirect()->route('gastos.index')->with('success', 'Gasto actualizado con éxito');
     }
 
     /**
@@ -74,6 +89,12 @@ class GastoController extends Controller
      */
     public function destroy(Gasto $gasto)
     {
-        //
+        $gasto = Gasto::find($gasto->id);
+        if ($gasto) {
+            $gasto->delete();
+            return redirect()->route('gastos.index')->with('success', 'Gasto eliminado con éxito');
+        } else {
+            return redirect()->route('gastos.index')->with('error', 'Gasto no encontrado');
+        }
     }
 }
