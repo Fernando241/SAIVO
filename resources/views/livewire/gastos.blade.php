@@ -36,7 +36,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" 
-                                    onclick="confirmDelete('{{ $item->id }}')" 
+                                    onclick="confirmDelete({{ $item->id }})" 
                                     class="text-white bg-red-500 p-2 hover:bg-red-400 rounded-md">
                                         Eliminar
                                     </button>
@@ -46,15 +46,19 @@
                     @endforeach
                 </tbody>
             </table>
+            
+        @else
+            
+            <h2><b>No hay registros</b></h2>
+        @endif
+        <div>
             <br>
             <p class="text-center text-gray-600 font-light">Nota:<br>Para agregar un nuevo gasto, primero debe agregar el proveedor en la pestaña "Proveedores"</p>
             <br>
             <div class="flex justify-center">
                 <a href="{{ route('gastos.create') }}" class="inline-block px-8 py-3 text-sm font-medium text-white bg-greenG hover:bg-greenB rounded-md">Agregar nuevo gasto</a>
             </div>
-        @else
-            <h2><b>No hay registros</b></h2>
-        @endif
+        </div>
     </div>
     
     <!-- Modal de confirmación (oculto por defecto) -->

@@ -21,4 +21,8 @@ class inicioController extends Controller
         $products = Producto::all();
         return view('products.adminProducts', compact('products'));
     }
+    public function misDatos()
+    {
+        return view('misDatos');
+    }
 }

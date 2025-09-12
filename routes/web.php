@@ -17,6 +17,7 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\ResumenContable\Index;
 
 Route::get('/', [inicioController::class, 'inicio'])->name('inicio');
 
@@ -44,7 +45,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         /* return view('dashboard'); */
-        return redirect()->route('adminProducts');
+        return redirect()->route('misDatos');
     })->name('dashboard');
 });
 
@@ -67,6 +68,9 @@ Route::get('/adminDashboard', [ProductoController::class, 'adminDashboard'])->Mi
 
 /* Inventario de productos */
 Route::get('/inventario', [ProductoController::class, 'inventario'])->name('inventario');
+
+/* mis datos -> dashboard */
+Route::get('/misDatos', [inicioController::class, 'misDatos'])->name('misDatos');
 
 /* proveedores */
 Route::resource('proveedores', ProveedorController::class)->names('proveedores');
@@ -102,5 +106,4 @@ Route::resource('/pedidos', PedidoController::class)->only(['index', 'store', 's
 
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');
-
 

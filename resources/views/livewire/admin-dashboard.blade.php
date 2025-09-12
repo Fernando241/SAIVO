@@ -74,6 +74,7 @@
                 @endforeach
             </tbody>
         </table>
+
     </div>
 
     <script>

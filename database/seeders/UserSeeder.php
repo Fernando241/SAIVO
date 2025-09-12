@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Obtener el primer equipo existente o crearlo si no hay ninguno
-        $team = Team::first() ?? Team::create([
+        $team = Team::firstOrCreate() ?? Team::create([
             'user_id' => 1, // ID del usuario dueño del equipo (cámbialo si es necesario)
             'name' => 'Equipo Predeterminado',
             'personal_team' => true,
