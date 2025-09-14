@@ -21,12 +21,13 @@
 
 <body>
     <header>
-        <div class="bg-greenG p-1 text-center">
+        {{-- Inicio de sesión --}}
+        <div class="bg-greenG py-5 text-center">
             <div>  
                 @if (Route::has('login'))
                     <nav>
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="text-white font-bold hover:text-yellow-200">Bienvenido, {{ auth()->user()->name }}</a>
+                            <a href="{{ url('/dashboard') }}" class="text-white font-bold hover:text-yellow-200">Bienvenid@, {{ auth()->user()->name }}</a>
                         @else
                             <a href="{{ route('login') }}" class="text-white hover:text-yellow-200 hover:font-bold mr-2">Iniciar Sesión</a>
         
@@ -38,12 +39,7 @@
                 @endif
             </div>
         </div>
-        {{-- Barra de busqueda --}}
-        <div class="bg-greenG p-1 text-center">
-            <livewire:busqueda-productos />
-
-        </div>
-
+        {{-- Carrito de compras --}}
         <div class="col-span-1 relative">
             <a href="{{ url('/cart') }}" class="text-white bg-greenB p-4 w-20 md:w-40 fixed right-1 top-1 rounded-2xl hover:bg-greenY hover:text-greenG text-center z-50">
                 <i class='bx bxs-cart-alt'></i>
@@ -62,8 +58,7 @@
         <a href="https://www.instagram.com/?hl=en" id="icono" target="_black"><i class='bx bxl-instagram'></i></a>
         <a href="https://twitter.com/" id="icono" target="_black"><i class='bx bxl-twitter'></i></a>
     </nav>
-    {{-- --- fin redes flotantes --- --}}
-
+    
     {{-- alertas en páginas que heredan de esta plantilla --}}
     @if(session('success')) 
         <div x-data="{ show: true }" 
