@@ -99,7 +99,7 @@ Route::get('users/{user}/edit', [UserController::class, 'edit'])->middleware('ca
 Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
 
 /* Clientes */
-Route::resource('/clientes', ClienteController::class)->only(['index', 'show'])->names('clientes');
+Route::resource('/clientes', ClienteController::class)->only(['index', 'show', 'edit', 'update'])->names('clientes');
 
 /* Pedidos */
 Route::resource('/pedidos', PedidoController::class)->only(['index', 'store', 'show', 'update'])->names('pedidos');

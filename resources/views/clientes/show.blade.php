@@ -7,7 +7,8 @@
     @livewire('dynamic-content')
     <br>
     <div class="fixed right-6">
-        <a href="{{ route('clientes.index') }}" class="bg-greenG text-white hover:bg-greenB p-2 rounded-md">Volver</a>
+        {{-- <a href="{{ route('clientes.index') }}" class="bg-greenG text-white hover:bg-greenB p-2 rounded-md">Volver</a> --}}
+        <button onclick="onBack()" class="text-white bg-greenG hover:bg-greenB p-2 rounded-lg">Volver</button>
     </div>
     <div class="container w-[80%] sm:w-[60%] p-4">
         <div class="bg-green-200 p-4 rounded-xl">
@@ -54,4 +55,9 @@
         </div>
         
     </div>
+    <script>
+        function onBack(){
+            window.history.back();
+        }
+    </script>
 </x-app-layout>
