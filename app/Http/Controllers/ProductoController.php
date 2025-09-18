@@ -162,8 +162,4 @@ class ProductoController extends Controller
     {
         return view('admin.dashboard');
     }
-
-    public function inventario(){
-        return view('admin.inventoryProducts');
-    }
 }

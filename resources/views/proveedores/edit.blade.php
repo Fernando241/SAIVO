@@ -7,6 +7,9 @@
     @livewire('dynamic-content')
     <br>
     <div class="container w-[80%]">
+        <div>
+            <button onclick="goBack()" class="text-white bg-greenG hover:bg-greenB p-2 rounded-xl fixed right-6">Volver</button>
+        </div>
         <h1>Editar Proveedor</h1>
         <form action="{{ route('proveedores.update', $proveedor->id) }}" method="POST" enctype="multipart/form-data" id="solicitudForm">
             @csrf
@@ -54,6 +57,13 @@
             document.getElementById('confirmEditBtn').addEventListener('click', function() {
                 document.getElementById('solicitudForm').submit();
             });
+        </script>
+
+        <script>
+            function goBack()
+            {
+                window.history.back();
+            }
         </script>
     </div>
 </x-app-layout>

@@ -18,18 +18,18 @@
         @can('adminProducts')
         <a href="{{ route('adminProducts') }}" class="nav_menu {{ in_array($currentRoute, ['adminProducts', 'productos.edit']) ? 'active' : '' }}">Productos</a>
         @endcan
-        @can('inventario')
-            <a href="{{ route('inventario') }}" class="nav_menu {{ $currentRoute == 'inventario' ? 'active' : '' }}">Inventario</a>
-        @endcan
         @can('clientes.index')
             <a href="{{ route('clientes.index') }}" class="nav_menu {{ in_array($currentRoute, ['clientes.index', 'clientes.show']) ? 'active' : '' }}">Clientes</a>
         @endcan
         {{-- compras --}}
-        <a href="{{ route('gastos.index') }}" class="nav_menu {{ in_array($currentRoute, ['gastos.index', 'gastos.edit', 'gastos.create']) ? 'active' : '' }}">Gastos</a>
-        {{-- gastos --}}
-        <a href="{{ route('compras.index') }}" class="nav_menu {{ in_array($currentRoute, ['compras.index', 'compras.edit', 'compras.create']) ? 'active' : '' }}">Compras</a>
-        {{-- proveedores --}}
-        <a href="{{ route('proveedores.index') }}" class="nav_menu {{ in_array($currentRoute, ['proveedores.index', 'proveedores.show', 'proveedores.edit']) ? 'active' : '' }}">Proveedores</a>
+        @can('adminDashboard')
+            <a href="{{ route('gastos.index') }}" class="nav_menu {{ in_array($currentRoute, ['gastos.index', 'gastos.edit', 'gastos.create']) ? 'active' : '' }}">Gastos</a>
+            {{-- gastos --}}
+            <a href="{{ route('compras.index') }}" class="nav_menu {{ in_array($currentRoute, ['compras.index', 'compras.edit', 'compras.create']) ? 'active' : '' }}">Compras</a>
+            {{-- proveedores --}}
+            <a href="{{ route('proveedores.index') }}" class="nav_menu {{ in_array($currentRoute, ['proveedores.index', 'proveedores.show', 'proveedores.edit']) ? 'active' : '' }}">Proveedores</a>
+        @endcan
+        
         <a href="{{ route('misDatos') }}" class="nav_menu {{ $currentRoute == 'misDatos' ? 'active' : '' }}">Mis datos</a>
     </nav>
 </div>

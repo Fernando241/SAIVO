@@ -22,21 +22,32 @@
 <body>
     <header>
         {{-- Inicio de sesión --}}
-        <div class="bg-greenG py-5 text-center">
+        <div class="bg-greenG text-center h-[85px]">
             <div>  
                 @if (Route::has('login'))
                     <nav>
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="text-white font-bold hover:text-yellow-200">Bienvenid@, {{ auth()->user()->name }}</a>
+                            <p class="text-greenY font-semibold text-lg mb-2">Bienvenid@, {{ auth()->user()->name }}</p>
+                            <a href="{{ url('/dashboard') }}" class="text-greenG p-1 font-semibold bg-greenY rounded-lg hover:bg-greenB hover:text-greenY">🌿 entra a tu rincón sagrado</a>
+                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+                                <button type="submit" 
+                                    class="text-white hover:text-greenY hover:font-bold">
+                                    {{ __('Cerrar Sesión') }}
+                                </button>
+                            </form>
                         @else
-                            <a href="{{ route('login') }}" class="text-white hover:text-yellow-200 hover:font-bold mr-2">Iniciar Sesión</a>
+                        <div class="flex flex-col items-center justify-center">
+                            <a href="{{ route('login') }}" class="text-white hover:text-yellow-200 hover:font-bold my-2">Iniciar Sesión</a>
         
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="text-white hover:text-yellow-200 hover:font-bold">Registrarse</a>
                             @endif
+                        </div>
                         @endauth
                     </nav>
                 @endif
+                
             </div>
         </div>
         {{-- Carrito de compras --}}

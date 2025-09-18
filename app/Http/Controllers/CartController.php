@@ -154,7 +154,7 @@ class CartController extends Controller
         if (!$cliente) {
             // Si no existe, crearlo
             $cliente = Cliente::create([
-                'user_id' => Auth::id(), // Si el usuario está autenticado, guarda su ID
+                'user_id' => $user->id, // Si el usuario está autenticado, guarda su ID
                 'nombre' => $validated['nombre'],
                 'telefono' => $validated['telefono'],
                 'direccion' => $validated['direccion'],
@@ -165,7 +165,7 @@ class CartController extends Controller
                 'nombre' => $validated['nombre'],
                 'telefono' => $validated['telefono'],
                 'direccion' => $validated['direccion'],
-                'user_id' => Auth::id()
+                'user_id' => $user->id
             ]);
         }
 
