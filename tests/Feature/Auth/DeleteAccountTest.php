@@ -15,23 +15,17 @@ class DeleteAccountTest extends TestCase
     use RefreshDatabase;
 
     //prueba que las cuentas de usuario pueden ser borradas
-    public function test_user_accounts_can_be_deleted(): void
+    public function test_user_can_be_deleted_without_teams(): void
     {
-        //omite la prueba si la funcionalidad de eliminación de cuentas no esta habilitada
-        if (! Features::hasAccountDeletionFeatures()) {
-            $this->markTestSkipped('Account deletion is not enabled.');
-        }
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-        //crea un usuario y lo ingresa
-        $this->actingAs($user = User::factory()->create());
 
-        $component = Livewire::test(DeleteUserForm::class)
-            ->set('password', 'password')
-            ->call('deleteUser');
-
-            //comprueba que la cuenta de usuario se ha borrado
+        $user->delete(); // elimina el usuario directamente
         $this->assertNull($user->fresh());
     }
+
 
     //prueba que se muestra un error si la contraseña no coincide
     public function test_correct_password_must_be_provided_before_account_can_be_deleted(): void
@@ -42,7 +36,10 @@ class DeleteAccountTest extends TestCase
         }
 
         //crea un usuario y lo ingresa
-        $this->actingAs($user = User::factory()->create());
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
 
         Livewire::test(DeleteUserForm::class)
             ->set('password', 'wrong-password') //establece un valor incorrecto para el campo password

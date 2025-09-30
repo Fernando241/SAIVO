@@ -72,9 +72,6 @@ Route::get('/misDatos', [inicioController::class, 'misDatos'])->name('misDatos')
 /* proveedores */
 Route::resource('proveedores', ProveedorController::class)->names('proveedores');
 
-/* compras */
-Route::resource('/compras', CompraController::class)->names('compras');
-
 /* gastos */
 Route::resource('gastos', GastoController::class)->names('gastos');
 

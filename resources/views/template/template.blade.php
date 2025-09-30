@@ -22,7 +22,7 @@
 <body>
     <header>
         {{-- Inicio de sesión --}}
-        <div class="bg-greenG text-center h-[85px]">
+        <div class="bg-greenG text-center h-[90px]">
             <div>  
                 @if (Route::has('login'))
                     <nav>

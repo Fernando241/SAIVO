@@ -22,8 +22,11 @@ class ApiTokenPermissionsTest extends TestCase
         }
 
         // crea un usuario con un equipo personal
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
- 
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+
         // crea un token de API con permisos de creación y lectura
         $token = $user->tokens()->create([
             'name' => 'Test Token',

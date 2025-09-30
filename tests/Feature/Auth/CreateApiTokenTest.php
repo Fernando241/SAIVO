@@ -23,7 +23,10 @@ class CreateApiTokenTest extends TestCase
         }
 
         // Crear un usuario con un equipo personal
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
 
         // Verificar que se puede crear un token API
         Livewire::test(ApiTokenManager::class)

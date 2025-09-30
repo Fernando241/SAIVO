@@ -23,7 +23,10 @@ class DeleteApiTokenTest extends TestCase
         }
 
         // Crea un usuario con un equipo y un token de API
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
 
         // Agrega un token de API al usuario
         $token = $user->tokens()->create([

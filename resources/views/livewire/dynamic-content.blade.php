@@ -24,8 +24,6 @@
         {{-- compras --}}
         @can('adminDashboard')
             <a href="{{ route('gastos.index') }}" class="nav_menu {{ in_array($currentRoute, ['gastos.index', 'gastos.edit', 'gastos.create']) ? 'active' : '' }}">Gastos</a>
-            {{-- gastos --}}
-            <a href="{{ route('compras.index') }}" class="nav_menu {{ in_array($currentRoute, ['compras.index', 'compras.edit', 'compras.create']) ? 'active' : '' }}">Compras</a>
             {{-- proveedores --}}
             <a href="{{ route('proveedores.index') }}" class="nav_menu {{ in_array($currentRoute, ['proveedores.index', 'proveedores.show', 'proveedores.edit']) ? 'active' : '' }}">Proveedores</a>
         @endcan

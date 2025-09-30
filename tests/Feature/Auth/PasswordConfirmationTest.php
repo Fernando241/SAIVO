@@ -14,9 +14,11 @@ class PasswordConfirmationTest extends TestCase
     public function test_confirm_password_screen_can_be_rendered(): void
     {
         //crea un usuario en un equipo personal
-        $user = User::factory()->withPersonalTeam()->create();
+        $user = User::factory()->create();
 
         //realiza una petición GET para la pantalla de confirmación de contraseñas del usuario
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/user/confirm-password');
 
         //verifica que la respuesta es 200 (OK) y que la vista se renderiza correctamente
@@ -30,9 +32,13 @@ class PasswordConfirmationTest extends TestCase
         $user = User::factory()->create();
 
         //realiza una petición POST para confirmar la contraseña del usuario
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
         $response = $this->actingAs($user)->post('/user/confirm-password', [
             'password' => 'password',
         ]);
+
 
         //verifica que la respuesta es redireccionada correctamente y que no hay errores en el inicio de sesión
         $response->assertRedirect();
@@ -45,9 +51,13 @@ class PasswordConfirmationTest extends TestCase
         $user = User::factory()->create();
 
         //realiza una petición POST para confirmar la contraseña del usuario con una contraseña incorrecta
-        $response = $this->actingAs($user)->post('/user/confirm-password', [
-            'password' => 'wrong-password',
-        ]);
+    /** @var \App\Models\User $user */
+    $user = User::factory()->create();
+
+    $response = $this->actingAs($user)->post('/user/confirm-password', [
+        'password' => 'wrong-password',
+    ]);
+
 
         //verifica que la respuesta es redireccionada correctamente y que hay errores en el inicio de sesión
         $response->assertSessionHasErrors();

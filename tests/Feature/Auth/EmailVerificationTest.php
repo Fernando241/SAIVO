@@ -23,7 +23,7 @@ class EmailVerificationTest extends TestCase
         }
 
         //crea un usuario no verificado con un equipo personal
-        $user = User::factory()->withPersonalTeam()->unverified()->create();
+        $user = User::factory()->unverified()->create();
 
         //obtiene la pantalla de verificación de correo
         $response = $this->actingAs($user)->get('/email/verify');
@@ -60,7 +60,7 @@ class EmailVerificationTest extends TestCase
 
         //el usuario debe haber sido verificado y la pantalla de bienvenida debe estar redireccionada
         $this->assertTrue($user->fresh()->hasVerifiedEmail());
-        $response->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+        $response->assertRedirect('/dashboard');
     }
 
     public function test_email_can_not_verified_with_invalid_hash(): void
