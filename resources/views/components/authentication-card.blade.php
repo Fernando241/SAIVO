@@ -1,4 +1,4 @@
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-green-300 bg-repeat bg-[url('img/PatronW.svg')]">
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-green-300 bg-repeat bg-[url('/img/PatronW.svg')]">
     <div>
         {{ $logo }}
     </div>

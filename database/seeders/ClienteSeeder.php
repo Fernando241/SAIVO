@@ -24,12 +24,15 @@ class ClienteSeeder extends Seeder
                     ]
                 );
             
+                        // Asegura que tenga también el rol 'Cliente'
+            if (!$admin->hasRole('Cliente')) {
+                $admin->assignRole('Cliente');
+            }
         }
 
-        if (Cliente::count() < 101) {
+        /* if (Cliente::count() < 101) {
             Cliente::factory()->count(100)->create();
-        }
+        } */
 
-        /* Cliente::factory()->count(100)->create(); */
     }
 }

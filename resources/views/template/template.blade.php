@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title')</title>
+    <title>@yield('title', 'Naturaleza Sagrada | Productos Naturales Artesanales')</title>
+
+    <meta name="description" content="Naturaleza Sagrada | Productos naturales artesanales inspirados en la sabiduría indígena. Preparaciones tradicionales para el bienestar integral y la conexión con la naturaleza.">
+    <meta name="keywords" content="productos naturales, cosmética artesanal, sabiduría indígena, bienestar natural, equilibrio energético, herbolaria tradicional, artesanía botánica, naturaleza sagrada">
+    <meta name="author" content="Naturaleza Sagrada">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -17,6 +22,7 @@
     
     {{-- livewire Style --}}
     @livewireStyles
+    @stack('meta')
 </head>
 
 <body>
@@ -76,14 +82,14 @@
             x-show="show" 
             x-init="setTimeout(() => show = false, 2000)" 
             class="fixed top-32 md:top-20 right-5 bg-greenB text-white px-4 py-3 rounded-lg shadow-lg">
-            <strong class="font-bold">¡Éxito!</strong>
+            <b class="font-bold">¡Éxito!</b>
             <span class="block sm:inline">{{ session('success') }}</span>
         </div>
     @endif
 
     {{-- logo de la empresa --}}
-    <div class="bg-green-300 bg-repeat bg-[url('img/patronW.svg')]"> 
-        <div class="grid place-items-center bg-white bg-repeat bg-[url('img/PatronGF.svg')] pt-16">
+    <div class="bg-green-300 bg-repeat bg-[url('/img/patronW.svg')]"> 
+        <div class="grid place-items-center bg-white bg-repeat bg-[url('/img/patronGB.svg')] pt-16">
             <div class="p-2">
                 <img src="{{ asset('img/logoHorizontal.svg') }}" alt="logo">
             </div>
@@ -104,9 +110,12 @@
         </div>
 
         {{-- fin Menú de páginas --}}
-
-        @yield('content')
         <br>
+        @yield('content')
+        </h2>
+        <div class="text-center text-greenB text-sm mt-6">
+            <p>#SabiduríaAncestral #ProductosNaturales #BienestarIntegral #CuidadoNatural #NaturalezaSagrada</p>
+        </div><br>
         
         <hr>
         {{-- iconos de seguridad --}}

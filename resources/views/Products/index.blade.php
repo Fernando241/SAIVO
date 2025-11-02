@@ -38,5 +38,5 @@
         </div>
     </div><br>
     <h2 class="text-green-900 text-center">Los medicamentos homeopáticos o con base en fórmulas magistrales no requieren para su comercialización de registro sanitario. <br> Decreto 1737 de 2005, Cap. IV Art. 11</h2><br>
-    <img src="{{ asset('img/indigena1.jpeg') }}" class="w-[60%] md:w-[40%] m-auto" alt="indigena">
+    <img src="{{ asset('img/laboratorio.jpg') }}" class="w-[60%] md:w-[40%] m-auto rounded-xl" alt="indigena">
 @endsection

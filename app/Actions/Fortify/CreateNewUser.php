@@ -29,31 +29,17 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return DB::transaction(function () use ($input) {
-        $user = User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+            $user = User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => Hash::make($input['password']),
+            ]);
 
-        // ✅ Crear equipo personal
-        $this->createTeam($user);
+            // ✅ Asignar rol por defecto
+            $user->assignRole('Cliente');
 
-        // ✅ Asignar rol por defecto
-        $user->assignRole('Cliente');
-
-        return $user;
-});
+            return $user;
+        });
     }
 
-    /**
-     * Create a personal team for the user.
-     */
-    protected function createTeam(User $user): void
-    {
-        $user->ownedTeams()->save(Team::forceCreate([
-            'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0]."'s Team",
-            'personal_team' => true,
-        ]));
-    }
 }

@@ -15,8 +15,8 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $role1 = Role::firstOrCreate(['name' => 'SuperAdmin']);
-        $role2 = Role::create(['name' => 'Admin']);
-        $role3 = Role::create(['name' => 'Cliente']);
+        $role2 = Role::firstOrCreate(['name' => 'Admin']);
+        $role3 = Role::firstOrCreate(['name' => 'Cliente']);
 
         Permission::create(['name' => 'adminDashboard'])->assignRole($role1);
         Permission::create(['name' => 'users.index'])->assignRole($role1);
@@ -24,8 +24,7 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name' => 'pedidos.index'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'pedidos.edit'])->assignRole($role1);
-        /* necesito crear una pestaña donde el usuario pueda ver solo sus pedidos realizados y saber el estado del mismo */
-
+        
         Permission::create(['name' => 'adminProducts'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'productos.edit'])->assignRole($role1);
         Permission::create(['name' => 'productos.create'])->assignRole($role1);
