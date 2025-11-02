@@ -17,7 +17,7 @@ class ProductoController extends Controller
     public function index()
     {
         $product = Producto::all();
-        return view('products.index', compact('product'));
+        return view('products_temp.index', compact('product'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products_temp.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class ProductoController extends Controller
     {
         $product = Producto::where('slug', '=', $slug)->firstOrFail();
         
-        return view('Products.show', compact('product'));
+        return view('products_temp.show', compact('product'));
     }
 
 
@@ -92,7 +92,7 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $product = Producto::find($id);
-        return view('products.edit', compact('product'));
+        return view('products_temp.edit', compact('product'));
     }
 
     /**
@@ -155,7 +155,7 @@ class ProductoController extends Controller
     public function adminProducts()
     {
         $products = Producto::all();
-        return view('products.adminProducts', compact('products'));
+        return view('products_temp.adminProducts', compact('products'));
     }
 
     public function adminDashboard()
