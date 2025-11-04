@@ -1,6 +1,6 @@
 @extends('template.template')
 
-@section('title', 'inicio')
+@section('title', 'Naturaleza Sagrada | Productos Naturales Artesanales')
     
 @section('content')
     <h1>Reconecta con la Sabiduría Ancestral y el Poder Natural</h1>

@@ -2,12 +2,14 @@
 
 namespace App\Mail;
 
+/* use Address; */
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
 
 class BienvenidaCliente extends Mailable
 {
@@ -31,6 +33,7 @@ class BienvenidaCliente extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+            from: new Address('contacto@naturalezasagradasas.com', 'Naturaleza Sagrada SAS'),
             subject: 'Bienvenid@ al mundo de la Salud 🌿',
         );
     }
@@ -42,6 +45,10 @@ class BienvenidaCliente extends Mailable
     {
         return new Content(
             markdown: 'emails.bienvenida-cliente',
+            with: [
+                'nombre' => $this->nombre,
+                'correo' => $this->correo,
+            ],
         );
     }
 

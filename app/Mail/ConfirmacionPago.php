@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -31,6 +32,7 @@ class ConfirmacionPago extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+            from: new Address('contacto@naturalezasagradasas.com', 'Naturaleza Sagrada SAS'),
             subject: 'Confirmacion Pago - Naturaleza Sagrada 🌿',
         );
     }
@@ -42,6 +44,10 @@ class ConfirmacionPago extends Mailable
     {
         return new Content(
             markdown: 'emails.confirmacion-pago',
+            with: [
+                'cliente' => $this->cliente,
+                'pedido' => $this->pedido,
+            ],
         );
     }
 

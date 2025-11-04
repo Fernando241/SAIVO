@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ResumenContable\Index;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', [inicioController::class, 'inicio'])->name('inicio');
 
@@ -101,3 +102,15 @@ Route::resource('/pedidos', PedidoController::class)->only(['index', 'store', 's
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');
 
+/* Prueba para envio de correos con Zoho Mail */
+Route::get('/test-zoho', function () {
+    try {
+        Mail::raw('Este es un correo de prueba enviado desde Zoho Mail por Naturaleza Sagrada.', function ($message) {
+            $message->to('fhernatural@gmail.com')
+                    ->subject('Prueba de envío Zoho Mail ✅');
+        });
+        return 'Correo enviado correctamente ✅';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});

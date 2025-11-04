@@ -1,4 +1,4 @@
-<div class="bg-repeat bg-[url('img/PatronGF.svg')]">
+<div class="bg-repeat bg-[url('img/PatronGB.svg')]">
     <br>
     <h1 class="text-xl font-bold text-green-800 mb-4"> Resumen del Negocio</h1>
 

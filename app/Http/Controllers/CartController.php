@@ -17,7 +17,9 @@ use Illuminate\Support\Str;
 
 use App\Mail\BienvenidaCliente;
 use App\Mail\ConfirmacionPago;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
 
 
 class CartController extends Controller
@@ -238,12 +240,16 @@ class CartController extends Controller
     }
 
     // Limpiar el carrito
-    session()->forget('cart');
-    session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
+    session()->forget('cart', 'cliente');
+    /* session()->forget('cliente'); */ //limpiar el cliente de la sesion tambien.
 
     // Disparar el evento ¿se puede remplazar por un envio de correo?
-    /* event(new PedidoPagado($pedido, $cliente)); */
-    Mail::to($cliente->email)->send(new ConfirmacionPago($cliente, $pedido));
+    try {
+        Mail::to($cliente->email)->send(new ConfirmacionPago($cliente, $pedido));
+    } catch (\Exception $e) {
+        Log::error('error al enviar correo de confirmación: ' . $e->getMessage());
+    }
+    
 
     return response()->json(['success' => true]);
 }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Naturaleza Sagrada | Productos Naturales Artesanales')</title>
 
-    <meta name="description" content="Naturaleza Sagrada | Productos naturales artesanales inspirados en la sabiduría indígena. Preparaciones tradicionales para el bienestar integral y la conexión con la naturaleza.">
+    <meta name="description" content="Naturaleza Sagrada | Extracto Sagrado | Limpieza Amazónica | Aceite El Milagroso | Productos naturales artesanales inspirados en la sabiduría indígena. Preparaciones tradicionales para el bienestar integral y la conexión con la naturaleza.">
     <meta name="keywords" content="productos naturales, cosmética artesanal, sabiduría indígena, bienestar natural, equilibrio energético, herbolaria tradicional, artesanía botánica, naturaleza sagrada">
     <meta name="author" content="Naturaleza Sagrada">
 
@@ -91,7 +91,7 @@
     <div class="bg-green-300 bg-repeat bg-[url('/img/patronW.svg')]"> 
         <div class="grid place-items-center bg-white bg-repeat bg-[url('/img/patronGB.svg')] pt-16">
             <div class="p-2">
-                <img src="{{ asset('img/logoHorizontal.svg') }}" alt="logo">
+                <img src="{{ asset('img/LogoHorizontalF.svg') }}" alt="logo">
             </div>
         </div>
         
