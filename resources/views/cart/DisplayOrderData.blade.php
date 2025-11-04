@@ -84,7 +84,7 @@
                 onApprove: function(data, actions) {
                     console.log('onApprove ejecutado'); // log para ver si se esta ejecutando 2 veces
                     actions.order.capture().then(function(detalles) {
-                        fetch('/procesar-pedido', {
+                        fetch("{{ route('cart.procesarPedido') }}", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

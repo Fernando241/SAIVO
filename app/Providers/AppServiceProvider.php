@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Events\PedidoPagado;
 use App\Listeners\EnviarCorreoPedidoPagado;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //Forzar HTTPS solo producción
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
         Event::listen(
             PedidoPagado::class,
             [EnviarCorreoPedidoPagado::class, 'handle']

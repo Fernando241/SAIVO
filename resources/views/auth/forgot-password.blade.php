@@ -3,7 +3,7 @@
         <x-slot name="logo">
             <div class=" bg-white p-5 rounded-full m-2">
                 <div class="w-32 h-32">
-                    <img src="{{ asset('img/Logo.svg') }}" class="w-full h-full" alt="logo">
+                    <img src="{{ asset('img/isotipo.svg') }}" class="w-full h-full" alt="logo">
                 </div>
             </div>
         </x-slot>

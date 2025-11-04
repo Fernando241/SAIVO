@@ -14,6 +14,8 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Notifications\ResetPasswordNotification;
+
 use App\Notifications\VerificacionEmailPersonalizada;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -77,6 +79,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new VerificacionEmailPersonalizada);
     }
 
-    
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
     
 }

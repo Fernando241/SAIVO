@@ -240,8 +240,8 @@ class CartController extends Controller
     }
 
     // Limpiar el carrito
-    session()->forget('cart', 'cliente');
-    /* session()->forget('cliente'); */ //limpiar el cliente de la sesion tambien.
+    session()->forget('cart');
+    session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
 
     // Disparar el evento ¿se puede remplazar por un envio de correo?
     try {
