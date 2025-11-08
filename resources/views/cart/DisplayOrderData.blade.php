@@ -34,8 +34,8 @@
                         <tr>
                             <td class="border p-2">{{ $producto['name'] }}</td>
                             <td class="border p-2 text-center">{{ $producto['quantity'] }}</td>
-                            <td class="border p-2 text-center">$ {{ number_format($producto['price']) }}</td>
-                            <td class="border p-2 text-center">$ {{ number_format($producto['quantity'] * $producto['price']) }}</td>
+                            <td class="border p-2 text-center">COP {{ number_format($producto['price']) }}</td>
+                            <td class="border p-2 text-center">COP {{ number_format($producto['quantity'] * $producto['price']) }}</td>
                         </tr>
                     @endforeach
                 @else
@@ -54,13 +54,22 @@
             $iva = $total - $subtotal; // 19% del total
         @endphp
         <div class="w-[80%] container">
-            <p class="text-right"><b>Subtotal:</b> $ {{ number_format($subtotal, 2) }}</p>
-            <p class="text-right"><b>IVA (19%):</b> $ {{ number_format($iva, 2) }}</p>
-            <p class="text-lg font-bold text-right"><b>Total del Pedido:</b> $ {{ number_format($total) }}</p>
+            <p class="text-right"><b>Subtotal:</b> COP {{ number_format($subtotal, 2) }}</p>
+            <p class="text-right"><b>IVA (19%):</b> COP {{ number_format($iva, 2) }}</p>
+            <p class="text-lg font-bold text-right"><b>Total del Pedido:</b> COP {{ number_format($total) }}</p>
         </div>
 
         {{-- Boton para pagos por PayPal --}}
-        <div id="paypal-button-container"></div>
+        {{-- <div id="paypal-button-container"></div> --}}
+
+        {{-- Boton temporal para desviar pagos --}}
+        <div class="mt-6 text-center">
+            <a href="{{ route('cart.pagosTemporales') }}" 
+            class="bg-green-700 text-white px-6 py-2 rounded-lg shadow hover:bg-green-800 transition">
+            Continuar al Pago
+            </a>
+        </div>
+
 
         <script>
             var cliente = {!! json_encode($cliente) !!}; // Pasar los datos del cliente a JavaScript

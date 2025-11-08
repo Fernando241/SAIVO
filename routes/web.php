@@ -88,6 +88,10 @@ Route::post('/cart/SaveDatasClient', [CartController::class, 'SaveDatasClient'])
 Route::get('/cart/displayOrderData', [CartController::class, 'displayOrderData'])->name('cart.displayOrderData');
 Route::post('/procesar-pedido', [CartController::class, 'procesarPedido'])->name('cart.procesarPedido');
 
+/* Ruta temporal para desviar pagos mientras PayPal empieza a funcionar */
+Route::get('/pagos-temporales', [CartController::class, 'pagosTemporales'])->name('cart.pagosTemporales');
+
+
 /* Usuarios*/
 Route::get('users', [UserController::class, 'index'])->middleware('can:users.index')->name('users.index');
 Route::get('users/{user}/edit', [UserController::class, 'edit'])->middleware('can:users.edit')->name('users.edit');

@@ -215,43 +215,58 @@ class CartController extends Controller
     
     /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
     public function procesarPedido(Request $request)
-{
-    $cliente = session()->get('cliente');
-    $cart = session()->get('cart', []);
-    $total = array_reduce($cart, function ($carry, $item) {
-        return $carry + ($item['quantity'] * $item['price']);
-    }, 0);
+    {
+        $cliente = session()->get('cliente');
+        $cart = session()->get('cart', []);
+        $total = array_reduce($cart, function ($carry, $item) {
+            return $carry + ($item['quantity'] * $item['price']);
+        }, 0);
 
-    // Crear el pedido
-    $pedido = Pedido::create([
-        'cliente_id' => $cliente->id,
-        'total' => $total,
-        'estado' => 'Pendiente', 
-    ]);
-
-    // Crear los detalles del pedido
-    foreach ($cart as $item) {
-        DetallePedido::create([
-            'pedido_id' => $pedido->id,
-            'producto_id' => $item['id'],
-            'cantidad' => $item['quantity'],
-            'precio' => $item['price'],
+        // Crear el pedido
+        $pedido = Pedido::create([
+            'cliente_id' => $cliente->id,
+            'total' => $total,
+            'estado' => 'Pendiente', 
         ]);
+
+        // Crear los detalles del pedido
+        foreach ($cart as $item) {
+            DetallePedido::create([
+                'pedido_id' => $pedido->id,
+                'producto_id' => $item['id'],
+                'cantidad' => $item['quantity'],
+                'precio' => $item['price'],
+            ]);
+        }
+
+        // Limpiar el carrito
+        session()->forget('cart');
+        session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
+
+        // Disparar el evento ¿se puede remplazar por un envio de correo?
+        try {
+            Mail::to($cliente->email)->send(new ConfirmacionPago($cliente, $pedido));
+        } catch (\Exception $e) {
+            Log::error('error al enviar correo de confirmación: ' . $e->getMessage());
+        }
+        
+
+        return response()->json(['success' => true]);
     }
 
-    // Limpiar el carrito
-    session()->forget('cart');
-    session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
+    /* Function temporal para pagos mientras PayPal empieza a funcionar */
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
+    public function pagosTemporales()
+    {
+        $cliente = session()->get('cliente');
+        $cart = session()->get('cart', []);
+        $total = array_reduce($cart, function ($carry, $item) {
+            return $carry + ($item['quantity'] * $item['price']);
+        }, 0);
 
-    // Disparar el evento ¿se puede remplazar por un envio de correo?
-    try {
-        Mail::to($cliente->email)->send(new ConfirmacionPago($cliente, $pedido));
-    } catch (\Exception $e) {
-        Log::error('error al enviar correo de confirmación: ' . $e->getMessage());
+        return view('cart.PagosTemporales', compact('cliente', 'cart', 'total'));
     }
-    
 
-    return response()->json(['success' => true]);
-}
+
 
 }

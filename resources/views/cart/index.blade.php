@@ -31,8 +31,8 @@
                                     <button type="submit" class="p-2 bg-green-600 hover:text-white hover:bg-green-800"><i class='bx bx-reset'></i></i></button>
                                 </form>
                             </td>
-                            <td class="text-center">$ {{ number_format( $details['price'], 0, ',', '.' ) }}</td>
-                            <td class="text-center">$ {{ number_format( $details['price'] * $details['quantity'], 0, ',', '.' )}}</td>
+                            <td class="text-center">COP {{ number_format( $details['price'], 0, ',', '.' ) }}</td>
+                            <td class="text-center">COP {{ number_format( $details['price'] * $details['quantity'], 0, ',', '.' )}}</td>
                             <td class="text-center">
                                 <form action="{{ route('cart.remove', $id) }}" method="post">
                                     @csrf
@@ -43,6 +43,7 @@
                     @endforeach
                 </tbody>
                 <tfoot>
+                    
                     <tr class="text-center">
                         <td>
                             <form action="{{ route('cart.clear') }}" method="post">
@@ -54,7 +55,7 @@
                             <a href="{{ route('productos.index') }}" class="inline-block p-2 text-sm font-medium text-green-800 bg-white hover:bg-green-400 rounded-md">Seguir Comprando</a>
                         </td>
                         <td>
-                            <h3>Total: $ {{ number_format($total, 0, ',', '.') }}</h3>
+                            <h3>Total: COP {{ number_format($total, 0, ',', '.') }}</h3>
                         </td>
                         <td>
                             <form action="{{ route('cart.AddDatasClient') }}" method="post">
@@ -66,11 +67,12 @@
                 </tfoot>
             </table>
         </div>
-        
+        <br>
+        <p class="text-gray-600 text-center"><b>Nota Importante: </b><br> En Naturaleza Sagrada SAS, la claridad es lo más importante asi que vale la pena aclara que los valores o precios aquí reflejados estan en pesos colombianos (COP)</p>
     @else
     <div class="flex justify-center items-center h-64">
         <p class="text-center bg-white m-1 p-4 w-[80%]">El carrito está vacío</p>
     </div>
-        
+    
     @endif
 @endsection

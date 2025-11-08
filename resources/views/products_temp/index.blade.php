@@ -25,7 +25,7 @@
                     </a>
                 <h3 class="text-center text-green-900 font-bold">{{ $product->nombre }}</h3>
                 <p class="text-center text-gray-600">{{ $product->presentacion }}</p>
-                <h3 class="text-center font-bold">Precio: $ {{ number_format($product->precio_venta, 0, ',', '.') }}</h3>
+                <h3 class="text-center font-bold">Precio: COP {{ number_format($product->precio_venta, 0, ',', '.') }}</h3>
                 </div>
                 <div class="text-center">
                     <form action="{{ route('cart.add', $product->id) }}" method="post">
