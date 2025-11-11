@@ -4,11 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>@yield('title', 'Naturaleza Sagrada | Productos Naturales Artesanales')</title>
 
-    <meta name="description" content="Naturaleza Sagrada | Extracto Sagrado | Limpieza Amazónica | Aceite El Milagroso | Productos naturales artesanales inspirados en la sabiduría indígena. Preparaciones tradicionales para el bienestar integral y la conexión con la naturaleza.">
-    <meta name="keywords" content="productos naturales, cosmética artesanal, sabiduría indígena, bienestar natural, equilibrio energético, herbolaria tradicional, artesanía botánica, naturaleza sagrada">
+    <meta name="description" content="@yield('description', 'Productos naturales artesanales inspirados en la sabiduría indígena. Preparaciones tradicionales para el bienestar integral.')">
+    <meta name="keywords" content="@yield('keywords', 'productos naturales, herbolaria, bienestar, Naturaleza Sagrada')">
     <meta name="author" content="Naturaleza Sagrada">
+
+    {{-- Canonical --}}
+    <link rel="canonical" href="@yield('canonical', url()->current())">
+
+    {{-- Open Graph --}}
+    <meta property="og:locale" content="es_CO">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:title" content="@yield('og_title', 'Naturaleza Sagrada | Productos Naturales Artesanales')">
+    <meta property="og:description" content="@yield('og_description', 'Productos naturales artesanales basados en saberes indígenas y ancestrales.')">
+    <meta property="og:url" content="@yield('og_url', url()->current())">
+    <meta property="og:site_name" content="Naturaleza Sagrada">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-default.jpg'))">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('twitter_title', 'Naturaleza Sagrada')">
+    <meta name="twitter:description" content="@yield('twitter_description', 'Productos naturales artesanales y ancestrales para el bienestar.')">
+    <meta name="twitter:image" content="@yield('twitter_image', asset('images/og-default.jpg'))">
+
+    {{-- Favicon --}}
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
+
+
+    {{-- Espacio reservado para datos estructurados --}}
+    @yield('structured_data')
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @vite('resources/css/app.css')
@@ -16,14 +43,15 @@
 
     <!-- PayPal Script -->
     <script
-            src="https://www.paypal.com/sdk/js?client-id=AfANYdWSKkhU-DoNtvtkpCJFwZWHmz612gzSmdcSbR2SpcxJTS9lOEJArmAz_YbsZIDG_7h-HAj4TpLZ"
-            data-sdk-integration-source="developer-studio"
-        ></script>
+        src="https://www.paypal.com/sdk/js?client-id=AfANYdWSKkhU-DoNtvtkpCJFwZWHmz612gzSmdcSbR2SpcxJTS9lOEJArmAz_YbsZIDG_7h-HAj4TpLZ"
+        data-sdk-integration-source="developer-studio"
+    ></script>
     
     {{-- livewire Style --}}
     @livewireStyles
     @stack('meta')
 </head>
+
 
 <body>
     <header>
@@ -34,7 +62,7 @@
                     <nav>
                         @auth
                             <p class="text-greenY font-semibold text-lg mb-2">Bienvenid@, {{ auth()->user()->name }}</p>
-                            <a href="{{ url('/dashboard') }}" class="text-greenG p-1 font-semibold bg-greenY rounded-lg hover:bg-greenB hover:text-greenB">🌿 entra a tu rincón sagrado</a>
+                            <a href="{{ url('/dashboard') }}" class="text-greenG p-1 font-semibold bg-greenY rounded-lg hover:bg-greenB hover:text-greenY">🌿 entra a tu rincón sagrado</a>
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
                                 <button type="submit" 
