@@ -54,10 +54,15 @@
             $iva = $total - $subtotal; // 19% del total
         @endphp
         <div class="w-[80%] container">
-            <p class="text-right"><b>Subtotal:</b> COP {{ number_format($subtotal, 2) }}</p>
-            <p class="text-right"><b>IVA (19%):</b> COP {{ number_format($iva, 2) }}</p>
+            {{-- Precio subtotal temporal --}}
+            <p class="text-right"><b>Subtotal:</b> COP {{ number_format($total) }}</p>
+            <p class="text-right"><b>Impuesto IVA (19%):</b> No Aplicable</p>
+            {{-- <p class="text-right"><b>Subtotal:</b> COP {{ number_format($subtotal, 2) }}</p>
+            <p class="text-right"><b>IVA (19%):</b> COP {{ number_format($iva, 2) }}</p> --}}
             <p class="text-lg font-bold text-right"><b>Total del Pedido:</b> COP {{ number_format($total) }}</p>
         </div>
+        {{-- Nota temporal hasta saber si se debe cobrar IVA --}}
+        <p class="text-gray-500 text-center my-3"><b>Nota: </b>Este vendedor <b>no</b> es responsable de IVA. <br>El valor mostrado corresponde al precio final del pedido.</p>
 
         {{-- Boton para pagos por PayPal --}}
         {{-- <div id="paypal-button-container"></div> --}}

@@ -75,9 +75,15 @@ class RecetaController extends Controller
 
         // manejar la carga de la imagen si se proporciona
         if ($request->hasFile('imagen')) {
+            
+            // Solo borrar si realmente existe
             if ($receta->imagen) {
-                unlink(public_path('images/'. $receta->imagen));
+                $oldPath = public_path('images/' . $receta->imagen);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
             }
+
             $fileName = time(). '.'. $request->imagen->extension();
             $request->imagen->move(public_path('images'), $fileName);
             $receta->imagen = $fileName;

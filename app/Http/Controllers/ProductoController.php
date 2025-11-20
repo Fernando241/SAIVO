@@ -128,6 +128,15 @@ class ProductoController extends Controller
 
         // Manejar la carga de la imagen si se proporciona
         if ($request->hasFile('imagen')) {
+
+            // Borrar la imagen anterior si existe físicamente
+            if ($product->imagen) {
+                $oldPath = public_path('images/' . $product->imagen);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+            }
+
             $fileName = time(). '.'. $request->imagen->extension();
             $request->imagen->move(public_path('images'), $fileName);
             $product->imagen = $fileName;

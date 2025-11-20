@@ -77,7 +77,7 @@
             </div>
             <div class="w-1/2">
                 <p class="font-bold text-center">Precio de venta:</p>
-                <p class="text-center text-2xl text-green-900">$ {{ number_format($product->precio_venta, 0, ',', '.') }}</p>
+                <p class="text-center text-2xl text-green-900">COP {{ number_format($product->precio_venta, 0, ',', '.') }}</p>
             </div>
         </div><br>
 
