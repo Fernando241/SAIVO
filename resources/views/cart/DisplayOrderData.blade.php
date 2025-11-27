@@ -69,11 +69,17 @@
 
         {{-- Boton temporal para desviar pagos --}}
         <div class="mt-6 text-center">
-            <a href="{{ route('cart.pagosTemporales') }}" 
+            {{-- <a href="{{ route('cart.pagosTemporales') }}" 
             class="bg-green-700 text-white px-6 py-2 rounded-lg shadow hover:bg-green-800 transition">
             Continuar al Pago
-            </a>
+            </a> --}}
+            <button 
+                id="btnCrearPedido"
+                class="bg-green-700 text-white px-6 py-2 rounded-lg shadow hover:bg-green-800 transition">
+                Continuar al Pago
+            </button>
         </div>
+        
 
 
         <script>
@@ -130,6 +136,33 @@
                     console.log(data);
                 }
             }).render('#paypal-button-container');
+        </script>
+
+        {{-- Temporal para crear pedido --}}
+        <script>
+            document.getElementById('btnCrearPedido').addEventListener('click', function () {
+
+                fetch("{{ route('cart.crearPedido') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = "{{ route('cart.pagosTemporales') }}";
+                    } else {
+                        alert("No se pudo crear el pedido.");
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("Ocurrió un error.");
+                });
+
+            });
         </script>
     </div>
 @endsection

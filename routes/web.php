@@ -87,6 +87,8 @@ Route::post('/cart/AddDatasClient', [CartController::class, 'AddDatasClient'])->
 Route::post('/cart/SaveDatasClient', [CartController::class, 'SaveDatasClient'])->name('cart.SaveDatasClient');
 Route::get('/cart/displayOrderData', [CartController::class, 'displayOrderData'])->name('cart.displayOrderData');
 Route::post('/procesar-pedido', [CartController::class, 'procesarPedido'])->name('cart.procesarPedido');
+/* temporal para crear pedido -> luego en boton de PayPal */
+Route::post('/cart/crear/-pedido', [CartController::class, 'crearPedido'])->name('cart.crearPedido');
 
 /* Ruta temporal para desviar pagos mientras PayPal empieza a funcionar */
 Route::get('/pagos-temporales', [CartController::class, 'pagosTemporales'])->name('cart.pagosTemporales');

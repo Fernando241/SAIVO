@@ -98,9 +98,9 @@
     {{-- Redes sociales flotantes --}}
     <a href="https://api.whatsapp.com/send?phone=573209909879" id="btn-ws" target="_blank"><i class='bx bxl-whatsapp'></i></a>
     <nav id="redes"> <!--iconos de redes sociales-->
-        <a href="https://www.facebook.com/profile.php?id=61574984795833" id="icono" target="_black"><i class='bx bxl-facebook-circle'></i></a>
-        <a href="https://www.youtube.com/" id="icono" target="_black"><i class='bx bxl-youtube'></i></a>
-        <a href="https://www.instagram.com/?hl=en" id="icono" target="_black"><i class='bx bxl-instagram'></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61584339925336" id="icono" target="_black"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://www.youtube.com/channel/UCM5Sglch0GxYjEllN-Mbx2A" id="icono" target="_black"><i class='bx bxl-youtube'></i></a>
+        <a href="https://www.instagram.com/naturalezasagradasas/" id="icono" target="_black"><i class='bx bxl-instagram'></i></a>
         <a href="https://twitter.com/" id="icono" target="_black"><i class='bx bxl-twitter'></i></a>
     </nav>
     

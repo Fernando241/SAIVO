@@ -8,12 +8,14 @@
         <h2 class="text-xl font-semibold mb-4 text-gray-700">Métodos de Pago Temporales</h2>
 
         <p class="text-gray-600 mb-4 leading-relaxed">
-            Estimado <strong>{{ $cliente->nombre ?? 'cliente' }}</strong>,<br>
-            actualmente estamos actualizando nuestros sistemas de pago para ofrecerte una experiencia más segura y confiable.
+            Estimado <strong>{{ $cliente->nombre ?? 'cliente' }}</strong>, 
+            es un gusto informarte que tu pedido fue generado correctamente,<br>encontraras los detalles en la bandeja de entrada de tu correo electrónico<br>
+            {{-- Tambien queremos contarte que actualmente estamos actualizando nuestros sistemas de pago para ofrecerte una experiencia más segura y confiable. --}}
         </p>
 
-        <p class="text-gray-700 font-medium mb-4">
-            Mientras tanto, puedes realizar tu pedido de forma segura a través de los siguientes medios:
+        <p class="text-gray-700 mb-4 px-4">
+            Actualmente el estado de tu pedido es: <br><b>ESPERANDO CONFIRMACIÓN DE PAGO</b> <br>puedes cambiarlo a: <br><b>PAGO CONFIRMADO - PENDIENTE DE ENVIO</b> <br>
+            consignando por los siguientes medios:
         </p>
 
         <div class="bg-green-50 border border-green-300 rounded-lg p-4 mb-6 text-left">
@@ -30,11 +32,12 @@
             Una vez realices el pago, por favor envíanos el comprobante al correo: <br>
             <a href="mailto:pedidos@naturalezasagradasas.com" class="text-green-600 font-semibold underline">
                 pedidos@naturalezasagradasas.com
-            </a>
+            </a><br>
+            o al WhatsApp: <b class="text-greenG">320 4195115</b>
         </p>
 
         <p class="text-gray-500 italic mb-6">
-            <b>Por favor, Incluye: </b> <br>- capture del pago <br>- tu nombre completo <br>- número de telefono <br>- y un capture de esta pantalla <br><br>con estos datos garantizamos el despacho correcto de su pedido.
+            <b>Por favor, Incluye: </b> <br>- capture del pago <br>- tu nombre completo <br><br>con estos datos garantizamos el despacho correcto de su pedido.
         </p>
 
         <div class="border-t border-gray-300 my-4"></div>
@@ -51,14 +54,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($cart as $producto)
+            {{--     @foreach($cart as $producto)
                     <tr>
                         <td class="border p-2">{{ $producto['name'] }}</td>
                         <td class="border p-2 text-center">{{ $producto['quantity'] }}</td>
                         <td class="border p-2 text-center">COP {{ number_format($producto['price']) }}</td>
                         <td class="border p-2 text-center">COP {{ number_format($producto['quantity'] * $producto['price']) }}</td>
                     </tr>
+                @endforeach --}}
+                @foreach($cart as $item)
+                    <tr>
+                        <td>{{ $item->producto->nombre }}</td>
+                        <td class="text-center">{{ $item->cantidad }}</td>
+                        <td class="text-center">COP {{ number_format($item->precio) }}</td>
+                        <td class="text-center">COP {{ number_format($item->precio * $item->cantidad) }}</td>
+                    </tr>
                 @endforeach
+
             </tbody>
         </table>
 
@@ -68,8 +80,8 @@
         <br>
 
         <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center text-gray-700 leading-relaxed">
-            🌾 <b>Nota importante:</b> el valor del domicilio ya está incluido en el total de tu pedido. <br>
-            En <b>Naturaleza Sagrada S.A.S.</b> queremos que tu experiencia sea clara, humana y sin sorpresas —  
+            <b>Nota importante:</b><br> <b class="text-greenG">el  domicilio es gratis!.</b><br><br>
+            En <b>Naturaleza Sagrada S.A.S.</b><br>queremos que tu experiencia sea clara, humana y sin sorpresas<br> 
             desde nuestras fórmulas hasta la entrega en tus manos.
         </div>
 
