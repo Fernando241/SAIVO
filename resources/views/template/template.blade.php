@@ -30,8 +30,9 @@
     <meta name="twitter:image" content="@yield('twitter_image', asset('images/og-default.jpg'))">
 
     {{-- Favicon --}}
-    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
-    <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg?v=2') }}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('images/favicon.png?v=2') }}">
+
 
 
     {{-- Espacio reservado para datos estructurados --}}
