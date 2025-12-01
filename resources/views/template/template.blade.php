@@ -97,7 +97,19 @@
     </header>
 
     {{-- Redes sociales flotantes --}}
-    <a href="https://api.whatsapp.com/send?phone=573209909879" id="btn-ws" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+    <a href="https://api.whatsapp.com/send?phone=573204195115&text=Hola,%20estoy%20interesado%20en%20sus%20productos%20Naturaleza%20Sagrada" 
+        id="btn-ws" 
+        target="_blank">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+    <a href="mailto:contacto@naturalezasagradasas.com"
+        class="btn-correo">
+        <i class='bx bx-envelope'></i>
+    </a>
+    
+
+
+
     <nav id="redes"> <!--iconos de redes sociales-->
         <a href="https://www.facebook.com/profile.php?id=61584339925336" id="icono" target="_black"><i class='bx bxl-facebook-circle'></i></a>
         <a href="https://www.youtube.com/channel/UCM5Sglch0GxYjEllN-Mbx2A" id="icono" target="_black"><i class='bx bxl-youtube'></i></a>

@@ -10,6 +10,17 @@
 #btn-ws {
     @apply fixed w-[55px] h-[55px] leading-[55px] bottom-[40px] right-[30px] bg-green-600 text-white rounded-full text-center text-[35px] shadow-[0_1px_10px_rgba(0,0,0,0.3)] z-[100] hover:no-underline hover:bg-yellow-100 hover:text-green-700;
 }
+.btn-correo {
+    @apply fixed w-[55px] h-[55px] leading-[55px]
+            bottom-[110px] right-[30px]
+            bg-white text-greenG
+            rounded-full text-center text-[32px]
+            shadow-[0_1px_10px_rgba(0,0,0,0.3)]
+            z-[100] transition
+            hover:no-underline hover:bg-greenB hover:text-greenY;
+}
+
+
 
 #redes {
     @apply absolute top-[90px] left-4 p-1;
@@ -43,4 +54,10 @@ table {
     @apply w-full border-separate lg:border-collapse;
 }
 
+.btn-cart {
+    position: fixed;
+    left: 10px;
+    top: 300px;
+    z-index: 9999;
+}
 

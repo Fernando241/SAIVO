@@ -84,7 +84,7 @@
         <div class="text-center">
             <form action="{{ route('cart.add', $product->id) }}" method="post">
                 @csrf
-                <button type="submit" class="m-2 bg-greenG text-white px-4 py-2 rounded hover:bg-greenB">Agregar al carrito</button>
+                <button type="submit" class="btn-cart m-2 bg-greenG text-white px-4 py-2 rounded hover:bg-greenB">Agregar <br> al carrito</button>
             </form>
         </div>
     </div><br>
