@@ -97,11 +97,12 @@
     </header>
 
     {{-- Redes sociales flotantes --}}
-    <a href="https://api.whatsapp.com/send?phone=573204195115&text=Hola,%20estoy%20interesado%20en%20sus%20productos%20Naturaleza%20Sagrada" 
+    <a href="https://api.whatsapp.com/send?phone=573219729331&text=Hola%20%F0%9F%8C%BF,%20quiero%20descubrir%20qu%C3%A9%20f%C3%B3rmula%20de%20Naturaleza%20Sagrada%20puede%20armonizar%20mejor%20conmigo." 
         id="btn-ws" 
         target="_blank">
         <i class='bx bxl-whatsapp'></i>
     </a>
+
     <a href="mailto:contacto@naturalezasagradasas.com"
         class="btn-correo">
         <i class='bx bx-envelope'></i>
