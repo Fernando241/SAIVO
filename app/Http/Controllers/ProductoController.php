@@ -61,17 +61,22 @@ class ProductoController extends Controller
             $product->precio_venta = $request->precio_venta;
 
             // Manejar la carga de la imagen si se proporciona
-            if ($request->hasFile('imagen')) {
+            /* if ($request->hasFile('imagen')) {
                 $fileName = time(). '.'. $request->imagen->extension();
                 $request->imagen->move(public_path('images'), $fileName);
                 $product->imagen = $fileName;
+            } */
+            if ($request->hasFile('imagen')) {
+                $path = $request->file('imagen')->store('images', 'public');
+                $product->imagen =basename($path);
             }
 
             // Guardar el producto
             $product->save();
     
             // Redirigir después de guardar el producto
-            return redirect()->route('adminProducts')->with('success', 'Producto creado exitosamente.');
+            return redirect()->route('adminProducts')
+                ->with('success', 'Producto creado exitosamente.');
         }
     }
 
@@ -126,10 +131,9 @@ class ProductoController extends Controller
         $product->precio_compra = $request->input('precio_compra');
         $product->precio_venta = $request->input('precio_venta');
 
-        // Manejar la carga de la imagen si se proporciona
-        if ($request->hasFile('imagen')) {
+        // Manejar la carga de la imagen si se proporciona -> esta parte se remplazo por la que esta despues pero no se ha borrado hasta confirmar que funciona perfecto
+        /* if ($request->hasFile('imagen')) {
 
-            // Borrar la imagen anterior si existe físicamente
             if ($product->imagen) {
                 $oldPath = public_path('images/' . $product->imagen);
                 if (file_exists($oldPath)) {
@@ -140,12 +144,22 @@ class ProductoController extends Controller
             $fileName = time(). '.'. $request->imagen->extension();
             $request->imagen->move(public_path('images'), $fileName);
             $product->imagen = $fileName;
+        } */
+        if ($request->hasFile('imagen')) {
+
+            if ($product->imagen && Storage::disk('public')->exists('images/'.$product->imagen)) {
+                Storage::disk('public')->delete('images/'.$product->imagen);
+            }
+
+            $path = $request->file('imagen')->store('images', 'public');
+            $product->imagen = basename($path);
         }
 
         $product->save();
 
         // Redirigir después de actualizar el producto
-        return redirect()->route('adminProducts')->with('success', 'Producto actualizado exitosamente.');
+        return redirect()->route('adminProducts')
+            ->with('success', 'Producto actualizado exitosamente.');
     }
 
     /**

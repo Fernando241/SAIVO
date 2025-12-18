@@ -1,10 +1,13 @@
 @extends('template.template')
 
 {{-- 🔹 SEO dinámico --}}
+@section('canonical', url()->current())
 @section('title', $product->nombre . ' | Naturaleza Sagrada')
+@section('og_image', asset('storage/images/' . $product->imagen))
+@section('twitter_image', asset('storage/images/' . $product->imagen))
 @section('description', Str::limit(strip_tags($product->descripcion), 160))
 @section('keywords', $product->nombre . ', productos naturales, herbolaria, Naturaleza Sagrada, bienestar, sabiduría indígena')
-@section('canonical', url()->current())
+
 
 {{-- 🔹 Datos estructurados JSON-LD --}}
 @section('structured_data')
@@ -14,7 +17,7 @@
         "@type": "Product",
         "name": "{{ $product->nombre }}",
         "image": [
-            "{{ asset('images/' . $product->imagen) }}"
+            "{{ asset('storage/images/' . $product->imagen) }}"
         ],
         "description": "{{ Str::limit(strip_tags($product->descripcion), 200) }}",
         "sku": "{{ $product->id }}",
@@ -32,9 +35,44 @@
             "seller": {
             "@type": "Organization",
             "name": "Naturaleza Sagrada"
+            },
+
+            "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 5,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "applicableCountry": "CO"
+            },
+
+            "shippingDetails": {
+            "@type": "OfferShippingDetails",
+                "shippingRate": {
+                    "@type": "MonetaryAmount",
+                    "value": "0",
+                    "currency": "COP"
+                },
+                "shippingDestination": {
+                    "@type": "DefinedRegion",
+                    "addressCountry": "CO"
+                },
+                "deliveryTime": {
+                    "@type": "ShippingDeliveryTime",
+                    "handlingTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 0,
+                        "maxValue": 1,
+                        "unitCode": "DAY"
+                    },
+                    "transitTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 1,
+                        "maxValue": 3,
+                        "unitCode": "DAY"
+                    }
+                }
             }
         }
-    }
     </script>
 @endsection
 
@@ -50,7 +88,14 @@
 
         <div class="block lg:flex">
             <div class="w-full lg:w-1/2 p-4">
-                <img src="{{ asset('images/' . $product->imagen) }}" alt="{{ $product->nombre }}" class="rounded-xl w-full">
+                @if ($product->imagen)
+                    <img 
+                        src="{{ asset('storage/images/' . $product->imagen) }}" 
+                        alt="{{ $product->nombre }} - Producto natural artesanal de Naturaleza Sagrada SAS" 
+                        width="800"
+                        height="800"
+                        class="rounded-xl w-full">
+                @endif
             </div>
             <div class="w-full lg:w-1/2 p-4">
                 <p class="font-bold">Presentación:</p>

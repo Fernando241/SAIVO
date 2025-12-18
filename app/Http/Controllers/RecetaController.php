@@ -37,10 +37,14 @@ class RecetaController extends Controller
         $receta->preparacion = $request->preparacion;
         $receta->uso = $request->uso;
 
-        if ($request->hasFile('imagen')) {
+        /* if ($request->hasFile('imagen')) {
             $fileName = time(). '.'. $request->imagen->extension();
             $request->imagen->move(public_path('images'), $fileName);
             $receta->imagen = $fileName;
+        } */
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('images', 'public');
+            $receta->imagen = basename($path);
         }
 
         $receta->save();
@@ -73,10 +77,8 @@ class RecetaController extends Controller
         $receta->preparacion = $request->input('preparacion');
         $receta->uso = $request->input('uso');
 
-        // manejar la carga de la imagen si se proporciona
-        if ($request->hasFile('imagen')) {
+        /* if ($request->hasFile('imagen')) {
             
-            // Solo borrar si realmente existe
             if ($receta->imagen) {
                 $oldPath = public_path('images/' . $receta->imagen);
                 if (file_exists($oldPath)) {
@@ -87,7 +89,13 @@ class RecetaController extends Controller
             $fileName = time(). '.'. $request->imagen->extension();
             $request->imagen->move(public_path('images'), $fileName);
             $receta->imagen = $fileName;
+        } */
+        if ($request->imagen && Storage::disk('public')->exists('images/'.$receta->imagen)) {
+            Storage::disk('public')->delete('images/'.$receta->imagen);
         }
+
+        $path = $request->file('imagen')->store('images', 'public');
+        $receta->imagen = basename($path);
 
         $receta->save();
 

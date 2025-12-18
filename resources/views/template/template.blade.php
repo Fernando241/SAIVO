@@ -21,13 +21,13 @@
     <meta property="og:description" content="@yield('og_description', 'Productos naturales artesanales basados en saberes indígenas y ancestrales.')">
     <meta property="og:url" content="@yield('og_url', url()->current())">
     <meta property="og:site_name" content="Naturaleza Sagrada">
-    <meta property="og:image" content="@yield('og_image', asset('images/og-default.jpg'))">
+    <meta property="og:image" content="@yield('og_image', asset('storage/images/og-default.jpg'))">
 
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('twitter_title', 'Naturaleza Sagrada')">
     <meta name="twitter:description" content="@yield('twitter_description', 'Productos naturales artesanales y ancestrales para el bienestar.')">
-    <meta name="twitter:image" content="@yield('twitter_image', asset('images/og-default.jpg'))">
+    <meta name="twitter:image" content="@yield('twitter_image', asset('storage/images/og-default.jpg'))">
 
     {{-- Favicon --}}
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg?v=2') }}">

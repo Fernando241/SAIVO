@@ -25,8 +25,11 @@
         @foreach ($recetas as $receta)
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h2 class="text-xl font-bold mb-2 text-center">{{ $receta->titulo }}</h2>
-            <img src="{{ asset('images/'. $receta->imagen) }}" alt="{{ $receta->titulo }}" 
+            @if ($receta->imagen)
+                <img src="{{ asset('storage/images/'. $receta->imagen) }}" alt="{{ $receta->titulo }}" 
                 class="w-full h-48 object-cover rounded-lg mb-4 text-center">
+            @endif
+            
             
             <div class="flex justify-center">
                 <button onclick="toggleReceta('{{ $receta->id }}')" 

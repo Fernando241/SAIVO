@@ -29,7 +29,10 @@
             <div class="bg-white rounded-xl">
                 <div class="relative group">
                     <a href="{{ route('productos.show', $product->slug) }}" class="hover:opacity-80">
-                        <img src="{{ asset('images/' . $product->imagen) }}" alt="{{ $product->nombre }} producto natural artesanal" class="w-full h-auto object-cover rounded-xl p-2">
+                        @if ($product->imagen)
+                            <img src="{{ asset('storage/images/' . $product->imagen) }}" alt="{{ $product->nombre }} producto natural artesanal" class="w-full h-auto object-cover rounded-xl p-2">
+                        @endif
+                        
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
                             <span class="text-white font-bold">Ver más</span>
                         </div>

@@ -35,7 +35,9 @@
             <tbody>
                 @foreach ($products as $product)
                     <tr class="p-4 hover:border border-slate-500">
-                        <td><img src="{{ asset('images/'. $product->imagen) }}" alt="{{ $product->nombre }}" class="h-32 object-cover rounded-lg m-auto"></td>
+                        @if ($product->imagen)
+                            <td><img src="{{ asset('storage/images/'. $product->imagen) }}" alt="{{ $product->nombre }}" class="h-32 object-cover rounded-lg m-auto"></td>
+                        @endif
                         <td>{{ $product->nombre }}</td>
                         <td class="text-center hidden md:table-cell">{{ $product->presentacion }}</td>
                         <td class="text-center">{{ $product->stock }}</td>

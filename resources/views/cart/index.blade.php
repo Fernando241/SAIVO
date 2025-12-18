@@ -22,7 +22,7 @@
                     @foreach(session('cart') as $id => $details)
                         @php $total += $details['price'] * $details['quantity'] @endphp
                         <tr class=" hover:border border-slate-500">
-                            <td><img src="{{ asset('images/'. $details['image']) }}" alt="{{ $details['name'] }}" class="h-20 sm:h-32 object-cover rounded-lg m-auto"></td>
+                            <td><img src="{{ asset('storage/images/'. $details['image']) }}" alt="{{ $details['name'] }}" class="h-20 sm:h-32 object-cover rounded-lg m-auto"></td>
                             <td class="text-center hidden md:table-cell">{{ $details['name'] }}</td>
                             <td class="text-center">
                                 <form action="{{ route('cart.update', $id) }}" method="post">
@@ -42,6 +42,7 @@
                         </tr>
                     @endforeach
                 </tbody>
+                
                 <tfoot>
                     
                     <tr class="text-center">
