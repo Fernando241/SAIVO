@@ -3,6 +3,7 @@
 {{-- 🔹 SEO dinámico --}}
 @section('canonical', url()->current())
 @section('title', $product->nombre . ' | Naturaleza Sagrada')
+@section('og_type', 'product')
 @section('og_image', asset('storage/images/' . $product->imagen))
 @section('twitter_image', asset('storage/images/' . $product->imagen))
 @section('description', Str::limit(strip_tags($product->descripcion), 160))
@@ -11,32 +12,31 @@
 
 {{-- 🔹 Datos estructurados JSON-LD --}}
 @section('structured_data')
-    <script type="application/ld+json">
+<script type="application/ld+json">
     {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": "{{ $product->nombre }}",
+        "name": @json($product->nombre),
         "image": [
-            "{{ asset('storage/images/' . $product->imagen) }}"
+            @json(asset('storage/images/' . $product->imagen))
         ],
-        "description": "{{ Str::limit(strip_tags($product->descripcion), 200) }}",
-        "sku": "{{ $product->id }}",
+        "description": @json(Str::limit(strip_tags($product->descripcion), 200)),
+        "sku": @json($product->id),
         "brand": {
             "@type": "Brand",
             "name": "Naturaleza Sagrada"
         },
         "offers": {
             "@type": "Offer",
-            "url": "{{ url()->current() }}",
+            "url": @json(url()->current()),
             "priceCurrency": "COP",
-            "price": "{{ $product->precio_venta }}",
+            "price": @json($product->precio_venta),
             "itemCondition": "https://schema.org/NewCondition",
             "availability": "{{ $product->stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' }}",
             "seller": {
             "@type": "Organization",
             "name": "Naturaleza Sagrada"
             },
-
             "hasMerchantReturnPolicy": {
             "@type": "MerchantReturnPolicy",
             "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
@@ -44,9 +44,8 @@
             "returnMethod": "https://schema.org/ReturnByMail",
             "applicableCountry": "CO"
             },
-
             "shippingDetails": {
-            "@type": "OfferShippingDetails",
+                "@type": "OfferShippingDetails",
                 "shippingRate": {
                     "@type": "MonetaryAmount",
                     "value": "0",
@@ -59,22 +58,24 @@
                 "deliveryTime": {
                     "@type": "ShippingDeliveryTime",
                     "handlingTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 0,
-                        "maxValue": 1,
-                        "unitCode": "DAY"
+                    "@type": "QuantitativeValue",
+                    "minValue": 0,
+                    "maxValue": 1,
+                    "unitCode": "DAY"
                     },
                     "transitTime": {
-                        "@type": "QuantitativeValue",
-                        "minValue": 1,
-                        "maxValue": 3,
-                        "unitCode": "DAY"
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 3,
+                    "unitCode": "DAY"
                     }
                 }
             }
         }
-    </script>
+    }
+</script>
 @endsection
+
 
 {{-- 🔹 Contenido visual --}}
 @section('content')

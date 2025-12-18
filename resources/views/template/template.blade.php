@@ -5,35 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>@yield('title', 'Naturaleza Sagrada | Productos Naturales Artesanales')</title>
+    @php
+        // 🔹 TÍTULO ÚNICO (Google + Redes + Branding)
+        $seo_title = strip_tags(View::getSection('title'));
+        $seo_title = $seo_title
+            ? trim($seo_title)
+            : 'Naturaleza Sagrada | Productos Naturales Artesanales';
 
-    <meta name="description" content="@yield('description', 'Productos naturales artesanales inspirados en la sabiduría indígena. Preparaciones tradicionales para el bienestar integral.')">
+        // 🔹 DESCRIPCIÓN ÚNICA
+        $seo_description = strip_tags(View::getSection('description'));
+        $seo_description = $seo_description
+            ? trim($seo_description)
+            : 'Productos naturales artesanales inspirados en la sabiduría indígena.';
+    @endphp
+
+    {{-- 🔹 SEO Base --}}
+    <title>{{ $seo_title }}</title>
+    <meta name="description" content="{{ $seo_description }}">
     <meta name="keywords" content="@yield('keywords', 'productos naturales, herbolaria, bienestar, Naturaleza Sagrada')">
     <meta name="author" content="Naturaleza Sagrada">
 
-    {{-- Canonical --}}
+    {{-- 🔹 Canonical --}}
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
-    {{-- Open Graph --}}
+    {{-- 🔹 Open Graph (Facebook / WhatsApp / Instagram) --}}
     <meta property="og:locale" content="es_CO">
     <meta property="og:type" content="@yield('og_type', 'website')">
-    <meta property="og:title" content="@yield('og_title', 'Naturaleza Sagrada | Productos Naturales Artesanales')">
-    <meta property="og:description" content="@yield('og_description', 'Productos naturales artesanales basados en saberes indígenas y ancestrales.')">
-    <meta property="og:url" content="@yield('og_url', url()->current())">
+    <meta property="og:title" content="{{ $seo_title }}">
+    <meta property="og:description" content="{{ $seo_description }}">
+    <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="Naturaleza Sagrada">
     <meta property="og:image" content="@yield('og_image', asset('storage/images/og-default.jpg'))">
 
-    {{-- Twitter Card --}}
+    {{-- 🔹 Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('twitter_title', 'Naturaleza Sagrada')">
-    <meta name="twitter:description" content="@yield('twitter_description', 'Productos naturales artesanales y ancestrales para el bienestar.')">
+    <meta name="twitter:title" content="{{ $seo_title }}">
+    <meta name="twitter:description" content="{{ $seo_description }}">
     <meta name="twitter:image" content="@yield('twitter_image', asset('storage/images/og-default.jpg'))">
 
     {{-- Favicon --}}
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg?v=2') }}">
     <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('images/favicon.png?v=2') }}">
-
-
 
     {{-- Espacio reservado para datos estructurados --}}
     @yield('structured_data')
@@ -45,8 +57,8 @@
     <!-- PayPal Script -->
     <script
         src="https://www.paypal.com/sdk/js?client-id=AfANYdWSKkhU-DoNtvtkpCJFwZWHmz612gzSmdcSbR2SpcxJTS9lOEJArmAz_YbsZIDG_7h-HAj4TpLZ"
-        data-sdk-integration-source="developer-studio"
-    ></script>
+        data-sdk-integration-source="developer-studio">
+    </script>
     
     {{-- livewire Style --}}
     @livewireStyles
