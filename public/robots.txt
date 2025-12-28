@@ -1,2 +1,98 @@
 User-agent: *
-Disallow:
+
+# 🚫 Administración y gestión interna
+Disallow: /dashboard
+Disallow: /misDatos
+Disallow: /adminProducts
+Disallow: /adminProducts/
+Disallow: /adminDashboard
+Disallow: /adminDashboard/
+Disallow: /users
+Disallow: /users/
+Disallow: /clientes
+Disallow: /clientes/
+Disallow: /proveedores
+Disallow: /proveedores/
+Disallow: /gastos
+Disallow: /gastos/
+Disallow: /pedidos
+Disallow: /pedidos/
+
+# 🚫 Carrito y checkout
+Disallow: /cart
+Disallow: /cart/
+Disallow: /procesar-pedido
+Disallow: /pagos-temporales
+
+# 🚫 Autenticación
+Disallow: /email
+Disallow: /email/
+Disallow: /login
+Disallow: /register
+
+# 🚫 Pruebas
+Disallow: /test-zoho
+
+# ✅ Contenido público
+Allow: /
+Allow: /productos
+Allow: /productos/
+Allow: /recetas
+Allow: /nosotros
+Allow: /storage/images/
+
+# 🗺️ Sitemap
+Sitemap: https://naturalezasagradasas.com/sitemap.xml
+
+
+-----------------------
+
+User-agent: *
+
+# --- RUTAS PRIVADAS / ADMIN ---
+Disallow: /dashboard
+Disallow: /misDatos
+Disallow: /adminProducts
+Disallow: /adminProducts/
+Disallow: /adminDashboard
+Disallow: /adminDashboard/
+Disallow: /users
+Disallow: /users/
+Disallow: /clientes
+Disallow: /clientes/
+Disallow: /proveedores
+Disallow: /proveedores/
+Disallow: /gastos
+Disallow: /gastos/
+Disallow: /pedidos
+Disallow: /pedidos/
+
+# --- CARRITO Y CHECKOUT ---
+Disallow: /cart
+Disallow: /cart/
+Disallow: /procesar-pedido
+Disallow: /pagos-temporales
+
+# --- AUTENTICACIÓN / SEGURIDAD ---
+Disallow: /email
+Disallow: /email/
+Disallow: /login
+Disallow: /register
+Disallow: /password
+Disallow: /password/
+
+# --- RUTAS TÉCNICAS / LARAVEL ---
+Disallow: /test-zoho
+Disallow: /storage/framework/
+Disallow: /vendor/
+
+# --- PERMITIR CONTENIDO PÚBLICO ---
+Allow: /
+Allow: /nosotros
+Allow: /productos
+Allow: /productos/
+Allow: /recetas
+Allow: /storage/images/
+
+# --- SITEMAP ---
+Sitemap: https://naturalezasagradasas.com/sitemap.xml

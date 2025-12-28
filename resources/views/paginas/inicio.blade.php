@@ -6,7 +6,7 @@
     <h1>Reconecta con la Sabiduría Ancestral y el Poder Natural</h1>
     <br>
     <div class="container flex flex-wrap md:flex-nowrap justify-center items-center">
-        <img src="{{ asset('img/paraIndex.jpg') }}" class="w-[80%] md:w-[40%] rounded-xl" alt="indigena">
+        <img src="{{ asset('img/paraIndex.jpg') }}" class="w-[80%] md:w-[35%] rounded-xl" alt="indigena">
         <div class="w-[90%] md:w-[40%]">
             <br>
             <h2 class="font-bold text-center">Artesania natural inspirada en tradiciones indígenas</h2>
