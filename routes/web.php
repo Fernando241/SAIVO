@@ -83,14 +83,14 @@ Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name
 Route::post('/cart/update/{productId}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove/{productId}', [CartController::class, 'removeProduct'])->name('cart.remove');
 Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+
+/* Flujo de Checkout y Datos del Cliente */
 Route::post('/cart/AddDatasClient', [CartController::class, 'AddDatasClient'])->name('cart.AddDatasClient');
 Route::post('/cart/SaveDatasClient', [CartController::class, 'SaveDatasClient'])->name('cart.SaveDatasClient');
 Route::get('/cart/displayOrderData', [CartController::class, 'displayOrderData'])->name('cart.displayOrderData');
-Route::post('/procesar-pedido', [CartController::class, 'procesarPedido'])->name('cart.procesarPedido');
-/* temporal para crear pedido -> luego en boton de PayPal */
-Route::post('/cart/crear/-pedido', [CartController::class, 'crearPedido'])->name('cart.crearPedido');
 
-/* Ruta temporal para desviar pagos mientras PayPal empieza a funcionar */
+/* Lógica de Pedido y Pago Temporal */
+Route::post('/cart/crear-pedido', [CartController::class, 'crearPedido'])->name('cart.crearPedido');
 Route::get('/pagos-temporales', [CartController::class, 'pagosTemporales'])->name('cart.pagosTemporales');
 
 
@@ -108,15 +108,3 @@ Route::resource('/pedidos', PedidoController::class)->only(['index', 'store', 's
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');
 
-/* Prueba para envio de correos con Zoho Mail */
-Route::get('/test-zoho', function () {
-    try {
-        Mail::raw('Este es un correo de prueba enviado desde Zoho Mail por Naturaleza Sagrada.', function ($message) {
-            $message->to('fhernatural@gmail.com')
-                    ->subject('Prueba de envío Zoho Mail ✅');
-        });
-        return 'Correo enviado correctamente ✅';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-});

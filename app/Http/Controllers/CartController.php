@@ -213,59 +213,6 @@ class CartController extends Controller
         return view('cart.DisplayOrderData', compact('cliente', 'cart', 'total'));
     }
     
-    /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
-    public function procesarPedido(Request $request)
-    {
-        $cliente = session()->get('cliente');
-        $cart = session()->get('cart', []);
-        $total = array_reduce($cart, function ($carry, $item) {
-            return $carry + ($item['quantity'] * $item['price']);
-        }, 0);
-
-        // Crear el pedido
-        $pedido = Pedido::create([
-            'cliente_id' => $cliente->id,
-            'total' => $total,
-            'estado' => 'Pendiente', 
-        ]);
-
-        // Crear los detalles del pedido
-        foreach ($cart as $item) {
-            DetallePedido::create([
-                'pedido_id' => $pedido->id,
-                'producto_id' => $item['id'],
-                'cantidad' => $item['quantity'],
-                'precio' => $item['price'],
-            ]);
-        }
-
-        // Limpiar el carrito
-        session()->forget('cart');
-        session()->forget('cliente'); //limpiar el cliente de la sesion tambien.
-
-        // Disparar el evento ¿se puede remplazar por un envio de correo?
-        try {
-            Mail::to($cliente->email)->send(new ConfirmacionPago($cliente, $pedido));
-        } catch (\Exception $e) {
-            Log::error('error al enviar correo de confirmación: ' . $e->getMessage());
-        }
-        
-
-        return response()->json(['success' => true]);
-    }
-
-    /* Function temporal para pagos mientras PayPal empieza a funcionar */
-    /* ------------------------------------------------------------------------------------------------------------------------------------------------- */
-    /* public function pagosTemporales()
-    {
-        $cliente = session()->get('cliente');
-        $cart = session()->get('cart', []);
-        $total = array_reduce($cart, function ($carry, $item) {
-            return $carry + ($item['quantity'] * $item['price']);
-        }, 0);
-
-        return view('cart.PagosTemporales', compact('cliente', 'cart', 'total'));
-    } */
     public function pagosTemporales()
     {
         // Obtener el ID del pedido recién creado
@@ -292,57 +239,58 @@ class CartController extends Controller
     }
 
     /* -------------------------------------------------------------------------------------------------------------------------------------------------- */
-    /* Función Temporal para crear pedido mientras se activa PayPal (ahi ya esta implementado) */
+    /* Función Temporal para crear pedido mientras se activa Wompi) */
     public function crearPedido(Request $request)
     {
         $cliente = session()->get('cliente');
         $cart = session()->get('cart', []);
 
+        // 1. Validaciones (IGUAL QUE ANTES)
         if (!$cliente || empty($cart)) {
-            return response()->json(['error' => 'Carrito vacío o cliente no definido'], 400);
+            return response()->json(['error' => 'Error'], 400);
         }
 
-        // Calcular total
-        $total = array_reduce($cart, function ($carry, $item) {
-            return $carry + ($item['quantity'] * $item['price']);
-        }, 0);
+        // 2. CREAR EL PEDIDO (Usando transacciones para mayor seguridad)
+        $pedido = DB::transaction(function () use ($cliente, $cart) {
+            $total = array_reduce($cart, function ($carry, $item) {
+                return $carry + ($item['quantity'] * $item['price']);
+            }, 0);
 
-        // Crear pedido
-        $pedido = Pedido::create([
-            'cliente_id' => $cliente->id,
-            'total' => $total,
-            'estado' => 'Pendiente',
-        ]);
-
-        // Crear detalles
-        foreach ($cart as $item) {
-            DetallePedido::create([
-                'pedido_id' => $pedido->id,
-                'producto_id' => $item['id'],
-                'cantidad' => $item['quantity'],
-                'precio' => $item['price'],
+            $p = Pedido::create([
+                'cliente_id' => $cliente->id,
+                'total' => $total,
+                'estado' => 'Pendiente',
             ]);
-        }
 
-        // Guardar el ID del pedido en sesión para mostrarlo en la siguiente vista
-        session()->put('pedido_id', $pedido->id);
+            foreach ($cart as $item) {
+                DetallePedido::create([
+                    'pedido_id' => $p->id,
+                    'producto_id' => $item['id'],
+                    'cantidad' => $item['quantity'],
+                    'precio' => $item['price'],
+                ]);
+            }
+            return $p;
+        });
 
-        // Limpiar carrito
-        session()->forget('cart');
-        session()->forget('cliente');
-
-        // Enviar correo
+        // 3. ENVIAR EL CORREO *** ANTES *** DE LIMPIAR NADA
         try {
+            // Asegúrate de pasar el objeto $cliente que recuperamos al inicio
             Mail::to($cliente->email)->send(new ConfirmacionPago($cliente, $pedido));
         } catch (\Exception $e) {
-            Log::error('error al enviar correo de confirmación: ' . $e->getMessage());
+            Log::error('Error enviando a Zoho: ' . $e->getMessage());
         }
+
+        // 4. GUARDAR EL ID PARA LA VISTA FINAL
+        session()->put('pedido_id', $pedido->id);
+
+        // 5. LIMPIAR SESIÓN AL FINAL DE TODO
+        session()->forget('cart');
+        session()->forget('cliente'); 
 
         return response()->json([
             'success' => true,
             'pedido_id' => $pedido->id
         ]);
     }
-
-
 }

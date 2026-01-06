@@ -57,22 +57,18 @@
             {{-- Precio subtotal temporal --}}
             <p class="text-right"><b>Subtotal:</b> COP {{ number_format($total) }}</p>
             <p class="text-right"><b>Impuesto IVA (19%):</b> No Aplicable</p>
-            {{-- <p class="text-right"><b>Subtotal:</b> COP {{ number_format($subtotal, 2) }}</p>
-            <p class="text-right"><b>IVA (19%):</b> COP {{ number_format($iva, 2) }}</p> --}}
             <p class="text-lg font-bold text-right"><b>Total del Pedido:</b> COP {{ number_format($total) }}</p>
         </div>
-        {{-- Nota temporal hasta saber si se debe cobrar IVA --}}
-        <p class="text-gray-500 text-center my-3"><b>Nota: </b>Este vendedor <b>no</b> es responsable de IVA. <br>El valor mostrado corresponde al precio final del pedido.</p>
-
-        {{-- Boton para pagos por PayPal --}}
-        {{-- <div id="paypal-button-container"></div> --}}
+        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 my-4">
+            <p class="text-gray-600 text-sm text-center">
+                <strong>Nota Legal:</strong> Naturaleza Sagrada S.A.S BIC, identificada con NIT {{ $cliente->nit ?? '902.017.015-7' }}, 
+                informa que opera bajo la calidad de <strong>No Responsable de IVA</strong>. 
+                En cumplimiento de la normativa vigente, el precio facturado representa el valor total y final de la operación.
+            </p>
+        </div>
 
         {{-- Boton temporal para desviar pagos --}}
         <div class="mt-6 text-center">
-            {{-- <a href="{{ route('cart.pagosTemporales') }}" 
-            class="bg-green-700 text-white px-6 py-2 rounded-lg shadow hover:bg-green-800 transition">
-            Continuar al Pago
-            </a> --}}
             <button 
                 id="btnCrearPedido"
                 class="bg-green-700 text-white px-6 py-2 rounded-lg shadow hover:bg-green-800 transition">
@@ -82,65 +78,13 @@
         
 
 
-        <script>
-            var cliente = {!! json_encode($cliente) !!}; // Pasar los datos del cliente a JavaScript
-            var cart = {!! json_encode($cart) !!}; //pasar datos del carrito a javascript.
-            var total = {!! json_encode($total) !!}; //pasar total a javascript.
-            paypal.Buttons({
-                style: {
-                    shape: 'pill',
-                    color: 'blue',
-                    label: 'pay',
-                },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: total
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    console.log('onApprove ejecutado'); // log para ver si se esta ejecutando 2 veces
-                    actions.order.capture().then(function(detalles) {
-                        fetch("{{ route('cart.procesarPedido') }}", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: JSON.stringify({
-                                cliente: cliente,
-                                cart: cart,
-                                total: total,
-                                detalles: detalles
-                            })
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                    window.location.href = "{{ route('productos.index') }}";
-                                    alert('Pago y pedido realizado con Éxito!')
-                            } else {
-                                alert('Hubo un error al procesar el pedido.');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Hubo un error al procesar el pedido.');
-                        });
-                    });
-                },
-                onCancel: function(data) {
-                    alert("pago cancelado");
-                    console.log(data);
-                }
-            }).render('#paypal-button-container');
-        </script>
-
         {{-- Temporal para crear pedido --}}
         <script>
             document.getElementById('btnCrearPedido').addEventListener('click', function () {
+                const btn = this;
+                btn.disabled = true; // Deshabilitar para evitar duplicados
+                btn.innerText = "Procesando..."; // Feedback visual
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
 
                 fetch("{{ route('cart.crearPedido') }}", {
                     method: "POST",
