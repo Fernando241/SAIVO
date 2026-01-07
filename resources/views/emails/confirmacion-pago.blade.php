@@ -1,96 +1,55 @@
-{{-- <x-mail::message>
-# Su compra ha sido satisfactoria!
-En **Naturaleza Sagrada S.A.S.** nos complace informarle que:
-Su compra ha sido satisfactoria!
-Gracias por confiar en nosotros.
-Le enviaremos su pedido lo más pronto posible.
-
-## Detalles del pedido:
-- **Nombre:** {{ $cliente->nombre }}
-- **Teléfono:** {{ $cliente->telefono }}
-- **Dirección:** {{ $cliente->direccion }}
-- **Fecha:** {{ $pedido->created_at }}
-
-## Productos:
-<x-mail::table>
-| Producto       | Cantidad      | Valor Unitario | Valor Total  |
-| ------------- |:-------------:| --------------:| ------------:|
-@foreach ($pedido->detalles as $detalle)
-| {{ $detalle->producto->nombre }} | {{ $detalle->cantidad }} | ${{ number_format($detalle->precio, 2) }} | ${{ number_format($detalle->cantidad * $detalle->precio, 2) }} |
-@endforeach
-</x-mail::table>
-
-**Total:** ${{ number_format($pedido->total, 2) }}
-
-Puedes ver más detalles de tu pedido en tu cuenta.
-
-<x-mail::button :url="route('login')">
-Iniciar Sesión
-</x-mail::button>
-
-Gracias por confiar en nosotros.
-**Naturaleza Sagrada S.A.S.** 🌿
-
-</x-mail::message> --}}
 <x-mail::message>
-# Tu pedido fue generado con éxito 🌿
+# ¡Tu pedido de bienestar está listo, {{ $cliente->nombre }}! 🌿
 
-En **Naturaleza Sagrada S.A.S.** nos alegra informarte que tu pedido ha sido creado correctamente.  
-Su estado actual es:
+En **Naturaleza Sagrada S.A.S. BIC**, nos llena de alegría saber que pronto disfrutarás de nuestras fórmulas ancestrales. Tu pedido ha sido generado **correctamente** y estamos ansiosos por prepararlo para ti.
 
-## **ESPERANDO CONFIRMACIÓN DE PAGO**
-
-A continuación encontrarás el resumen completo de tu pedido.  
-También puedes consultarlo iniciando sesión en tu cuenta cuando lo desees.
+## Estado actual: **PENDIENTE** ✨
 
 ---
 
-## Para confirmar tu pago
-Para que tu pedido pase al estado:
+### 🔑 Un último paso para activar tu envío
+Para que podamos despachar tu paquete hoy mismo, por favor realiza tu pago a través de nuestra llave segura y envíanos el comprobante:
 
-**PAGO CONFIRMADO – PENDIENTE DE ENVÍO**
+* **Llave (Bre-B):** `0090887342`
+* **A nombre de:** Naturaleza Sagrada
 
-solo necesitas enviarnos el **comprobante de consignación** (*payment confirmation*)  
-a cualquiera de estos canales:
-
-- **Correo:** pedidos@naturalezasagradasas.com  
-- **WhatsApp:** 320 419 5115  
-
-Por favor incluye:  
-- Comprobante o *capture* del pago  
-- Tu nombre completo  
-
-Con esto garantizamos el despacho correcto de tu pedido.
+**¿A dónde envío el comprobante?**
+Puedes responder a este mismo correo o enviarlo por **WhatsApp** al [321 972 9331](https://wa.me/573219729331?text=%C2%A1Hola%21%20Soy%20{{ urlencode($cliente->nombre) }}%2C%20aqu%C3%AD%20est%C3%A1%20el%20pago%20de%20mi%20pedido.%20%F0%9F%8C%BF). ¡Estaremos atentos para darte prioridad!
 
 ---
 
-## Datos del cliente
-- **Nombre:** {{ $cliente->nombre }}
-- **Teléfono:** {{ $cliente->telefono }}
-- **Dirección:** {{ $cliente->direccion }}
-- **Fecha del pedido:** {{ $pedido->created_at }}
-
----
-
-## Productos solicitados
+### 📦 Resumen de tu pedido
 <x-mail::table>
-| Producto       | Cantidad      | Valor Unitario | Valor Total  |
-| ------------- |:-------------:| --------------:| ------------:|
+| Producto | Cant. | Total |
+| :--- | :---: | ---: |
 @foreach ($pedido->detalles as $detalle)
-| {{ $detalle->producto->nombre }} | {{ $detalle->cantidad }} | ${{ number_format($detalle->precio, 2) }} | ${{ number_format($detalle->cantidad * $detalle->precio, 2) }} |
+| {{ $detalle->producto->nombre }} | {{ $detalle->cantidad }} | ${{ number_format($detalle->cantidad * $detalle->precio) }} |
 @endforeach
 </x-mail::table>
 
-**Total del pedido:** ${{ number_format($pedido->total, 2) }}
+<div style="text-align: right; font-size: 16px;">
+**Total a pagar: ${{ number_format($pedido->total) }}**<br>
+<small style="color: #2d572c;">¡Tu envío es totalmente gratis!</small>
+</div>
 
 ---
 
+### 🚚 Datos de entrega
+* **Dirección:** {{ $cliente->direccion }}
+* **Teléfono:** {{ $cliente->telefono }}
+* **Fecha:** {{ $pedido->created_at->format('d/m/Y') }}
+
 <x-mail::button :url="route('login')">
-Iniciar sesión
+Ver mi pedido en la tienda
 </x-mail::button>
 
-Gracias por permitirnos acompañarte con la esencia viva de nuestras fórmulas ancestrales.  
-**Naturaleza Sagrada S.A.S.** 🌱
+Gracias por permitirnos acompañarte con la esencia viva de nuestras fórmulas. Estamos listos para servirte con transparencia y humanidad.
 
+Atentamente,<br>
+**El equipo de Naturaleza Sagrada S.A.S. BIC** 🌱
+
+<x-mail::panel>
+**Nota Legal:** Naturaleza Sagrada S.A.S BIC (NIT 902.017.015-7) informa que opera como No Responsable de IVA. El precio facturado representa el valor total de la operación.
+</x-mail::panel>
 </x-mail::message>
 

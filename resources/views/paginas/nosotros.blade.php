@@ -20,7 +20,7 @@
     </p>
     <br>
 
-    <img src="{{ asset('img/laboratorio.jpg') }}" class="w-[60%] md:w-[40%] m-auto rounded-xl" alt="sabiduría indígena ancestral"><br>
+    <img src="{{ asset('img/NaturalezaCiencia.jpg') }}" class="w-[60%] md:w-[40%] m-auto rounded-xl" alt="sabiduría indígena ancestral"><br>
 
     <h3 class="text-green-700 font-bold text-center">Misión</h3><br>
     <p class="text-justify w-[90%] m-auto">
