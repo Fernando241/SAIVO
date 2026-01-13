@@ -102,16 +102,16 @@
                 <p class="font-bold">Presentación:</p>
                 <p class="text-justify">{{ $product->presentacion }}</p>
 
-                <p class="font-bold mt-3">Componentes:</p>
+                <p class="font-bold mt-3">Ingredientes:</p>
                 <p class="text-justify">{{ $product->componentes }}</p>
 
                 <p class="font-bold">Descripción:</p>
                 <p class="text-justify">{{ $product->descripcion }}</p>
 
-                <p class="font-bold mt-3">Indicaciones:</p>
+                <p class="font-bold mt-3">Forma de uso:</p>
                 <p class="text-justify">{{ $product->indicaciones }}</p>
 
-                <p class="font-bold mt-3">Contraindicaciones:</p>
+                <p class="font-bold mt-3">Advertencias, precauciones y contraindicaciones:</p>
                 <p class="text-justify">{{ $product->contraindicaciones }}</p>
             </div>
         </div>

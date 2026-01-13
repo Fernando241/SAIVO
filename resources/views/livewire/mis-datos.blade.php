@@ -35,7 +35,7 @@
                 </div>
 
             <br><br>
-            <img src="{{ asset('img/productos.jpg') }}" alt="productos" 
+            <img src="{{ asset('img/paraIndex.jpg') }}" alt="productos" 
                 class="w-[60%] sm:w-[50%] m-auto rounded-xl">
             </div>
 
