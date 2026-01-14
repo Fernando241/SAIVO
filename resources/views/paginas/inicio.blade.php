@@ -51,8 +51,7 @@
             @endforeach
         </div>
         <h2 class="text-green-900 text-center">
-        Los productos naturales artesanales y las prepaparaciones tradicionales no sustituyen tratamientos médicos y no requieren registro sanitario INVIMA conforme al Decreto 1737 de 2005, Cap. IV Art. 11
-        
+        Los productos ofrecidos por Naturaleza Sagrada S.A.S. BIC son elaboraciones artesanales de origen natural, sin finalidad terapéutica ni medicinal. No sustituyen tratamientos médicos ni diagnósticos profesionales. Su uso corresponde a prácticas tradicionales, culturales y de bienestar personal, conforme a la normativa colombiana vigente
     </div><br>
     
 @endsection
