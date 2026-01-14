@@ -12,10 +12,10 @@
             <h2 class="font-bold text-center">Artesania natural inspirada en tradiciones indígenas</h2>
             <br>
             <p class="text-justify ml-10">En 
-                <strong>Naturaleza Sagrada SAS</strong>, honramos la sabiduria ancestral a través de productos naturales artesanales elaborados con respeto por la tierra y las tradiciones indigenas.<br>
-                Cada preparación es una expresión de conexión espiritual con la naturaleza, creada en pequeñas cantidades para preservar su pureza y esencia original.<br><br>
-                Nuestros productos están pensados para acompañarte en tu camino hacia el bienestar integral, el equilibrio energético y la armonía personal, desde una visión natural y consciente.<br><br>
-                Te invitamos a redescubrir el valor de lo auténtico, lo artesal y lo sagrado en cada gota, aroma y textura.</p>
+                <strong>Naturaleza Sagrada S.A.S. BIC</strong>, elaboramos productos naturales artesanales inspirados en saberes tradicionales, con un profundo respeto por la tierra, los procesos manuales y las expresiones culturales que los originan.<br><br>
+                Cada preparación es desarrollada en pequeñas cantidades, priorizando la calidad de los ingredientes, el cuidado en su elaboración y la preservación de su carácter artesanal y natural.<br><br>
+                Nuestros productos están pensados para acompañar prácticas de bienestar personal, autocuidado consciente y conexión simbólica con la naturaleza, desde una visión respetuosa, cultural y no terapéutica.<br><br>
+                Te invitamos a redescubrir el valor de lo auténtico, lo artesanal y lo esencial, presente en cada aroma, textura y experiencia sensorial.</p>
         </div>
     </div>
     <br>

@@ -4,12 +4,12 @@
     
 @section('content')
     <h1>Productos Exclusivos</h1><br>
-    <h3 class="text-greenG text-center"><b>Todo el Poder de la Naturaleza y la Sabiduria Ancestral en cada Tratamiento</b></h3><br>
+    <h3 class="text-greenG text-center"><b>La Naturaleza y el Saber Tradicional en Cada Preparación Artesanal</b></h3><br>
     <div class="container text-center">
-        <p class="p-4 text-justify">Descubre el poder de la naturaleza a través de nuestra línea de productos artesanales, elaborados con fórmulas magistrales heredadas de los pueblos indígenas.<br>
-            No se trata de productos convencionales, sino de remedios ancestrales que han sido utilizados por generaciones para restaurar el equilibrio natural del cuerpo. 
-            Atrévete a probar lo que la naturaleza y la sabiduría ancestral tienen para ti.<br>
-            <b class="text-center">Tu bienestar comienza aquí.</b>
+        <p class="p-4 text-justify">Descubre una línea de productos naturales artesanales elaborados con inspiración en saberes tradicionales y procesos manuales cuidadosamente desarrollados.<br><br>
+            Cada preparación refleja una forma consciente de relacionarse con la naturaleza, priorizando ingredientes de origen natural, prácticas artesanales y una elaboración responsable en pequeñas cantidades.<br><br>
+            No se trata de productos convencionales, sino de expresiones culturales y sensoriales pensadas para acompañar rituales de autocuidado, bienestar personal y conexión simbólica con lo natural. <br><br>
+            Una invitación a valorar lo auténtico, lo artesanal y lo esencial, desde una experiencia respetuosa y consciente.
         </p>
     </div>
     <div class="container p-4">
@@ -39,6 +39,6 @@
             @endforeach
         </div>
     </div><br>
-    <h2 class="text-green-900 text-center">Los medicamentos homeopáticos o con base en fórmulas magistrales no requieren para su comercialización de registro sanitario. <br> Decreto 1737 de 2005, Cap. IV Art. 11</h2><br>
+    <h2 class="text-green-900 text-center">Los productos ofrecidos por Naturaleza Sagrada S.A.S. BIC son elaboraciones artesanales de origen natural, sin finalidad terapéutica ni medicinal. No sustituyen tratamientos médicos ni diagnósticos profesionales. Su uso corresponde a prácticas tradicionales, culturales y de bienestar personal, conforme a la normativa colombiana vigente</h2><br>
     <img src="{{ asset('img/NaturalezaCiencia.jpg') }}" class="w-[60%] md:w-[40%] m-auto rounded-xl" alt="indigena">
 @endsection

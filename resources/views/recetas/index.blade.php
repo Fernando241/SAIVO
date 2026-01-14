@@ -4,8 +4,12 @@
 
 @section('content')
     <div class="container mx-auto p-4 w-[80%]">
-        <h1>Bienvenidos a Nuestra Colección de Recetas y Recomendaciones para Mejorar la Salud</h1><br>
-        <p class="w-[90%] m-auto">En nuestra tienda, creemos en el poder de la naturaleza para mejorar nuestra salud y bienestar. <br> En esta sección especial, encontrarás una selección de recetas caseras que te ayudarán a tratar de forma natural diversas dolencias y problemas de salud. Desde infusiones relajantes hasta remedios caseros para aliviar el dolor, cada receta está diseñada para aprovechar los beneficios de los ingredientes naturales. <br>Descubre cómo la sabiduría ancestral y los ingredientes que tienes en casa pueden convertirse en tus mejores aliados para cuidar de tu salud y la de tu familia. Explora, experimenta y disfruta de una vida más sana y equilibrada con nuestras recetas.</p><br>
+        <h1>Recetas Tradicionales y Preparaciones de Uso Cotidiano</h1><br>
+        <p class="w-[90%] m-auto">En Naturaleza Sagrada compartimos conocimientos culturales y tradicionales relacionados con el uso cotidiano de alimentos, plantas y preparaciones caseras que han hecho parte de prácticas populares transmitidas de generación en generación. <br><br>
+        Esta sección tiene un enfoque educativo y cultural, orientado a rescatar saberes tradicionales y promover una relación consciente con los ingredientes naturales presentes en la vida diaria. <br><br>
+        Las recetas aquí presentadas corresponden a preparaciones alimentarias y prácticas tradicionales de uso doméstico, sin finalidad terapéutica ni médica, y forman parte del patrimonio cultural y gastronómico de diversas comunidades. <br><br>
+        Te invitamos a explorar estas preparaciones desde la curiosidad, el respeto cultural y el autocuidado consciente.
+        </p> <br>
         
         <!-- Modal de confirmación (oculto por defecto) -->
         <div x-data="{ show: false, formId: null }">
@@ -72,9 +76,12 @@
 </div><br>
 
         @can('recetas.destroy')
-            <a href="{{ route('recetas.create') }}" class="bg-green-700 hover:bg-green-500 text-white hover:text-green-900 p-2 rounded-sm">Añadir nueva receta</a>
+            <a href="{{ route('recetas.create') }}" class="bg-green-700 hover:bg-green-500 text-white hover:text-green-900 p-2 rounded-sm">Añadir nueva receta</a><br><br>
         @endcan
-        
+        <div class="text-gray-600 text-center">
+            <h3><b>Nota Importante:</b></h3>
+            <p>La información compartida en esta sección tiene fines exclusivamente educativos y culturales. Las recetas y preparaciones aquí descritas corresponden a usos tradicionales y alimentarios, y no constituyen recomendaciones médicas ni sustituyen la consulta con profesionales de la salud. Ante cualquier condición médica, se recomienda acudir a un profesional debidamente calificado.</p>
+        </div>
     </div>
 
     <script>

@@ -159,7 +159,7 @@
                 <a href="{{ url('/') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('/') ? 'bg-greenG' : '' }}">Inicio</a>
                 <a href="{{ url('/productos') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('productos') ? 'bg-greenG' : '' }}">Nuestros Productos</a>
                 <a href="{{ url('/nosotros') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('nosotros') ? 'bg-greenG' : '' }}">¿Quiénes somos?</a>
-                <a href="{{ url('/recetas') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('recetas') ? 'bg-greenG' : '' }}">Recetas y Recomendaciones</a>
+                <a href="{{ url('/recetas') }}" class="text-white px-4 py-2 text-center hover:text-greenY hover:font-bold {{ request()->is('recetas') ? 'bg-greenG' : '' }}">Recetas Tradicionales</a>
             </nav>
         </div>
 
@@ -220,7 +220,10 @@
             </div><br>
             </div>
             
-        <p class=" text-white pb-5 text-xs md:text-base">&copy; 2024 Naturaleza Sagrada.SAS. Todos los derechos reservados.</p>
+        <p class="text-white pb-5 text-xs md:text-base">
+            © 2024 Naturaleza Sagrada S.A.S. BIC – NIT 902017015-7. Todos los derechos reservados.
+        </p>
+
     </footer>
 
     {{-- livewire Script --}}
