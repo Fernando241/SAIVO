@@ -44,8 +44,9 @@
     <meta name="twitter:image" content="@yield('twitter_image', asset('storage/images/og-default.jpg'))">
 
     {{-- Favicon --}}
-    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg?v=2') }}">
-    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('images/favicon.png?v=2') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg?v=3') }}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('images/favicon.png?v=3') }}">
+    <link rel="icon" href="{{ asset('favicon.ico?v=3') }}">
 
     {{-- Espacio reservado para datos estructurados --}}
     @yield('structured_data')
