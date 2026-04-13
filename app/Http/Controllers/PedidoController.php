@@ -147,4 +147,19 @@ class PedidoController extends Controller
     {
         //
     }
+
+    /* Función temporal para confirmar pago manual y solo accesible para rol SuperAdmin */
+    public function confirmarPagoManual(Pedido $pedido)
+    {
+        // 🔒 Solo permitir transición válida
+        if ($pedido->estado !== 'Pendiente_pago') {
+            return redirect()->back()->with('error', 'El pedido no está en estado pendiente.');
+        }
+
+        // 🔥 Actualizar estado
+        $pedido->estado = 'Pagado';
+        $pedido->save();
+
+        return redirect()->back()->with('success', 'Pago confirmado manualmente.');
+    }
 }

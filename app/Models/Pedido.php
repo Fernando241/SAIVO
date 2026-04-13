@@ -9,7 +9,13 @@ class Pedido extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['cliente_id', 'total', 'estado'];
+    protected $fillable = [
+        'cliente_id',
+        'subtotal',
+        'iva', 
+        'total', 
+        'estado'
+        ];
 
     public function cliente()
     {

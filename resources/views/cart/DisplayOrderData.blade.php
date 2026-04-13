@@ -54,18 +54,22 @@
             $iva = $total - $subtotal; // 19% del total
         @endphp
         <div class="w-[80%] container">
-            {{-- Precio subtotal temporal --}}
-            <p class="text-right"><b>Subtotal:</b> COP {{ number_format($total) }}</p>
-            <p class="text-right"><b>Impuesto IVA (19%):</b> No Aplicable</p>
+            @php
+                $subtotal = $total / 1.19;
+                $iva = $total - $subtotal;
+            @endphp
+
+            <p class="text-right"><b>Subtotal (sin IVA):</b> COP {{ number_format($subtotal) }}</p>
+            <p class="text-right"><b>IVA (19%):</b> COP {{ number_format($iva) }}</p>
             <p class="text-lg font-bold text-right"><b>Total del Pedido:</b> COP {{ number_format($total) }}</p>
         </div>
         <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 my-4">
             <p class="text-gray-600 text-sm text-center">
                 <strong>Nota Legal:</strong> Naturaleza Sagrada S.A.S BIC, identificada con NIT {{ $cliente->nit ?? '902.017.015-7' }}, 
-                informa que opera bajo la calidad de <strong>No Responsable de IVA</strong>. 
-                En cumplimiento de la normativa vigente, el precio facturado representa el valor total y final de la operación.
+                es <strong>Responsable del Impuesto sobre las Ventas (IVA)</strong>. 
+                De acuerdo con la normativa vigente, los precios publicados incluyen IVA, el cual se discrimina en el resumen y en la factura electrónica correspondiente.
             </p>
-        </div>
+        </div>        
 
         {{-- Boton temporal para desviar pagos --}}
         <div class="mt-6 text-center">
@@ -97,6 +101,7 @@
                 .then(data => {
                     if (data.success) {
                         window.location.href = "{{ route('cart.pagosTemporales') }}";
+                        /* window.location.href = "/wompi-checkout/" + data.pedido_id; */
                     } else {
                         alert("No se pudo crear el pedido.");
                     }

@@ -9,17 +9,17 @@ use App\Models\DetallePedido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Events\PedidoPagado;
+
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+
 
 use App\Mail\BienvenidaCliente;
 use App\Mail\ConfirmacionPago;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use PhpParser\Node\Stmt\TryCatch;
+
 
 
 class CartController extends Controller
@@ -256,10 +256,15 @@ class CartController extends Controller
                 return $carry + ($item['quantity'] * $item['price']);
             }, 0);
 
+            $subtotal = round($total / 1.19, 2);
+            $iva = round($total - $subtotal, 2);
+
             $p = Pedido::create([
                 'cliente_id' => $cliente->id,
+                'subtotal' => $subtotal,
+                'iva' => $iva,
                 'total' => $total,
-                'estado' => 'Pendiente',
+                'estado' => 'Pendiente_pago',
             ]);
 
             foreach ($cart as $item) {
@@ -293,4 +298,96 @@ class CartController extends Controller
             'pedido_id' => $pedido->id
         ]);
     }
+
+    /* -------------------------------Desde aqui nueva implementación de Wompi | preparación -------------------------------------------- */
+
+    /* Controlador pagos Wompi */
+    public function wompiResponse(Request $request)
+    {
+        // Wompi puede enviar datos por query params
+        $reference = $request->input('reference');
+
+        if (!$reference) {
+            return redirect()->route('productos.index')
+                ->with('error', 'Referencia de pago no encontrada.');
+        }
+
+        // Extraer ID del pedido (ej: PEDIDO_15 → 15)
+        $pedidoId = str_replace('PEDIDO_', '', $reference);
+
+        $pedido = Pedido::find($pedidoId);
+
+        if (!$pedido) {
+            return redirect()->route('productos.index')
+                ->with('error', 'Pedido no encontrado.');
+        }
+
+        // ⚠️ Aún NO confirmamos pago aquí
+        return view('cart.wompi_response', compact('pedido'));
+    }
+
+    public function wompiWebhook(Request $request)
+    {
+        Log::info('Webhook Wompi recibido', $request->all());
+
+        $data = $request->input('data');
+
+        if (!$data) {
+            return response()->json(['error' => 'No data'], 400);
+        }
+
+        $transaction = $data['transaction'] ?? null;
+
+        if (!$transaction) {
+            return response()->json(['error' => 'No transaction'], 400);
+        }
+
+        $reference = $transaction['reference'] ?? null;
+        $status = $transaction['status'] ?? null;
+
+        if (!$reference || !$status) {
+            return response()->json(['error' => 'Datos incompletos'], 400);
+        }
+
+        // Extraer ID pedido
+        $pedidoId = str_replace('PEDIDO_', '', $reference);
+
+        $pedido = Pedido::find($pedidoId);
+
+        if (!$pedido) {
+            return response()->json(['error' => 'Pedido no encontrado'], 404);
+        }
+
+        // 🔥 LÓGICA CLAVE
+        if ($status === 'APPROVED') {
+            $pedido->estado = 'Pagado';
+        } elseif ($status === 'DECLINED' || $status === 'ERROR') {
+            $pedido->estado = 'Fallido';
+        }
+
+        $pedido->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function wompiCheckout($pedidoId)
+    {
+        $pedido = Pedido::with(['cliente', 'detalles.producto'])->find($pedidoId);
+
+        if (!$pedido) {
+            return redirect()->route('productos.index')
+                ->with('error', 'Pedido no encontrado.');
+        }
+
+        // ⚠️ Validación básica
+        if ($pedido->estado !== 'Pendiente_pago') {
+            return redirect()->route('productos.index')
+                ->with('error', 'Este pedido ya fue procesado.');
+        }
+
+        // 🔥 Aquí luego irá integración real con Wompi
+
+        return view('cart.wompi_checkout', compact('pedido'));
+    }
+
 }

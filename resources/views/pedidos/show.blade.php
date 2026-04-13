@@ -19,11 +19,34 @@
             <form action="{{ route('pedidos.update', $pedido->id) }}" method="POST" id="estadoForm">
                 @csrf
                 @method('PUT')
-                <select name="estado" class="bg-white p-2 mb-2 text-center font-bold rounded-lg w-full">
+                {{-- <select name="estado" class="bg-white p-2 mb-2 text-center font-bold rounded-lg w-full">
                     <option value="Pendiente" {{ $pedido->estado == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                     <option value="Enviado" {{ $pedido->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
                     <option value="Entregado" {{ $pedido->estado == 'Entregado' ? 'selected' : '' }}>Entregado</option>
+                </select> --}}
+                <select name="estado" class="bg-white p-2 mb-2 text-center font-bold rounded-lg w-full">
+
+                    {{-- Estados financieros (solo lectura) --}}
+                    <option disabled {{ $pedido->estado == 'Pendiente_pago' ? 'selected' : '' }}>
+                        Pendiente de Pago
+                    </option>
+
+                    <option disabled {{ $pedido->estado == 'Fallido' ? 'selected' : '' }}>
+                        Pago Fallido
+                    </option>
+
+                    <option disabled {{ $pedido->estado == 'Pagado' ? 'selected' : '' }}>
+                        Pagado
+                    </option>
+
+                    {{-- Estados operativos (editables SOLO si está pagado) --}}
+                    @if($pedido->estado == 'Pagado' || $pedido->estado == 'Enviado' || $pedido->estado == 'Entregado')
+                        <option value="Enviado" {{ $pedido->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+                        <option value="Entregado" {{ $pedido->estado == 'Entregado' ? 'selected' : '' }}>Entregado</option>
+                    @endif
+
                 </select>
+
                 @can('pedidos.edit')
                     <div class="text-center">
                         <button type="button" onclick="openEstadoModal()" class="bg-greenB p-2 rounded-lg w-full hover:bg-greenY text-white hover:text-greenG">

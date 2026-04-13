@@ -18,7 +18,7 @@
         <div class="mb-8">
             <p>Estado:</p>
             <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full font-bold text-sm tracking-wide uppercase">
-                PENDIENTE
+                Pendiente de Pago
             </span>
         </div>
 
@@ -79,9 +79,19 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="w-[90%] container">
+                @php
+                    $subtotal = $total / 1.19;
+                    $iva = $total - $subtotal;
+                @endphp
+
+                <p class="text-right"><b>Subtotal (sin IVA):</b> COP {{ number_format($subtotal) }}</p>
+                <p class="text-right"><b>IVA (19%):</b> COP {{ number_format($iva) }}</p>
+            </div>
+ 
             <div class="bg-gray-50 p-4 text-right border-t">
                 <p class="text-lg font-bold text-green-800">Total del Pedido: COP {{ number_format($total) }}</p>
-                <p class="text-xs text-gray-600 font-semibold uppercase tracking-widest mt-1">¡Tu envío es totalmente gratis!</p>
+                <p class="text-xs text-gray-600 font-semibold uppercase tracking-widest mt-1">¡Tu envío para Bogotá o Cundinamarca<br>es totalmente gratis!</p>
             </div>
         </div>
 
@@ -100,7 +110,9 @@
 
             <div class="bg-gray-100 rounded-lg p-5 text-[11px] text-gray-500 leading-relaxed max-w-2xl mx-auto text-justify border-l-4 border-green-600">
                 <p>
-                    <strong>Nota Legal:</strong> Naturaleza Sagrada S.A.S BIC, identificada con <strong>NIT 902.017.015-7</strong>, informa que opera bajo la calidad de <strong>No Responsable de IVA</strong>. En cumplimiento de la normativa vigente, el precio facturado representa el valor total y final de la operación realizada por el consumidor.
+                    <strong>Nota Legal:</strong> Naturaleza Sagrada S.A.S BIC, identificada con NIT {{ $cliente->nit ?? '902.017.015-7' }}, 
+                    es <strong>Responsable del Impuesto sobre las Ventas (IVA)</strong>. 
+                    De acuerdo con la normativa vigente, los precios publicados incluyen IVA, el cual se discrimina en el resumen y en la factura electrónica correspondiente.
                 </p>
             </div>
         </div>

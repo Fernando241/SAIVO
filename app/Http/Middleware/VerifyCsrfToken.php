@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'email/verify/*',
+        'api/wompi/webhook',
+        'api/admin/pedidos/*/estado'
     ];
 }

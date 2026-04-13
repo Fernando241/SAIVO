@@ -56,10 +56,10 @@
     @vite('resources/js/app.js')
 
     <!-- PayPal Script -->
-    <script
+{{--     <script
         src="https://www.paypal.com/sdk/js?client-id=AfANYdWSKkhU-DoNtvtkpCJFwZWHmz612gzSmdcSbR2SpcxJTS9lOEJArmAz_YbsZIDG_7h-HAj4TpLZ"
         data-sdk-integration-source="developer-studio">
-    </script>
+    </script> --}}
     
     {{-- livewire Style --}}
     @livewireStyles

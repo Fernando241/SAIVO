@@ -108,3 +108,12 @@ Route::resource('/pedidos', PedidoController::class)->only(['index', 'store', 's
 /* recetas */
 Route::resource('/recetas', RecetaController::class)->names('recetas');
 
+/* Wompi */
+Route::get('/wompi/response', [CartController::class, 'wompiResponse'])->name('wompi.response');
+Route::get('/wompi-checkout/{pedido}', [CartController::class, 'wompiCheckout']);
+
+/* Ruta para Endpoint de pagos temporales mientras se activa Wompi a su totalidad */
+Route::middleware(['role:SuperAdmin'])->group(function () {
+    Route::post('/pedidos/{pedido}/confirmar-pago', [PedidoController::class, 'confirmarPagoManual'])
+        ->name('pedidos.confirmarPagoManual');
+});
