@@ -128,7 +128,7 @@
         <a href="https://www.facebook.com/profile.php?id=61584339925336" id="icono" target="_black"><i class='bx bxl-facebook-circle'></i></a>
         <a href="https://www.youtube.com/channel/UCM5Sglch0GxYjEllN-Mbx2A" id="icono" target="_black"><i class='bx bxl-youtube'></i></a>
         <a href="https://www.instagram.com/naturalezasagradasas/" id="icono" target="_black"><i class='bx bxl-instagram'></i></a>
-        <a href="https://twitter.com/" id="icono" target="_black"><i class='bx bxl-twitter'></i></a>
+        <a href="https://tiktok.com/@naturaleza.sagrada?_r=1&_t=ZS-95XPGf0milF" id="icono" target="_black"><i class='bx bxl-tiktok'></i></a>
     </nav>
     
     {{-- alertas en páginas que heredan de esta plantilla --}}

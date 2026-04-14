@@ -27,7 +27,7 @@
 }
 
 #icono {
-    @apply bg-greenG text-white rounded-md p-2.5 text-center text-[35px] shadow-[0_1px_10px_rgba(0,0,0,0.3)] hover:bg-greenB hover:p-[9px];
+    @apply bg-greenG text-white rounded-md p-2.5 text-center text-[35px] shadow-[0_1px_10px_rgba(0,0,0,0.3)] hover:bg-greenB hover:p-[9px] border border-white;
 }
 
 #menu {
